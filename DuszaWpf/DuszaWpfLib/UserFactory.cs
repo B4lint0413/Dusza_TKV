@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+namespace DuszaWpfLib;
 
-namespace DuszaWpfLib
+public static class UserFactory
 {
-    public static class UserFactory
+    public static void NewUserToUsers(User user, Users users)
     {
+        if (users.Names.Contains(user.Name))
+        {
+            throw new DuplicateUsersException();
+        }
+        users.AllUsers.Add(user);
     }
 }
