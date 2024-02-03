@@ -36,5 +36,20 @@ namespace DuszaWpfLib
                 points = value;
             }
         }
+
+        private bool isOrganiser = false;
+        public bool IsOrganiser
+        {
+            get
+            {
+                return isOrganiser;
+            }
+            set 
+            {
+                isOrganiser = value;
+            }
+        }
+
+        public string ToFile => $"{Name};{Password};{Points}";
     }
 }

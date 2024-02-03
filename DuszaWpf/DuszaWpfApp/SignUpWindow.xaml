@@ -1,0 +1,21 @@
+﻿<Window x:Class="DuszaWpfApp.SignUpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DuszaWpfApp"
+        mc:Ignorable="d"
+        Title="SignUpWindow" Height="500" Width="400">
+    <Grid>
+        <StackPanel Margin="20" Width="250">
+            <TextBlock HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10">Sign up page</TextBlock>
+            <Label FontSize="20" Target="{Binding ElementName=username}">Username:</Label>
+            <TextBox Height="20" Width="200" Name="username"></TextBox>
+            <Label FontSize="20" Target="{Binding ElementName=passwd}">Password:</Label>
+            <TextBox Height="20" Width="200" Name="passwd"></TextBox>
+            <Label FontSize="20" Target="{Binding ElementName=passwdAgain}">Confirm password:</Label>
+            <TextBox Height="20" Width="200" Name="passwdAgain"></TextBox>
+            <Button Margin="20" Height="25" Click="SignUpNewUser" Content="Sign up"/>
+        </StackPanel>
+    </Grid>
+</Window>

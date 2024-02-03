@@ -9,4 +9,5 @@ public class Users
 
     public List<string> Names => AllUsers.Select(x=>x.Name).ToList();
     
+    public List<string> ToFile => AllUsers.Select(x=>x.ToFile).ToList();
 }
