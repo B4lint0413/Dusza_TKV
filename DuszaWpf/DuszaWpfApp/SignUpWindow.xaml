@@ -16,6 +16,7 @@
             <Label FontSize="20" Target="{Binding ElementName=passwdAgain}">Confirm password:</Label>
             <TextBox Height="20" Width="200" Name="passwdAgain"></TextBox>
             <Button Margin="20" Height="25" Click="SignUpNewUser" Content="Sign up"/>
+            <Button Margin="20" Height="25" Click="" Content="Log in"/>
         </StackPanel>
     </Grid>
 </Window>
