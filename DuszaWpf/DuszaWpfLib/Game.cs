@@ -26,7 +26,7 @@ namespace DuszaTKVGameLib
 
         public override string ToString()
         {
-            return $"{Organizer};{Name};{_subjects.Count};{Events.Count}\n{string.Join("\n", _subjects.Select(x => x.Name))}\n{string.Join("\n", Events.Keys)}\n";
+            return $"{Organizer.Name};{Name};{_subjects.Count};{Events.Count}\n{string.Join("\n", _subjects.Select(x => x.Name))}\n{string.Join("\n", Events.Keys)}";
         }
 
         public void EndGame(IEnumerable<string> results)
