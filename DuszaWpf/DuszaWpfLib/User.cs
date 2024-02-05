@@ -22,7 +22,7 @@ namespace DuszaWpfLib
             Points = points;
         }
         public string Name {get; init; }
-        private string Password { get; init; }
+        public string Password { get; init; }
         private int points;
 
         public int Points

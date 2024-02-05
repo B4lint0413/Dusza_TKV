@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DuszaWpfApp"
         mc:Ignorable="d"
-        Title="LogInWindow" Height="450" Width="800">
+        Title="LogInWindow" Height="500" Width="400">
     <Grid>
-        
+        <StackPanel Margin="20" Width="250">
+            <TextBlock HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10">Log in page</TextBlock>
+            <Label FontSize="20" Target="{Binding ElementName=username}">Username:</Label>
+            <TextBox Height="20" Width="200" Name="username"></TextBox>
+            <Label FontSize="20" Target="{Binding ElementName=passwd}">Password:</Label>
+            <TextBox Height="20" Width="200" Name="passwd"></TextBox>
+            <Button Margin="20" Height="25" Click="LogIn" Content="Log in"/>
+        </StackPanel>
     </Grid>
 </Window>
