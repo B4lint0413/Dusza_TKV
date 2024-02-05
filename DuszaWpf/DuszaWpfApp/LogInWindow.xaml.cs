@@ -23,5 +23,10 @@ namespace DuszaWpfApp
 		{
 			InitializeComponent();
 		}
+		public void LogIn(object sender, EventArgs e)
+		{
+			string userName = username.Text;
+			string password = passwd.Text;
+		}
 	}
 }
