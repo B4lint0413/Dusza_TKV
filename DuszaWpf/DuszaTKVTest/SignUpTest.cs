@@ -1,4 +1,4 @@
-using DuszaWpfLib;
+using DuszaTKVGameLib;
 
 namespace DuszaTKVTest;
 

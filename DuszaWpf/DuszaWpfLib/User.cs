@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DuszaWpfLib
+namespace DuszaTKVGameLib
 {
     public class User
     {
@@ -23,30 +23,30 @@ namespace DuszaWpfLib
         }
         public string Name {get; init; }
         private string Password { get; init; }
-        private int points;
+        private int _points;
 
         public int Points
         {
             get
             {
-                return points;
+                return _points;
             }
             set
             {
-                points = value;
+                _points = value;
             }
         }
 
-        private bool isOrganiser = false;
+        private bool _isOrganiser = false;
         public bool IsOrganiser
         {
             get
             {
-                return isOrganiser;
+                return _isOrganiser;
             }
             set 
             {
-                isOrganiser = value;
+                _isOrganiser = value;
             }
         }
 

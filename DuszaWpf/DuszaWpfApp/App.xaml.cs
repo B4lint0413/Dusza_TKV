@@ -1,4 +1,4 @@
-﻿using DuszaWpfLib;
+﻿using DuszaTKVGameLib;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -15,22 +15,22 @@ namespace DuszaWpfApp
     /// </summary>
     public partial class App : Application
     {
-        public static Users users = new Users();
-        public static Bets bets = new Bets();
-        public static Games games = new Games();
+        public static Users Users = new Users();
+        public static Bets Bets = new Bets();
+        public static Games Games = new Games();
 
         public App()
         {
             foreach (string row in File.ReadAllLines("Files/users.txt"))
             {
                 string[] splitted = row.Split(";");
-                UserFactory.NewUserToUsers(new User(splitted[0], splitted[1], int.Parse(splitted[2])), users);
+                UserFactory.NewUserToUsers(new User(splitted[0], splitted[1], int.Parse(splitted[2])), Users);
             }
         }
 
         public void AppExit(object sender, ExitEventArgs e)
         {
-            File.WriteAllText("Files/users.txt", string.Join("\n", users.ToFile));
+            File.WriteAllText("Files/users.txt", string.Join("\n", Users.ToFile));
         }
     }
 }

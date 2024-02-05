@@ -1,4 +1,4 @@
-namespace DuszaWpfLib;
+namespace DuszaTKVGameLib;
 
 public static class UserFactory
 {

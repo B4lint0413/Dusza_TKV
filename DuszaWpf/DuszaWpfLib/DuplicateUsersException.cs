@@ -1,8 +1,8 @@
 using System;
 
-namespace DuszaWpfLib;
+namespace DuszaTKVGameLib;
 
 public class DuplicateUsersException : Exception
 {
-    public DuplicateUsersException() : base("User is already existing!"){}
+    public DuplicateUsersException() : base("User already exists!"){}
 }

@@ -1,5 +1,4 @@
-﻿using DuszaWpfLib;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using DuszaTKVGameLib;
 
 namespace DuszaWpfApp
 {
@@ -33,7 +33,7 @@ namespace DuszaWpfApp
             if (password==passwordAgain)
             {
                 try{
-                    UserFactory.NewUserToUsers(new User(name,password),App.users);
+                    UserFactory.NewUserToUsers(new User(name,password),App.Users);
                     MessageBox.Show("You have signed up successfully", "Successful registration", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception ex)
