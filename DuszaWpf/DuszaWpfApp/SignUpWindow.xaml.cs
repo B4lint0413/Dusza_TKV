@@ -25,6 +25,13 @@ namespace DuszaWpfApp
             InitializeComponent();
         }
 
+        public void NavigateToLogIn(object sender, EventArgs e)
+        {
+           LogInWindow logInWindow = new LogInWindow();
+            this.Hide();
+            logInWindow.Show();
+        }
+
         public void SignUpNewUser(object sender, RoutedEventArgs e)
         {
             string name = username.Text;
@@ -46,5 +53,5 @@ namespace DuszaWpfApp
                 MessageBox.Show("The confirmation password differs from the password!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-    }
+	}
 }

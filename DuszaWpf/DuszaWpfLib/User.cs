@@ -22,18 +22,17 @@ namespace DuszaTKVGameLib
             Points = points;
         }
         public string Name {get; init; }
-        private string Password { get; init; }
-        private int _points;
-
+        public string Password { get; init; }
+        private int points;
         public int Points
         {
             get
             {
-                return _points;
+                return points;
             }
             set
             {
-                _points = value;
+                points = value;
             }
         }
 
