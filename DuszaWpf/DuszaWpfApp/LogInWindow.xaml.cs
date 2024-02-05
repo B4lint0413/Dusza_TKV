@@ -27,6 +27,15 @@ namespace DuszaWpfApp
 		{
 			string userName = username.Text;
 			string password = passwd.Text;
+
+			try
+			{
+				App.users.UserLogIn(userName, password);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
 		}
 	}
 }
