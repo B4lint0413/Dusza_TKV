@@ -24,7 +24,7 @@ public class SignUpTest
     public void TryingToCreateAnExistingUserThrowsError()
     {
         Users users = new();
-        UserFactory.NewUserToUsers(new User("Gipsz Jakab", "jelszó"),users);
-        Assert.ThrowsException<DuplicateUsersException>(() => UserFactory.NewUserToUsers(new User("Gipsz Jakab", "jelszó"),users));
+        Factory.NewUserToUsers(new User("Gipsz Jakab", "jelszó"),users);
+        Assert.ThrowsException<DuplicateUsersException>(() => Factory.NewUserToUsers(new User("Gipsz Jakab", "jelszó"),users));
     }
 }

@@ -24,7 +24,7 @@ namespace DuszaWpfApp
             foreach (string row in File.ReadAllLines("Files/users.txt"))
             {
                 string[] splitted = row.Split(";");
-                UserFactory.NewUserToUsers(new User(splitted[0], splitted[1], int.Parse(splitted[2])), Users);
+                Factory.NewUserToUsers(new User(splitted[0], splitted[1], int.Parse(splitted[2])), Users);
             }
         }
 

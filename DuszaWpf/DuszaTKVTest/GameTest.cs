@@ -9,9 +9,8 @@ public class GameTest
     public void GameToStringTest()
     {
         var events = new List<Event>();
-        var organizer = new User("organizer", "asdasd");
-        events.Add(new Event("asdasd", new User("hululu", "asdasd")));
-        var game = new Game("game", organizer, events);
+        events.Add(new Event("asdasd",  "hululu", "game"));
+        var game = new Game("game", "organizer", events);
         Assert.AreEqual("organizer;game;1;1\nhululu\nasdasd", game.ToString());
     }
 
@@ -19,9 +18,8 @@ public class GameTest
     public void ResultsToStringTest()
     {
         var events = new List<Event>();
-        var organizer = new User("organizer", "asdasd");
-        events.Add(new Event("asdasd", new User("hululu", "asdasd")));
-        var game = new Game("game", organizer, events);
+        events.Add(new Event("asdasd", "hululu", "game"));
+        var game = new Game("game", "organizer", events);
         Assert.AreEqual("game\nhululu;asdasd;;0", game.ResultsToString());
     }
 
@@ -29,11 +27,10 @@ public class GameTest
     public void GamesToStringTest()
     {
         var events = new List<Event>();
-        var organizer = new User("organizer", "asdasd");
-        events.Add(new Event("asdasd", new User("hululu", "asdasd")));
+        events.Add(new Event("asdasd", "hululu", "game"));
         var gameList = new List<Game>();
-        gameList.Add(new Game("game", organizer, events));
-        gameList.Add(new Game("game2", organizer, events));
+        gameList.Add(new Game("game", "organizer", events));
+        gameList.Add(new Game("game2", "organizer", events));
         var games = new Games(gameList);
         Assert.AreEqual("organizer;game;1;1\nhululu\nasdasd\norganizer;game2;1;1\nhululu\nasdasd", games.ToString());
     }
@@ -42,9 +39,8 @@ public class GameTest
     public void EndGameTest()
     {
         var events = new List<Event>();
-        var organizer = new User("organizer", "asdasd");
-        events.Add(new Event("asdasd", new User("hululu", "asdasd")));
-        var game = new Game("game", organizer, events);
+        events.Add(new Event("asdasd", "hululu", "game"));
+        var game = new Game("game", "organizer", events);
         Assert.AreEqual("", game.Events.ElementAt(0).Result);
         var result = new List<string>() { "result" };
         Assert.IsTrue(game.IsInProgress);
