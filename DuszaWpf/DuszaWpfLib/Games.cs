@@ -11,7 +11,10 @@ namespace DuszaTKVGameLib
         {
             _gameList = games.ToList();
         }
-
+        public string ResultsToString()
+        {
+            return string.Join("\n", _gameList.Select(x => x.ResultsToString()));
+        }
         public override string ToString()
         {
             return string.Join("\n", _gameList);
