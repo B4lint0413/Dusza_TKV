@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DuszaTKVGameLib
 {
@@ -12,28 +9,29 @@ namespace DuszaTKVGameLib
         {
             Name = name;
             Organizer = organizer;
-            Events = events.ToList();
+            _events = events.ToList();
             IsInProgress = true;
         }
         public string Name { get; init; }
         public User Organizer { get; init; }
-        private List<Event> Events { get; set; }
+        private readonly List<Event> _events;
         public bool IsInProgress { get; private set; }
         public string ResultsToString()
         {
-            return $"{Name}\n{string.Join("\n", Events)}";
+            return $"{Name}\n{string.Join("\n", _events)}";
         }
         public override string ToString()
         {
-            return $"{Organizer.Name};{Name};{Events.Count};{Events.Count}\n{string.Join("\n", Events.Select(x => x.Subject.Name).Distinct())}\n{string.Join("\n", Events.Select(x => x.Name).Distinct())}";
+            return $"{Organizer.Name};{Name};{_events.Count};{_events.Count}\n{string.Join("\n", _events.Select(x => x.Subject.Name).Distinct())}\n{string.Join("\n", _events.Select(x => x.Name).Distinct())}";
         }
-
         public void EndGame(IEnumerable<string> results)
         {
             IsInProgress = false;
-            for (var i = 0; i < results.Count(); i++)
-                Events[i].Result = results.ElementAt(i);
+            var resultsList = results.ToList();
+            for (var i = 0; i < resultsList.Count; i++)
+                _events[i].Result = resultsList[i];
         }
-        public IEnumerable<User> Subjects => Events.Select(x => x.Subject).DistinctBy(x => x.Name);
+        public IEnumerable<User> Subjects => _events.Select(x => x.Subject).DistinctBy(x => x.Name);
+        public IEnumerable<Event> Events => _events;
     }
 }

@@ -1,4 +1,3 @@
-using System.Windows.Documents;
 using DuszaTKVGameLib;
 
 namespace DuszaTKVTest;
@@ -11,7 +10,7 @@ public class GameTest
     {
         var events = new List<Event>();
         var organizer = new User("organizer", "asdasd");
-        events.Add(new Event("asdasd", "asd", new User("hululu", "asdasd")));
+        events.Add(new Event("asdasd", new User("hululu", "asdasd")));
         var game = new Game("game", organizer, events);
         Assert.AreEqual("organizer;game;1;1\nhululu\nasdasd", game.ToString());
     }
@@ -21,9 +20,9 @@ public class GameTest
     {
         var events = new List<Event>();
         var organizer = new User("organizer", "asdasd");
-        events.Add(new Event("asdasd", "asd", new User("hululu", "asdasd")));
+        events.Add(new Event("asdasd", new User("hululu", "asdasd")));
         var game = new Game("game", organizer, events);
-        Assert.AreEqual("game\nhululu;asdasd;asd;0", game.ResultsToString());
+        Assert.AreEqual("game\nhululu;asdasd;;0", game.ResultsToString());
     }
 
     [TestMethod]
@@ -31,11 +30,27 @@ public class GameTest
     {
         var events = new List<Event>();
         var organizer = new User("organizer", "asdasd");
-        events.Add(new Event("asdasd", "asd", new User("hululu", "asdasd")));
+        events.Add(new Event("asdasd", new User("hululu", "asdasd")));
         var gameList = new List<Game>();
         gameList.Add(new Game("game", organizer, events));
         gameList.Add(new Game("game2", organizer, events));
         var games = new Games(gameList);
         Assert.AreEqual("organizer;game;1;1\nhululu\nasdasd\norganizer;game2;1;1\nhululu\nasdasd", games.ToString());
+    }
+
+    [TestMethod]
+    public void EndGameTest()
+    {
+        var events = new List<Event>();
+        var organizer = new User("organizer", "asdasd");
+        events.Add(new Event("asdasd", new User("hululu", "asdasd")));
+        var game = new Game("game", organizer, events);
+        Assert.AreEqual("", game.Events.ElementAt(0).Result);
+        var result = new List<string>() { "result" };
+        Assert.IsTrue(game.IsInProgress);
+        game.EndGame(result);
+        Assert.AreEqual("result", game.Events.ElementAt(0).Result);
+        Assert.IsFalse(game.IsInProgress);
+        Assert.AreEqual("game\nhululu;asdasd;result;0", game.ResultsToString());
     }
 }
