@@ -19,5 +19,6 @@ namespace DuszaTKVGameLib
         {
             return string.Join("\n", GameList);
         }
+        public Game? this[string name] => GameList.Find(x => x.Name == name);
     }
 }

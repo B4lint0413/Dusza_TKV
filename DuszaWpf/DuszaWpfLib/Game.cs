@@ -8,36 +8,32 @@ namespace DuszaTKVGameLib
 {
     public class Game
     {
-        public Game(string name, ref User organizer, IEnumerable<User> subjects, IEnumerable<string> events)
+        public Game(string name, User organizer, IEnumerable<Event> events)
         {
             Name = name;
             Organizer = organizer;
-            _subjects = subjects.ToList();
-            Events = new Dictionary<string, string>();
-            foreach (var item in events)
-                Events.Add(item, "");
+            Events = events.ToList();
             IsInProgress = true;
         }
         public string Name { get; init; }
         public User Organizer { get; init; }
-        private readonly List<User> _subjects;
-        private Dictionary<string, string> Events { get; set; }
+        private List<Event> Events { get; set; }
         public bool IsInProgress { get; private set; }
-
+        public string ResultsToString()
+        {
+            return $"{Name}\n{string.Join("\n", Events)}";
+        }
         public override string ToString()
         {
-            return $"{Organizer.Name};{Name};{_subjects.Count};{Events.Count}\n{string.Join("\n", _subjects.Select(x => x.Name))}\n{string.Join("\n", Events.Keys)}";
+            return $"{Organizer.Name};{Name};{Events.Count};{Events.Count}\n{string.Join("\n", Events.Select(x => x.Subject.Name).Distinct())}\n{string.Join("\n", Events.Select(x => x.Name).Distinct())}";
         }
 
         public void EndGame(IEnumerable<string> results)
         {
             IsInProgress = false;
-            var temp = new Dictionary<string, string>();
-            for(var i = 0; i < results.Count(); ++i)
-                temp.Add(Events.Keys.ElementAt(i), results.ElementAt(i));
-            Events = temp;
+            for (var i = 0; i < results.Count(); i++)
+                Events[i].Result = results.ElementAt(i);
         }
-        public IEnumerable<User> Subjects => _subjects;
-        public IEnumerable<string> EventNames => Events.Keys;
+        public IEnumerable<User> Subjects => Events.Select(x => x.Subject).DistinctBy(x => x.Name);
     }
 }

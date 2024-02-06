@@ -17,7 +17,7 @@ namespace DuszaWpfApp
     {
         public static Users Users = new Users();
         public static Bets Bets = new Bets();
-        public static Games Games = new Games();
+        //public static Games Games = new Games();
 
         public App()
         {
