@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DuszaTKVGameLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,7 @@ namespace DuszaWpfApp
 		public void LogIn(object sender, EventArgs e)
 		{
 			string userName = username.Text;
-			string password = passwd.Text;
+			string password = HashedPasswdFactory.PasswdFactory(passwd.Text);
 
 			try
 			{
