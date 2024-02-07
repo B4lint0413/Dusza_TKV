@@ -27,7 +27,7 @@ namespace DuszaWpfApp
 		public void LogIn(object sender, EventArgs e)
 		{
 			string userName = username.Text;
-			string password = HashedPasswdFactory.PasswdFactory(passwd.Text);
+			string password = Factory.PasswdFactory(passwd.Text);
 
 			try
 			{

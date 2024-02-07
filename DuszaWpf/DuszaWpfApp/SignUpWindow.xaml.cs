@@ -40,7 +40,7 @@ namespace DuszaWpfApp
             if (password==passwordAgain)
             {
                 try{
-                    Factory.NewUserToUsers(new User(name,HashedPasswdFactory.PasswdFactory(password)),App.Users);
+                    Factory.NewUserToUsers(new User(name,Factory.PasswdFactory(password)),App.Users);
                     MessageBox.Show("You have signed up successfully", "Successful registration", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception ex)

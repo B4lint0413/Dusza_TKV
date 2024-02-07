@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Security.Cryptography;
 
 namespace DuszaTKVGameLib;
 
@@ -27,4 +28,13 @@ public static class Factory
         var data = line.Split(";");
         return new Event(data[1], data[0], gameName, data[2], double.Parse(data[3]));
     }
+
+	public static string PasswdFactory(string passwdFromInPut)
+	{
+		using (SHA256 sha256 = SHA256.Create())
+		{
+			byte[] hashedBytes = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(passwdFromInPut));
+			return hashedBytes.ToString()!;
+		}
+	}
 }

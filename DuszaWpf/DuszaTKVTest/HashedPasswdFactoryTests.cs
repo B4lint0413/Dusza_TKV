@@ -22,8 +22,8 @@ namespace DuszaTKVGameLib.Tests
 				byte[] hashedBytes = sHA256.ComputeHash(System.Text.Encoding.UTF8.GetBytes("asd123"));
 				hash = hashedBytes.ToString()!;
 			}
-			Assert.AreEqual(hash, HashedPasswdFactory.PasswdFactory("asd123"));
-			Assert.AreEqual(HashedPasswdFactory.PasswdFactory("password"), HashedPasswdFactory.PasswdFactory("password"));
+			Assert.AreEqual(hash, Factory.PasswdFactory("asd123"));
+			Assert.AreEqual(Factory.PasswdFactory("password"), Factory.PasswdFactory("password"));
 		}
 	}
 }
