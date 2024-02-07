@@ -14,11 +14,12 @@ public class Users
     
     public List<string> ToFile => AllUsers.Select(x=>x.ToFile).ToList();
 
-    public void UserLogIn(string username, string passwd)
+    public User UserLogIn(string username, string passwd)
     {
         if (!(Names.Contains(username) && Passwords.Contains(passwd)))
         {
             throw new InvalidUserNameOrPasswdException();
         }
+		return AllUsers.Find(x => x.Name == username && x.Password == passwd)!;
     }
 }
