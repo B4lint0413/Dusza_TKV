@@ -32,6 +32,10 @@ namespace DuszaTKVGameLib
             }
             set
             {
+                if (value<0)
+                {
+                    throw new NotEnoughPointsException();
+                }
                 points = value;
             }
         }
@@ -49,6 +53,6 @@ namespace DuszaTKVGameLib
             }
         }
 
-        public string ToFile => $"{Name};{Password};{Points}";
+        public override string ToString() => $"{Name};{Password};{Points}";
     }
 }

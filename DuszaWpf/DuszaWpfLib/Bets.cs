@@ -8,5 +8,18 @@ namespace DuszaTKVGameLib
 {
     public class Bets
     {
+        public List<Bet> AllBets;
+
+        public Bets()
+        {
+            AllBets = new List<Bet>();
+        }
+        public Bets(IEnumerable<Bet> bets)
+        {
+            AllBets = bets.ToList();
+        }
+
+        public Dictionary<string, List<Bet>> BetsByGames => AllBets.GroupBy(x => x.GameToBet.Name).ToDictionary(x=>x.Key, x=>x.ToList());
+
     }
 }
