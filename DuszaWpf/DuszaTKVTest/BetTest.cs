@@ -13,77 +13,45 @@ namespace DuszaTKVTest
         [TestMethod]
         public void InitWithConstructorAndReturnsProperToString()
         {
-            User organiser = new User("Sanyi", "jelszó");
-            User subject = new User("Béla", "jelszó");
             User player = new User("Gipsz Jakab", "jelszó");
-            Users subjects = new Users();
-            subjects.AllUsers.Add(subject);
-            Game jatek = new Game("Játék",ref organiser, subjects, new List<string>() {"Pontjainak száma"});
-            
-            Bet bet = new Bet(ref player, jatek, "Béla", "Pontjainak száma", "10", 5);
+            Bet bet = player.MakeBet("Játék", "10", "Béla", "Pontjainak száma", 5);
             Assert.AreEqual("Gipsz Jakab;Játék;10;Béla;Pontjainak száma;5", bet.ToString());
         }
 
         [TestMethod]
         public void ConstructorSubtractStakeFromPlayersPoints()
         {
-            User organiser = new User("Sanyi", "jelszó");
-            User subject = new User("Béla", "jelszó");
             User player = new User("Gipsz Jakab", "jelszó");
-            Users subjects = new Users();
-            subjects.AllUsers.Add(subject);
-            Game jatek = new Game("Játék", ref organiser, subjects, new List<string>() { "Pontjainak száma" });
-
-            Bet bet = new Bet(ref player, jatek, "Béla", "Pontjainak száma", "10", 5);
-            Assert.AreEqual(95, bet.Player.Points);
+            player.MakeBet("Játék", "10", "Béla", "Pontjainak száma", 5);
+            Assert.AreEqual(95, player.Points);
         }
         
         [TestMethod]
         public void ConstructorThrowsNotEnoughPointsExceptionIfPlayersPointsAreLessThanStake()
         {
-            User organiser = new User("Sanyi", "jelszó");
-            User subject = new User("Béla", "jelszó");
             User player = new User("Gipsz Jakab", "jelszó", 5);
-            Users subjects = new Users();
-            subjects.AllUsers.Add(subject);
-            Game jatek = new Game("Játék", ref organiser, subjects, new List<string>() { "Pontjainak száma" });
-
-            Assert.ThrowsException<NotEnoughPointsException>(()=>new Bet(ref player, jatek, "Béla", "Pontjainak száma", "10", 10));
+            Assert.ThrowsException<NotEnoughPointsException>(()=> player.MakeBet("Játék", "10", "Béla", "Pontjainak száma", 10));
         }
 
         [TestMethod]
         public void IfStakeIsNotGreaterThan0ThrowNonPositiveStakeException()
         {
-            User organiser = new User("Sanyi", "jelszó");
-            User subject = new User("Béla", "jelszó");
             User player = new User("Gipsz Jakab", "jelszó");
-            Users subjects = new Users();
-            subjects.AllUsers.Add(subject);
-            Game jatek = new Game("Játék", ref organiser, subjects, new List<string>() { "Pontjainak száma" });
-
-            Assert.ThrowsException<NonPositiveStakeException>(() => new Bet(ref player, jatek, "Béla", "Pontjainak száma", "10", 0));
+            Assert.ThrowsException<NonPositiveStakeException>(() => new Bet(player.Name, "10", "Játék", "Béla", "Pontjainak száma", 0));
         }
 
         [TestMethod]
         public void BetsGivesBackDirectoryWhereBetsGroupedByGames()
         {
-            User organiser = new User("Sanyi", "jelszó");
-            User subject = new User("Béla", "jelszó");
             User player = new User("Gipsz Jakab", "jelszó");
-            Users subjects = new Users();
-            subjects.AllUsers.Add(subject);
-
-            Game jatek = new Game("Játék", ref organiser, subjects, new List<string>() { "Pontjainak száma" });
-            Game iskola = new Game("Iskola", ref organiser, subjects, new List<string>() { "Matek átlaga" });
-            Game foci = new Game("Foci", ref organiser, subjects, new List<string>() { "Lőtt gólok" });
-
+            
             Bets bets = new();
-            bets.AllBets.Add(new Bet(ref player, jatek, "Béla", "Pontjainak száma", "10", 5));
-            bets.AllBets.Add(new Bet(ref player, iskola, "Béla", "Matek átlaga", "5", 5));
-            bets.AllBets.Add(new Bet(ref player, iskola, "Béla", "Matek átlaga", "4", 5));
-            bets.AllBets.Add(new Bet(ref player, foci, "Béla", "Lőtt gólok", "2", 5));
-            bets.AllBets.Add(new Bet(ref player, foci, "Béla", "Lőtt gólok", "4", 5));
-            bets.AllBets.Add(new Bet(ref player, foci, "Béla", "Lőtt gólok", "5", 5));
+            bets.AllBets.Add(new Bet(player.Name, "Játék", "10", "Béla", "Pontjainak száma", 5));
+            bets.AllBets.Add(new Bet(player.Name, "Iskola", "5", "Béla", "Matek átlaga", 5));
+            bets.AllBets.Add(new Bet(player.Name, "Iskola", "4", "Béla", "Matek átlaga", 5));
+            bets.AllBets.Add(new Bet(player.Name, "Foci", "2", "Béla", "Lőtt gólok", 5));
+            bets.AllBets.Add(new Bet(player.Name, "Foci", "4", "Béla", "Lőtt gólok", 5));
+            bets.AllBets.Add(new Bet(player.Name, "Foci", "5", "Béla", "Lőtt gólok", 5));
 
             Dictionary<string, List<Bet>> betsByGames = bets.BetsByGames;
             Assert.AreEqual(1, betsByGames["Játék"].Count);

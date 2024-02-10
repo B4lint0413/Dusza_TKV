@@ -19,7 +19,8 @@ namespace DuszaTKVGameLib
             AllBets = bets.ToList();
         }
 
-        public Dictionary<string, List<Bet>> BetsByGames => AllBets.GroupBy(x => x.GameToBet.Name).ToDictionary(x=>x.Key, x=>x.ToList());
+        public Dictionary<string, List<Bet>> BetsByGames => AllBets.GroupBy(x => x.GameToBet).ToDictionary(x=>x.Key, x=>x.ToList());
 
+        public List<string> ToFile => AllBets.Select(x => x.ToString()).ToList();
     }
 }

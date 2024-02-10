@@ -8,13 +8,12 @@ namespace DuszaTKVGameLib
 {
     public class Bet
     {
-        public Bet(ref User player, Game gameToBet, string subject, string _event, string result, int stake)
+        public Bet(string player, string gameToBet, string result, string subject, string _event, int stake)
         {
             if (stake<=0)
             {
                 throw new NonPositiveStakeException();
             }
-            player.Points -= stake;
             Player = player;
             GameToBet = gameToBet;
             Subject = subject;
@@ -23,8 +22,8 @@ namespace DuszaTKVGameLib
             Stake = stake;
         }
 
-        public User Player { get; init; }
-        public Game GameToBet { get; init; }
+        public string Player { get; init; }
+        public string GameToBet { get; init; }
         public string Subject { get; init; }
         public string Event { get; init; }
         public string Result { get; init; }
@@ -32,7 +31,7 @@ namespace DuszaTKVGameLib
 
         public override string ToString()
         {
-            return $"{Player.Name};{GameToBet.Name};{Result};{Subject};{Event};{Stake}";
+            return $"{Player};{GameToBet};{Result};{Subject};{Event};{Stake}";
         }
     }
 }

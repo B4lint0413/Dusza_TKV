@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Navigation;
 
 namespace DuszaTKVGameLib
 {
@@ -54,5 +55,11 @@ namespace DuszaTKVGameLib
         }
 
         public override string ToString() => $"{Name};{Password};{Points}";
+
+        public Bet MakeBet(string gameToBet, string result, string subject, string _event, int stake)
+        {
+            Points -= stake;
+            return new Bet(Name, gameToBet, result, subject, _event, stake);
+        }
     }
 }

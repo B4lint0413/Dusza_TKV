@@ -37,4 +37,10 @@ public static class Factory
 			return hashedBytes.ToString()!;
 		}
 	}
+
+    public static Bet CreateBet(string row)
+    {
+        string[] splitted = row.Split(";");
+        return new Bet(splitted[0], splitted[1], splitted[2], splitted[3], splitted[4], int.Parse(splitted[5]));
+    }
 }
