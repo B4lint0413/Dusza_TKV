@@ -15,11 +15,11 @@ namespace DuszaWpfApp
     /// </summary>
     public partial class App : Application
     {
-        public static Users Users = new Users();
-        public static Bets Bets = new Bets();
-        public static Events Events = new Events(GenerateEvents("eredmenyek.txt"));
-        public static Games Games = new Games(GenerateGames("jatekok.txt", Events));
-
+        public static Users Users = new();
+        public static Bets Bets = new();
+        public static Events Events = new(GenerateEvents("Files/eredmenyek.txt"));
+        public static Games Games = new(GenerateGames("Files/jatekok.txt", Events));
+        private static string _currentGameName;
         public App()
         {
             foreach (string row in File.ReadAllLines("Files/users.txt"))
@@ -36,12 +36,11 @@ namespace DuszaWpfApp
 
         private static IEnumerable<Event> GenerateEvents(string filename)
         {
-            var gameName = "";
             foreach (var line in File.ReadAllLines(filename))
             {
                 if (line.Contains(';'))
-                    yield return Factory.CreateEvent(line, gameName);
-                gameName = line;
+                    yield return Factory.CreateEvent(line, _currentGameName);
+                else _currentGameName = line;
             }
         }
         private static IEnumerable<Game> GenerateGames(string filename, Events events)
@@ -56,7 +55,8 @@ namespace DuszaWpfApp
         {
             File.WriteAllText("Files/users.txt", string.Join("\n", Users.ToFile));
             File.WriteAllText("Files/fogadasok.txt", string.Join("\n", Bets.ToFile));
-
+            File.WriteAllText("Files/jatekok.txt", Games.ToString());
+            File.WriteAllText("Files/eredmenyek.txt", Games.ResultsToString());
         }
     }
 }

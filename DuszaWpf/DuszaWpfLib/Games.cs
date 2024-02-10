@@ -19,6 +19,9 @@ namespace DuszaTKVGameLib
         {
             return string.Join("\n", _gameList);
         }
+
+        public IEnumerable<Game> GetOwnGames(string name) => _gameList.Where(x => x.Organizer == name);
+        public IEnumerable<Game> GetBettableGames(string name) => _gameList.Where(x => x.Organizer != name);
         public Game? this[string name] => _gameList.Find(x => x.Name == name);
     }
 }
