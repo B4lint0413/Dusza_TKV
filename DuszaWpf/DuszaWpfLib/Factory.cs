@@ -14,10 +14,9 @@ public static class Factory
         users.AllUsers.Add(user);
     }
     
-    public static Game CreateGame(string text, Events events)
+    public static Game CreateGame(string line, Events events)
     {
-        var data = text.Split("\n");
-        var header = data[0].Split(';');
+        var header = line.Split(';');
         var organizer = header[0];
         var name = header[1];
         return new Game(name, organizer, events[name]);
