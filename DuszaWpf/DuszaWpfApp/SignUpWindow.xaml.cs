@@ -34,8 +34,8 @@ namespace DuszaWpfApp
         public void SignUpNewUser(object sender, RoutedEventArgs e)
         {
             string name = username.Text;
-            string password = passwd.Text;
-            string passwordAgain = passwdAgain.Text;
+            string password = passwd.Password;
+            string passwordAgain = passwdAgain.Password;
             if (password==passwordAgain)
             {
                 try{

@@ -12,7 +12,7 @@
             <Label FontSize="20" Target="{Binding ElementName=username}">Username:</Label>
             <TextBox Height="20" Width="200" Name="username"></TextBox>
             <Label FontSize="20" Target="{Binding ElementName=passwd}">Password:</Label>
-            <TextBox Height="20" Width="200" Name="passwd"></TextBox>
+            <PasswordBox Height="20" Width="200" Name="passwd"></PasswordBox>
             <Button Margin="20" Height="25" Click="LogIn" Content="Log in"/>
             <Button Margin="20" Height="25" Click="NavigateToSignUp" Content="Sign up"/>
         </StackPanel>
