@@ -33,7 +33,7 @@ public static class Factory
 		using (SHA256 sha256 = SHA256.Create())
 		{
 			byte[] hashedBytes = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(passwdFromInPut));
-			return hashedBytes.ToString()!;
+			return System.Text.Encoding.UTF8.GetString(hashedBytes);
 		}
 	}
 
