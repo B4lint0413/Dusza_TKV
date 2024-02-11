@@ -20,6 +20,15 @@ namespace DuszaTKVGameLib
             return string.Join("\n", _gameList);
         }
 
+        public static Games operator +(Games games, Game game)
+        {
+            if (games[game.Name] != null)
+                throw new NonUniqueGameNameException();
+            var gameList = games._gameList.Select(x => x).ToList();
+            gameList.Add(game);
+            return new Games(gameList);
+        }
+
         public IEnumerable<Game> GetOwnGames(string name) => _gameList.Where(x => x.Organizer == name);
         public IEnumerable<Game> GetBettableGames(string name) => _gameList.Where(x => x.Organizer != name);
         public Game? this[string name] => _gameList.Find(x => x.Name == name);

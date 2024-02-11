@@ -33,6 +33,10 @@ public class GameTest
         gameList.Add(new Game("game2", "organizer", events));
         var games = new Games(gameList);
         Assert.AreEqual("organizer;game;1;1\nhululu\nasdasd\norganizer;game2;1;1\nhululu\nasdasd", games.ToString());
+        var game = new Game("game3", "organizer", events);
+        var temp = games + game;
+        Assert.AreEqual("organizer;game;1;1\nhululu\nasdasd\norganizer;game2;1;1\nhululu\nasdasd", games.ToString());
+        Assert.AreEqual("organizer;game;1;1\nhululu\nasdasd\norganizer;game2;1;1\nhululu\nasdasd\norganizer;game3;1;1\nhululu\nasdasd", temp.ToString());
     }
 
     [TestMethod]

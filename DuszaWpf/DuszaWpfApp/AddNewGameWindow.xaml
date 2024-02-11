@@ -1,0 +1,21 @@
+<Window x:Class="DuszaWpfApp.AddNewGameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:DuszaWpfApp"
+        mc:Ignorable="d"
+        Title="AddNewGameWindow" Height="450" Width="800">
+    <StackPanel 
+        Margin="20"
+        Width="320">
+        <TextBlock HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10">Create New Game</TextBlock>
+        <Label FontSize="20" Target="{Binding ElementName=username}">Name:</Label>
+        <TextBox Height="20" Width="200" Name="GameName"></TextBox>
+        <Label FontSize="20" Target="{Binding ElementName=passwd}">Events (semicolon separated):</Label>
+        <TextBox Height="20" Width="200" Name="Events"></TextBox>
+        <Label FontSize="20" Target="{Binding ElementName=passwdAgain}">Subjects (semicolon separated):</Label>
+        <TextBox Height="20" Width="200" Name="Subjects"></TextBox>
+        <Button Margin="20" Height="25" Click="CreateNewGame" Content="Create"/>
+    </StackPanel>
+</Window>
