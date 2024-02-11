@@ -20,15 +20,18 @@ namespace DuszaWpfApp
     /// </summary>
     public partial class AdminGameWindow : Window
     {
-        public AdminGameWindow()
+        private readonly User _organizer;
+        public AdminGameWindow(User organizer)
         {
             InitializeComponent();
-            foreach (var game in App.Games.GetOwnGames("Pintyő István"))
+            _organizer = organizer;
+            foreach (var game in App.Games.GetOwnGames(organizer.Name))
                 GameCardContainer.Children.Add(new EndGameCard(game));
         }
         
         private void CreateNewGame(object sender, RoutedEventArgs e)
         {
+            new CreateNewGameWindow(_organizer).Show();
             Close();
         }
     }

@@ -14,6 +14,7 @@
             <Label FontSize="20" Target="{Binding ElementName=passwd}">Password:</Label>
             <TextBox Height="20" Width="200" Name="passwd"></TextBox>
             <Button Margin="20" Height="25" Click="LogIn" Content="Log in"/>
+            <Button Margin="20" Height="25" Click="NavigateToSignUp" Content="Sign up"/>
         </StackPanel>
     </Grid>
 </Window>

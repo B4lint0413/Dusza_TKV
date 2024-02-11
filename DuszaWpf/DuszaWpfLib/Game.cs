@@ -22,7 +22,7 @@ namespace DuszaTKVGameLib
         }
         public override string ToString()
         {
-            return $"{Organizer};{Name};{_events.Count};{_events.Count}\n{string.Join("\n", _events.Select(x => x.Subject).Distinct())}\n{string.Join("\n", _events.Select(x => x.Name).Distinct())}";
+            return $"{Organizer};{Name};{_events.DistinctBy(x => x.Subject).Count()};{_events.DistinctBy(x => x.Name).Count()}\n{string.Join("\n", _events.Select(x => x.Subject).Distinct())}\n{string.Join("\n", _events.Select(x => x.Name).Distinct())}";
         }
         public void EndGame(IEnumerable<string> results)
         {

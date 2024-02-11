@@ -27,9 +27,8 @@ namespace DuszaWpfApp
 
         public void NavigateToLogIn(object sender, EventArgs e)
         {
-           LogInWindow logInWindow = new LogInWindow();
-            this.Hide();
-            logInWindow.Show();
+            new LogInWindow().Show();
+            Close();
         }
 
         public void SignUpNewUser(object sender, RoutedEventArgs e)

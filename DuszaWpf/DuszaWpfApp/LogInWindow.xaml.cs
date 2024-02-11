@@ -31,12 +31,20 @@ namespace DuszaWpfApp
 
 			try
 			{
-				App.Users.UserLogIn(userName, password);
+				var user = App.Users.UserLogIn(userName, password);
+				new AdminGameWindow(user).Show();
+				Close();
 			}
 			catch (Exception ex)
 			{
 				MessageBox.Show(ex.Message);
 			}
+		}
+
+		private void NavigateToSignUp(object sender, RoutedEventArgs e)
+		{
+			new SignUpWindow().Show();
+			Close();
 		}
 	}
 }

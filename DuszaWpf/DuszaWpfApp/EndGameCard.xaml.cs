@@ -12,11 +12,11 @@ public partial class EndGameCard : UserControl
     {
         InitializeComponent();
         Header.Text = game.Name;
-        var plusHeight = (game.Subjects.Count() + game.Events.DistinctBy(x => x.Name).Count()) * 15;
-        Card.Height += plusHeight;
-        Container.Height += plusHeight;
-        Grid.Height += plusHeight;
-        Text.Height += plusHeight;
+        var extraHeight = (game.Subjects.Count() + game.Events.DistinctBy(x => x.Name).Count()) * 15;
+        Card.Height += extraHeight;
+        Container.Height += extraHeight;
+        Grid.Height += extraHeight;
+        Text.Height += extraHeight;
 
         Body.FontSize = 14;
         Body.Text += "Subjects:";

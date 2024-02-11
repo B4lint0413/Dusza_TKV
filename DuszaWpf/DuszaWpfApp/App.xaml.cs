@@ -55,8 +55,6 @@ namespace DuszaWpfApp
         {
             File.WriteAllText("Files/users.txt", string.Join("\n", Users.ToFile));
             File.WriteAllText("Files/fogadasok.txt", string.Join("\n", Bets.ToFile));
-            File.WriteAllText("Files/jatekok.txt", Games.ToString());
-            File.WriteAllText("Files/eredmenyek.txt", Games.ResultsToString());
         }
     }
 }

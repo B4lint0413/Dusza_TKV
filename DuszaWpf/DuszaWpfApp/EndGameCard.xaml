@@ -11,7 +11,7 @@
                 Width="320" Height="150" Margin="0">
             <Grid Name="Grid" HorizontalAlignment="Center" Width="320" Height="150">
                 <TextBlock x:Name="Header" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="5" FontSize="25" FontWeight="Bold"/>
-                <Viewbox Name="Text" HorizontalAlignment="Center" Height="80" Width="200" VerticalAlignment="Center">
+                <Viewbox Name="Text" HorizontalAlignment="Center" Height="80" Width="300" VerticalAlignment="Center">
                     <TextBlock x:Name="Body" Margin="10" Padding="5" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Viewbox>
                 <Button Height="25" Margin="20 10" VerticalAlignment="Bottom" Click="EndGame">End Game</Button>
