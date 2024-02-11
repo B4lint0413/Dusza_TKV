@@ -27,8 +27,8 @@ namespace DuszaTKVGameLib
             return new Games(gameList);
         }
 
-        public IEnumerable<Game> GetOwnGames(string name) => _gameList.Where(x => x.Organizer == name);
-        public IEnumerable<Game> GetBettableGames(string name) => _gameList.Where(x => x.Organizer != name);
+        public IEnumerable<Game> GetOwnGames(string name) => _gameList.Where(x => x.Organizer == name && x.IsInProgress);
+        public IEnumerable<Game> GetBettableGames(string name) => _gameList.Where(x => x.Organizer != name && x.IsInProgress);
         public Game? this[string name] => _gameList.Find(x => x.Name == name);
     }
 }

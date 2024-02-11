@@ -10,11 +10,11 @@
         Margin="20"
         Width="320">
         <TextBlock HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10">Create New Game</TextBlock>
-        <Label FontSize="20" Target="{Binding ElementName=username}">Name:</Label>
+        <Label FontSize="20" Target="{Binding ElementName=GameName}">Name:</Label>
         <TextBox Height="20" Width="200" Name="GameName"></TextBox>
-        <Label FontSize="20" Target="{Binding ElementName=passwd}">Events (semicolon separated):</Label>
+        <Label FontSize="20" Target="{Binding ElementName=Events}">Events (semicolon separated):</Label>
         <TextBox Height="20" Width="200" Name="Events"></TextBox>
-        <Label FontSize="20" Target="{Binding ElementName=passwdAgain}">Subjects (semicolon separated):</Label>
+        <Label FontSize="20" Target="{Binding ElementName=Subjects}">Subjects (semicolon separated):</Label>
         <TextBox Height="20" Width="200" Name="Subjects"></TextBox>
         <Button Margin="20" Height="25" Click="CreateNewGame" Content="Create"/>
     </StackPanel>

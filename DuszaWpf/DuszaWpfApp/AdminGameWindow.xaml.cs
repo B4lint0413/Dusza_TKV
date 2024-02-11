@@ -26,7 +26,7 @@ namespace DuszaWpfApp
             InitializeComponent();
             _organizer = organizer;
             foreach (var game in App.Games.GetOwnGames(organizer.Name))
-                GameCardContainer.Children.Add(new EndGameCard(game));
+                GameCardContainer.Children.Add(new EndGameCard(game, organizer, this));
         }
         
         private void CreateNewGame(object sender, RoutedEventArgs e)
