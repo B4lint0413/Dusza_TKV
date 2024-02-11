@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,11 +22,14 @@ namespace DuszaWpfApp
     /// </summary>
     public partial class BetCard : UserControl
     {
+        private Game currentGame;
         public BetCard(Game game)
         {
             InitializeComponent();
             Header.Text = game.Name;
             
+            currentGame = game;
+
             Body.Text += "Subjects:";
             foreach (string subject in game.Subjects)
             {
@@ -37,6 +41,12 @@ namespace DuszaWpfApp
             {
                 Body.Text += $"\n\t{_event}";
             }
+        }
+
+        private void MakeBetWindow(object sender, RoutedEventArgs e)
+        {
+            new MakeBetWindow(currentGame).Show();
+            Window.GetWindow(Parent).Close();
         }
     }
 }

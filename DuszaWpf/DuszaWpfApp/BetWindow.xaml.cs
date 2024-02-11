@@ -23,7 +23,7 @@ namespace DuszaWpfApp
         public BetWindow()
         {
             InitializeComponent();
-            foreach (Game game in App.Games.GetBettableGames("jani"))
+            foreach (Game game in App.Games.GetBettableGames(App.ActiveUser.Name))
             {
                 BetCardContainer.Children.Add(new BetCard(game));
             }

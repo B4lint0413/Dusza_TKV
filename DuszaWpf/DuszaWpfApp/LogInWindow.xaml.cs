@@ -32,13 +32,15 @@ namespace DuszaWpfApp
 			try
 			{
 				var user = App.Users.UserLogIn(userName, password);
-				new AdminGameWindow(user).Show();
+				App.ActiveUser = user;
+				//new AdminGameWindow(user).Show();
+				new BetWindow().Show();
 				Close();
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show(ex.Message);
-			}
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 		}
 
 		private void NavigateToSignUp(object sender, RoutedEventArgs e)

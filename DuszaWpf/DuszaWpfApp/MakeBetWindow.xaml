@@ -1,0 +1,28 @@
+﻿<Window x:Class="DuszaWpfApp.MakeBetWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DuszaWpfApp"
+        mc:Ignorable="d"
+        Title="MakeBetWindow" Height="450" Width="800">
+    <StackPanel>
+        <StackPanel Margin="20" Width="320">
+            <Viewbox>
+                <TextBlock HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10" x:Name="Header"/>
+            </Viewbox>
+            <Label FontSize="20" Target="{Binding ElementName=Subject}">Subject:</Label>
+            <ComboBox x:Name="Subject" Width="200" Margin="0 0 0 10"/>
+            <Label FontSize="20" Target="{Binding ElementName=Event}">Event:</Label>
+            <ComboBox x:Name="Event" Width="200" Margin="0 0 0 10"/>
+            <Label FontSize="20" Target="{Binding ElementName=Result}">Result:</Label>
+            <TextBox Height="20" Width="200" Name="Result"></TextBox>
+            <Label FontSize="20" Target="{Binding ElementName=Stake}">Stake:</Label>
+            <TextBox Height="20" Width="200" Name="Stake"></TextBox>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+            <Button Margin="10" Height="30" Width="70" Click="Cancel" Content="Cancel"/>
+            <Button Margin="10" Height="30" Width="70" Click="MakeNewBet" Content="Make bet"/>
+        </StackPanel>
+    </StackPanel>
+</Window>
