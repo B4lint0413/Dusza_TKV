@@ -39,5 +39,10 @@ public class Users
         {
             return AllUsers.Find(x => x.Name == index);
         }
+
+        set
+        {
+            AllUsers[AllUsers.FindIndex(x => x.Name == index)] = value;
+        }
     }
 }

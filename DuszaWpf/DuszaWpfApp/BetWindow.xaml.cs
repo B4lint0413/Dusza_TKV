@@ -20,12 +20,12 @@ namespace DuszaWpfApp
     /// </summary>
     public partial class BetWindow : Window
     {
-        public BetWindow()
+        public BetWindow(User user)
         {
             InitializeComponent();
-            foreach (Game game in App.Games.GetBettableGames(App.ActiveUser.Name))
+            foreach (Game game in App.Games.GetBettableGames(user.Name))
             {
-                BetCardContainer.Children.Add(new BetCard(game));
+                BetCardContainer.Children.Add(new BetCard(user, game));
             }
         }
     }

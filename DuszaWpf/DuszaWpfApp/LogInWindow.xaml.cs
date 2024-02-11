@@ -32,9 +32,8 @@ namespace DuszaWpfApp
 			try
 			{
 				var user = App.Users.UserLogIn(userName, password);
-				App.ActiveUser = user;
 				//new AdminGameWindow(user).Show();
-				new BetWindow().Show();
+				new BetWindow(user).Show();
 				Close();
 			}
 			catch (Exception ex)

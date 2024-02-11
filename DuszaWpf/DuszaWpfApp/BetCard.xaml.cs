@@ -23,12 +23,14 @@ namespace DuszaWpfApp
     public partial class BetCard : UserControl
     {
         private Game currentGame;
-        public BetCard(Game game)
+        private User player;
+        public BetCard(User user, Game game)
         {
             InitializeComponent();
             Header.Text = game.Name;
             
             currentGame = game;
+            player = user;
 
             Body.Text += "Subjects:";
             foreach (string subject in game.Subjects)
@@ -45,7 +47,7 @@ namespace DuszaWpfApp
 
         private void MakeBetWindow(object sender, RoutedEventArgs e)
         {
-            new MakeBetWindow(currentGame).Show();
+            new MakeBetWindow(player, currentGame).Show();
             Window.GetWindow(Parent).Close();
         }
     }

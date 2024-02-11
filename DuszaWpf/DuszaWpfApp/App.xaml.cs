@@ -19,7 +19,6 @@ namespace DuszaWpfApp
         public static Bets Bets = new();
         public static Events Events = new(GenerateEvents("Files/eredmenyek.txt"));
         public static Games Games = new(GenerateGames("Files/jatekok.txt", Events));
-        public static User ActiveUser;
         private static string _currentGameName;
         public App()
         {
@@ -54,9 +53,6 @@ namespace DuszaWpfApp
         }
         public void AppExit(object sender, ExitEventArgs e)
         {
-            int index = Users.AllUsers.FindIndex(x => x.Name == ActiveUser.Name);
-            Users.AllUsers[index] = ActiveUser;
-
             File.WriteAllText("Files/users.txt", string.Join("\n", Users.ToFile));
             File.WriteAllText("Files/fogadasok.txt", string.Join("\n", Bets.ToFile));
         }

@@ -20,12 +20,14 @@ namespace DuszaWpfApp
     /// </summary>
     public partial class MakeBetWindow : Window
     {
-        private Game currentGame; 
-        public MakeBetWindow(Game game)
+        private Game currentGame;
+        private User player;
+        public MakeBetWindow(User user, Game game)
         {
             InitializeComponent();
             
             currentGame = game;
+            player = user;
 
             Header.Text = game.Name;
             foreach (string subject in game.Subjects)
@@ -41,7 +43,7 @@ namespace DuszaWpfApp
 
         private void Cancel(object sender, RoutedEventArgs e)
         {
-            new BetWindow().Show();
+            new BetWindow(player).Show();
             Close();
         }
 
@@ -49,9 +51,10 @@ namespace DuszaWpfApp
         {
             try
             {
-                Bet bet = App.ActiveUser.MakeBet(currentGame.Name, Result.Text, Subject.SelectedItem.ToString() ?? "",
+                Bet bet = player.MakeBet(currentGame.Name, Result.Text, Subject.SelectedItem.ToString() ?? "",
                     Event.SelectedItem.ToString()??"", int.Parse(Stake.Text));
                 App.Bets.AllBets.Add(bet);
+                App.Users[player.Name] = player;
                 Cancel(sender, e);
             }
             catch (Exception ex)
