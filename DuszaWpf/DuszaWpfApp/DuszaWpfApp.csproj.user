@@ -7,7 +7,10 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="GameWindow.xaml.cs">
+    <Compile Update="BetCard.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="BetWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="LogInWindow.xaml.cs">
@@ -18,7 +21,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="GameWindow.xaml">
+    <Page Update="BetCard.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="BetWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="LogInWindow.xaml">
