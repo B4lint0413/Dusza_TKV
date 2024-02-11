@@ -26,7 +26,7 @@ public class Users
 
     public User UserLogIn(string username, string passwd)
     {
-        if (!(Names.Contains(username) && Passwords.Contains(passwd)))
+        if (AllUsers.Find(x => x.Name == username && x.Password == passwd) == null)
         {
             throw new InvalidUserNameOrPasswdException();
         }
