@@ -9,7 +9,7 @@
     <Grid>
         <ScrollViewer>
             <StackPanel Name="BetCardContainer" HorizontalAlignment="Center">
-                <TextBlock HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10">Games</TextBlock>
+                <TextBlock HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10">Games to bet on</TextBlock>
             </StackPanel>
         </ScrollViewer>
     </Grid>
