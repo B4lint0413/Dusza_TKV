@@ -12,5 +12,6 @@
             
         </StackPanel>
         <Button Margin="20" Height="25" Click="CommitResults" Content="Commit Results"/>
+        <Button Margin="20" Height="25" Click="ToNavigationWindow" Content="Back to Navigation"/>
     </StackPanel>
 </Window>

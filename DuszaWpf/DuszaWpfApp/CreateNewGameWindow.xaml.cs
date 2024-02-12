@@ -45,4 +45,10 @@ public partial class CreateNewGameWindow : Window
             MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
+
+    private void ToNavigationWindow(object sender, RoutedEventArgs e)
+    {
+        new NavigationWindow(_organizer).Show();
+        Close();
+    }
 }

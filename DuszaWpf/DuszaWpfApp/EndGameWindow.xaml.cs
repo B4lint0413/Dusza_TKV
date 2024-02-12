@@ -45,4 +45,10 @@ public partial class EndGameWindow : Window
             MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
+
+    private void ToNavigationWindow(object sender, RoutedEventArgs e)
+    {
+        new NavigationWindow(_organizer).Show();
+        Close();
+    }
 }

@@ -34,5 +34,11 @@ namespace DuszaWpfApp
             new CreateNewGameWindow(_organizer).Show();
             Close();
         }
+
+        private void ToNavigationWindow(object sender, RoutedEventArgs e)
+        {
+            new NavigationWindow(_organizer).Show();
+            Close();
+        }
     }
 }

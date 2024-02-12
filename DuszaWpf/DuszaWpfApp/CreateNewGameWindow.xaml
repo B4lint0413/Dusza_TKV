@@ -17,5 +17,6 @@
         <Label FontSize="20" Target="{Binding ElementName=Subjects}">Subjects (semicolon separated):</Label>
         <TextBox Height="20" Width="200" Name="Subjects"></TextBox>
         <Button Margin="20" Height="25" Click="CreateNewGame" Content="Create"/>
+        <Button Margin="20" Height="25" Click="ToNavigationWindow" Content="Back to Navigation"/>
     </StackPanel>
 </Window>

@@ -20,13 +20,21 @@ namespace DuszaWpfApp
     /// </summary>
     public partial class BetWindow : Window
     {
+        private readonly User _user;
         public BetWindow(User user)
         {
             InitializeComponent();
+            _user = user;
             foreach (Game game in App.Games.GetBettableGames(user.Name))
             {
                 BetCardContainer.Children.Add(new BetCard(user, game));
             }
+        }
+
+        private void ToNavigationWindow(object sender, RoutedEventArgs e)
+        {
+            new NavigationWindow(_user).Show();
+            Close();
         }
     }
 }
