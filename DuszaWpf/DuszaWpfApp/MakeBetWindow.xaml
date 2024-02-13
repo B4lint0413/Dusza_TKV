@@ -6,25 +6,31 @@
         xmlns:local="clr-namespace:DuszaWpfApp"
         mc:Ignorable="d"
         Title="MakeBetWindow" Height="450" Width="800" MinWidth="360">
-    <ScrollViewer>
-        <StackPanel>
-            <StackPanel Margin="20" Width="320">
-                <Viewbox Height="70">
-                    <TextBlock HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10" x:Name="Header"/>
-                </Viewbox>
-                <Label FontSize="20" Target="{Binding ElementName=Subject}">Subject:</Label>
-                <ComboBox x:Name="Subject" Width="200" Margin="0 0 0 10"/>
-                <Label FontSize="20" Target="{Binding ElementName=Event}">Event:</Label>
-                <ComboBox x:Name="Event" Width="200" Margin="0 0 0 10"/>
-                <Label FontSize="20" Target="{Binding ElementName=Result}">Result:</Label>
-                <TextBox Height="20" Width="200" Name="Result"></TextBox>
-                <Label FontSize="20" Target="{Binding ElementName=Stake}">Stake:</Label>
-                <TextBox Height="20" Width="200" Name="Stake"></TextBox>
+    <Grid x:Name="MainContainer">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="1">
+            <StackPanel>
+                <StackPanel Margin="20" Width="320">
+                    <Viewbox Height="70">
+                        <TextBlock HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10" x:Name="Header"/>
+                    </Viewbox>
+                    <Label FontSize="20" Target="{Binding ElementName=Subject}">Subject:</Label>
+                    <ComboBox x:Name="Subject" Width="200" Margin="0 0 0 10"/>
+                    <Label FontSize="20" Target="{Binding ElementName=Event}">Event:</Label>
+                    <ComboBox x:Name="Event" Width="200" Margin="0 0 0 10"/>
+                    <Label FontSize="20" Target="{Binding ElementName=Result}">Result:</Label>
+                    <TextBox Height="20" Width="200" Name="Result"></TextBox>
+                    <Label FontSize="20" Target="{Binding ElementName=Stake}">Stake:</Label>
+                    <TextBox Height="20" Width="200" Name="Stake"></TextBox>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <Button Margin="10" Height="30" Width="70" Click="Cancel" Content="Cancel"/>
+                    <Button Margin="10" Height="30" Width="70" Click="MakeNewBet" Content="Make bet"/>
+                </StackPanel>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                <Button Margin="10" Height="30" Width="70" Click="Cancel" Content="Cancel"/>
-                <Button Margin="10" Height="30" Width="70" Click="MakeNewBet" Content="Make bet"/>
-            </StackPanel>
-        </StackPanel>
-    </ScrollViewer>
+        </ScrollViewer>
+    </Grid>
 </Window>

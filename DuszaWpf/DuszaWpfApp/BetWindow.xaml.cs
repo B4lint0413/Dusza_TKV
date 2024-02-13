@@ -24,6 +24,10 @@ namespace DuszaWpfApp
         public BetWindow(User user)
         {
             InitializeComponent();
+            UserHeader header = new UserHeader(user);
+            MainContainer.Children.Add(header);
+            Grid.SetRow(header, 0);
+
             _user = user;
             foreach (Game game in App.Games.GetBettableGames(user.Name))
             {

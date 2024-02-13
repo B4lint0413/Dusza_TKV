@@ -25,7 +25,10 @@ namespace DuszaWpfApp
         public MakeBetWindow(User user, Game game)
         {
             InitializeComponent();
-            
+            UserHeader header = new UserHeader(user);
+            MainContainer.Children.Add(header);
+            Grid.SetRow(header, 0);
+
             currentGame = game;
             player = user;
 

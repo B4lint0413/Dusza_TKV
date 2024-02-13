@@ -6,12 +6,17 @@
         xmlns:local="clr-namespace:DuszaWpfApp"
         mc:Ignorable="d"
         Title="BetWindow" Height="450" Width="800" MinWidth="360">
-    <ScrollViewer>
-        <ScrollViewer>
+    <Grid x:Name="MainContainer">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <ScrollViewer Grid.Row="1">
             <StackPanel Name="BetCardContainer" HorizontalAlignment="Center">
                 <TextBlock HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10">Games to bet on</TextBlock>
                 <Button MaxWidth="160" Margin="10" Height="25" Click="ToNavigationWindow" Content="Back to Navigation"/>
             </StackPanel>
         </ScrollViewer>
-    </ScrollViewer>
+    </Grid>
 </Window>
