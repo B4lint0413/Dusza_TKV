@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -42,6 +43,9 @@ namespace DuszaWpfApp
             {
                 Event.Items.Add(_event);
             }
+
+            Subject.SelectedIndex = 0;
+            Event.SelectedIndex = 0;
         }
 
         private void Cancel(object sender, RoutedEventArgs e)
@@ -54,13 +58,9 @@ namespace DuszaWpfApp
         {
             try
             {
-                if (Result.Text == "" || Stake.Text == "")
-                    throw new EmptyFieldException();
-                if (Result.Text.Length > LengthLimitExceededException.LENGTH_LIMIT ||
-                    Stake.Text.Length > LengthLimitExceededException.LENGTH_LIMIT)
-                    throw new LengthLimitExceededException();
-                Bet bet = player.MakeBet(currentGame.Name, Result.Text, Subject.SelectedItem.ToString() ?? "",
-                    Event.SelectedItem.ToString()??"", int.Parse(Stake.Text));
+                int a;
+                Bet bet = player.MakeBet(currentGame.Name, Result.Text, Subject.SelectedItem.ToString()??"",
+                    Event.SelectedItem.ToString()??"", int.TryParse(Stake.Text, out a) ? int.Parse(Stake.Text) : 0);
                 App.Bets.AllBets.Add(bet);
                 App.Users[player.Name] = player;
                 Cancel(sender, e);

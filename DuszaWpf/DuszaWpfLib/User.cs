@@ -9,14 +9,19 @@ namespace DuszaTKVGameLib
 {
     public class User
     {
-        public User(string name, string password)
+        public User(string name, string password) // New user
         {
+            if (password == "" || name == "")
+                throw new EmptyFieldException();
+            if (password.Length > LengthLimitExceededException.LENGTH_LIMIT ||
+                name.Length > LengthLimitExceededException.LENGTH_LIMIT)
+                throw new LengthLimitExceededException();
             Name = name;
             Password = password;
             Points = 100;
         }
 
-        public User(string name, string password, int points)
+        public User(string name, string password, int points) // Existing user
         {
             Name = name;
             Password = password;

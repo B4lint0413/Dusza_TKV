@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.XPath;
 
 namespace DuszaTKVGameLib
 {
@@ -10,10 +11,16 @@ namespace DuszaTKVGameLib
     {
         public Bet(string player, string gameToBet, string result, string subject, string _event, int stake)
         {
+            if (result == "")
+                throw new EmptyFieldException();
+            if (result.Length > LengthLimitExceededException.LENGTH_LIMIT)
+                throw new LengthLimitExceededException();
+
             if (stake<=0)
             {
                 throw new NonPositiveStakeException();
             }
+
             Player = player;
             GameToBet = gameToBet;
             Subject = subject;

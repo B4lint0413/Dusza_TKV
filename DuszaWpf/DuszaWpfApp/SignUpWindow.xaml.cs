@@ -41,11 +41,6 @@ namespace DuszaWpfApp
             {
                 try
                 {
-                    if (password == "" || name == "")
-                        throw new EmptyFieldException();
-                    if (password.Length > LengthLimitExceededException.LENGTH_LIMIT ||
-                        name.Length > LengthLimitExceededException.LENGTH_LIMIT)
-                        throw new LengthLimitExceededException();
                     Factory.NewUserToUsers(new User(name,Factory.PasswdFactory(password)),App.Users);
                     MessageBox.Show("You have signed up successfully", "Successful registration", MessageBoxButton.OK, MessageBoxImage.Information);
                 }

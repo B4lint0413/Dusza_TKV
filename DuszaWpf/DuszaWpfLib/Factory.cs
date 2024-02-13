@@ -30,6 +30,10 @@ public static class Factory
 
 	public static string PasswdFactory(string passwdFromInPut)
 	{
+        if (passwdFromInPut.Length == 0)
+        {
+            throw new EmptyFieldException();
+        }
 		using (SHA256 sha256 = SHA256.Create())
 		{
 			byte[] hashedBytes = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(passwdFromInPut));
