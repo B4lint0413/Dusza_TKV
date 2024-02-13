@@ -17,7 +17,7 @@ namespace DuszaTKVGameLib
                 name.Length > LengthLimitExceededException.LENGTH_LIMIT)
                 throw new LengthLimitExceededException();
             Name = name;
-            Password = password;
+            Password = Factory.PasswdFactory(password);
             Points = 100;
         }
 

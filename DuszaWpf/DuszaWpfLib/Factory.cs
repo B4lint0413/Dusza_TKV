@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
+using System.Text.RegularExpressions;
 
 namespace DuszaTKVGameLib;
 
@@ -30,9 +32,9 @@ public static class Factory
 
 	public static string PasswdFactory(string passwdFromInPut)
 	{
-        if (passwdFromInPut.Length == 0)
+        if (passwdFromInPut.Length < 8 || !Regex.IsMatch(passwdFromInPut, "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!,@,#,$,%,^,&,*,?,_,~,-,(,)])"))
         {
-            throw new EmptyFieldException();
+            throw new NotSecurePasswordException();
         }
 		using (SHA256 sha256 = SHA256.Create())
 		{

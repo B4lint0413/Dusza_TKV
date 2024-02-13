@@ -41,7 +41,7 @@ namespace DuszaWpfApp
             {
                 try
                 {
-                    Factory.NewUserToUsers(new User(name,Factory.PasswdFactory(password)),App.Users);
+                    Factory.NewUserToUsers(new User(name,password),App.Users);
                     MessageBox.Show("You have signed up successfully", "Successful registration", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception ex)
