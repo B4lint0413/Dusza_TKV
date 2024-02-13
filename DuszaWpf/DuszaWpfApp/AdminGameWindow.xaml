@@ -6,16 +6,14 @@
         xmlns:local="clr-namespace:DuszaWpfApp"
         mc:Ignorable="d"
         Title="GameWindow" Height="450" Width="800" MinWidth="360" MinHeight="200">
-    <Grid>
-        <ScrollViewer>
-            <StackPanel>
-                <TextBlock HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10">Games</TextBlock>
-                <StackPanel  Name="GameCardContainer"> 
-                    
-                </StackPanel>
-                <Button MaxWidth="160" Margin="10" Height="25" Click="CreateNewGame" Content="Create new game"/>
-                <Button MaxWidth="160" Margin="10" Height="25" Click="ToNavigationWindow" Content="Back to Navigation"/>
+    <ScrollViewer>
+        <StackPanel>
+            <TextBlock HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10">Games</TextBlock>
+            <StackPanel  Name="GameCardContainer"> 
+                
             </StackPanel>
-        </ScrollViewer>
-    </Grid>
+            <Button MaxWidth="160" Margin="10" Height="25" Click="CreateNewGame" Content="Create new game"/>
+            <Button MaxWidth="160" Margin="10" Height="25" Click="ToNavigationWindow" Content="Back to Navigation"/>
+        </StackPanel>
+    </ScrollViewer>
 </Window>

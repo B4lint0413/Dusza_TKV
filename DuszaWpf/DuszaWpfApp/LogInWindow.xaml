@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DuszaWpfApp"
         mc:Ignorable="d"
-        Title="LogInWindow" Height="500" Width="400">
-    <Grid>
+        Title="LogInWindow" Height="500" Width="400" MinWidth="360">
+    <ScrollViewer>
         <StackPanel Margin="20" Width="250">
             <TextBlock HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10">Log in page</TextBlock>
             <Label FontSize="20" Target="{Binding ElementName=username}">Username:</Label>
@@ -16,5 +16,5 @@
             <Button Margin="20" Height="25" Click="LogIn" Content="Log in"/>
             <Button Margin="20" Height="25" Click="NavigateToSignUp" Content="Sign up"/>
         </StackPanel>
-    </Grid>
+    </ScrollViewer>
 </Window>
