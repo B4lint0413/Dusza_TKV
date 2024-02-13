@@ -24,7 +24,6 @@ public partial class EndGameCard : UserControl
         Grid.Height += extraHeight;
         Text.Height += extraHeight;
 
-        Body.FontSize = 14;
         Body.Text += "Subjects:";
         foreach (var subject in game.Subjects)
             Body.Text+=$"\n\t{subject}";

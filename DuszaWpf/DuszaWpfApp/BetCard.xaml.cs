@@ -27,6 +27,14 @@ namespace DuszaWpfApp
         public BetCard(User user, Game game)
         {
             InitializeComponent();
+
+            int Height = (game.Subjects.Count() + game.Events.DistinctBy(x => x.Name).Count()) * 15;
+            
+            Card.Height += Height;
+            Border.Height += Height;
+            Grid.Height += Height;
+            Content.Height += Height;
+
             Header.Text = game.Name;
             
             currentGame = game;
