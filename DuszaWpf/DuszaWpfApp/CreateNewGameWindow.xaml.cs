@@ -28,6 +28,10 @@ public partial class CreateNewGameWindow : Window
             var subjects = Subjects.Text;
             if (gameName == "" || events == "" || subjects == "")
                 throw new EmptyFieldException();
+            if (gameName.Length > LengthLimitExceededException.LENGTH_LIMIT ||
+                events.Split(';').Any(x => x.Length > LengthLimitExceededException.LENGTH_LIMIT ||
+                subjects.Split(';').Any(x => x.Length > LengthLimitExceededException.LENGTH_LIMIT)))
+                throw new LengthLimitExceededException();
             var eventList = (from ev in events.Split(';') 
                 from subject in subjects.Split(';') 
                 select new Event(ev, subject, gameName))

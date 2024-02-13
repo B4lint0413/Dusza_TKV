@@ -48,7 +48,7 @@ namespace DuszaWpfApp
         private void MakeBetWindow(object sender, RoutedEventArgs e)
         {
             new MakeBetWindow(player, currentGame).Show();
-            Window.GetWindow(Parent).Close();
+            Window.GetWindow(Parent)!.Close();
         }
     }
 }

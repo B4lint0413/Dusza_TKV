@@ -51,6 +51,11 @@ namespace DuszaWpfApp
         {
             try
             {
+                if (Result.Text == "" || Stake.Text == "")
+                    throw new EmptyFieldException();
+                if (Result.Text.Length > LengthLimitExceededException.LENGTH_LIMIT ||
+                    Stake.Text.Length > LengthLimitExceededException.LENGTH_LIMIT)
+                    throw new LengthLimitExceededException();
                 Bet bet = player.MakeBet(currentGame.Name, Result.Text, Subject.SelectedItem.ToString() ?? "",
                     Event.SelectedItem.ToString()??"", int.Parse(Stake.Text));
                 App.Bets.AllBets.Add(bet);
