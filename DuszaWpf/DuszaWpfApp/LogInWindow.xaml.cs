@@ -31,6 +31,8 @@ namespace DuszaWpfApp
 
 			try
 			{
+				if (password == "" || userName == "")
+					throw new EmptyFieldException();  
 				var user = App.Users.UserLogIn(userName, password);
 				new NavigationWindow(user).Show();
 				Close();
