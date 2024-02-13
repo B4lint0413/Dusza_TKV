@@ -1,8 +1,0 @@
-Pintyő István játéka
-Isti;haluzik;;0
-Jani;haluzik;;0
-Pintyő István játéka v.2
-Isti;eszik;;0
-Jenő;eszik;;0
-Isti;iszik;;0
-Jenő;iszik;;0
