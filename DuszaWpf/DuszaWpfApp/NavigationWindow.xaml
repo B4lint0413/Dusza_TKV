@@ -6,13 +6,21 @@
         xmlns:local="clr-namespace:DuszaWpfApp"
         mc:Ignorable="d"
         Title="NavigationWindow" Height="450" Width="800" MinWidth="360">
-   <ScrollViewer>
-       <StackPanel Margin="10" Width="360">
-           <TextBlock HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10">Navigation</TextBlock>
-           <Button Margin="20" Height="25" Click="SwitchAccount" Content="Switch Accounts"/>
-           <Button Margin="20" Height="25" Click="CreateGame" Content="Create New Game"/>
-           <Button Margin="20" Height="25" Click="CheckOrganizedGames" Content="Check Organized Games"/>
-           <Button Margin="20" Height="25" Click="OpenBetWindow" Content="Bet On Game"/>
-       </StackPanel>
-   </ScrollViewer>
+    <Grid x:Name="Container">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="10" Width="360">
+                <TextBlock HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10">Navigation</TextBlock>
+                <Button Margin="20" Height="25" Click="SwitchAccount" Content="Switch Accounts"/>
+                <Button Margin="20" Height="25" Click="CreateGame" Content="Create New Game"/>
+                <Button Margin="20" Height="25" Click="CheckOrganizedGames" Content="Check Organized Games"/>
+                <Button Margin="20" Height="25" Click="OpenBetWindow" Content="Bet On Game"/>
+                <Button Margin="20" Height="25" Click="OpenPlacedBetWindow" Content="See your placed bets"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
 </Window>

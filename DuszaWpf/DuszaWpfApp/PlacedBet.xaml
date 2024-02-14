@@ -11,7 +11,7 @@
             Width="320" Height="150" Margin="5">
             <Grid x:Name="Grid" HorizontalAlignment="Center" Width="320" Height="150">
                 <TextBlock x:Name="Header" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="5" FontSize="25" FontWeight="Bold"/>
-                <Viewbox x:Name="Content" HorizontalAlignment="Center" Height="80" Width="200" VerticalAlignment="Center">
+                <Viewbox x:Name="Content" HorizontalAlignment="Center" Height="120" Width="200" VerticalAlignment="Bottom">
                     <TextBlock x:Name="Body" HorizontalAlignment="Center" Margin="10" Padding="5" VerticalAlignment="Center"/>
                 </Viewbox>
             </Grid>

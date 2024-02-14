@@ -39,6 +39,12 @@
     <Page Update="MakeBetWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="PlacedBet.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="PlacedBets.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="SignUpWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

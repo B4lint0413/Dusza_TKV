@@ -1,4 +1,6 @@
+using System.Numerics;
 using System.Windows;
+using System.Windows.Controls;
 using DuszaTKVGameLib;
 
 namespace DuszaWpfApp;
@@ -11,6 +13,10 @@ public partial class NavigationWindow : Window
         WindowStartupLocation = WindowStartupLocation.CenterScreen;
         InitializeComponent();
         _user = user;
+
+        UserHeader header = new UserHeader(user);
+        Container.Children.Add(header);
+        Grid.SetRow(header, 0);
     }
 
     private void SwitchAccount(object sender, RoutedEventArgs e)
@@ -34,6 +40,12 @@ public partial class NavigationWindow : Window
     private void OpenBetWindow(object sender, RoutedEventArgs e)
     {
         new BetWindow(_user).Show();
+        Close();
+    }
+
+    private void OpenPlacedBetWindow(object sender, RoutedEventArgs e)
+    {
+        new PlacedBets(_user).Show();
         Close();
     }
 }
