@@ -30,7 +30,7 @@ namespace DuszaWpfApp
 			try
 			{
 				string userName = username.Text;
-				string password = Factory.PasswdFactory(passwd.Password);
+				string password = Factory.PasswdFactory(passwd.Password, false);
 				if (password == "" || userName == "")
 					throw new EmptyFieldException();
 				if (userName.Length > LengthLimitExceededException.LENGTH_LIMIT)

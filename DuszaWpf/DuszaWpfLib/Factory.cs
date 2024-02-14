@@ -30,9 +30,9 @@ public static class Factory
         return new Event(data[1], data[0], gameName, data[2], double.Parse(data[3]));
     }
 
-	public static string PasswdFactory(string passwdFromInPut)
+	public static string PasswdFactory(string passwdFromInPut, bool checkSecurity = true)
 	{
-        if (passwdFromInPut.Length < 8 || !Regex.IsMatch(passwdFromInPut, "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!,@,#,$,%,^,&,*,?,_,~,-,(,)])"))
+        if ((passwdFromInPut.Length < 8 || !Regex.IsMatch(passwdFromInPut, "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!,@,#,$,%,^,&,*,?,_,~,-,(,)])")) && checkSecurity)
         {
             throw new NotSecurePasswordException();
         }
