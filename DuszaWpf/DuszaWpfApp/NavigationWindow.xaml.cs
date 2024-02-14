@@ -8,6 +8,7 @@ public partial class NavigationWindow : Window
     private readonly User _user;
     public NavigationWindow(User user)
     {
+        WindowStartupLocation = WindowStartupLocation.CenterScreen;
         InitializeComponent();
         _user = user;
     }

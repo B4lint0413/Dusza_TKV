@@ -23,6 +23,7 @@ namespace DuszaWpfApp
         private readonly User _organizer;
         public AdminGameWindow(User organizer)
         {
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             _organizer = organizer;
             foreach (var game in App.Games.GetOwnGames(organizer.Name))

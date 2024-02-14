@@ -22,6 +22,7 @@ namespace DuszaWpfApp
     {
         public SignUpWindow()
         {
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
         }
 

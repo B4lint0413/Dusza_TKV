@@ -13,6 +13,7 @@ public partial class CreateNewGameWindow : Window
     private readonly User _organizer;
     public CreateNewGameWindow(User organizer)
     {
+        WindowStartupLocation = WindowStartupLocation.CenterScreen;
         InitializeComponent();
         _organizer = organizer;
     }

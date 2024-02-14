@@ -14,6 +14,7 @@ public partial class EndGameWindow : Window
     private readonly User _organizer;
     public EndGameWindow(Game game, User organizer)
     {
+        WindowStartupLocation = WindowStartupLocation.CenterScreen;
         InitializeComponent();
         _organizer = organizer;
         _game = game;

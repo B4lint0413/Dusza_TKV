@@ -22,15 +22,15 @@ namespace DuszaWpfApp
 	{
 		public LogInWindow()
 		{
+			WindowStartupLocation = WindowStartupLocation.CenterScreen;
 			InitializeComponent();
 		}
 		public void LogIn(object sender, EventArgs e)
 		{
-			string userName = username.Text;
-			string password = Factory.PasswdFactory(passwd.Password);
-
 			try
 			{
+				string userName = username.Text;
+				string password = Factory.PasswdFactory(passwd.Password);
 				if (password == "" || userName == "")
 					throw new EmptyFieldException();
 				if (userName.Length > LengthLimitExceededException.LENGTH_LIMIT)

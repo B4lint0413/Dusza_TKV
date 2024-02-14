@@ -23,6 +23,7 @@ namespace DuszaWpfApp
         private readonly User _user;
         public BetWindow(User user)
         {
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             UserHeader header = new UserHeader(user);
             MainContainer.Children.Add(header);

@@ -25,6 +25,7 @@ namespace DuszaWpfApp
         private User player;
         public MakeBetWindow(User user, Game game)
         {
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             UserHeader header = new UserHeader(user);
             MainContainer.Children.Add(header);
