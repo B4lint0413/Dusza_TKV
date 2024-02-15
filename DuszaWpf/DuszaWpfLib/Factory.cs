@@ -32,7 +32,7 @@ public static class Factory
 
 	public static string PasswdFactory(string passwdFromInPut, bool checkSecurity = true)
 	{
-        if ((passwdFromInPut.Length < 8 || !Regex.IsMatch(passwdFromInPut, "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!,@,#,$,%,^,&,*,?,_,~,-,(,)])")) && checkSecurity)
+        if (StrengthCheck(passwdFromInPut)!=31 && checkSecurity)
         {
             throw new NotSecurePasswordException();
         }
@@ -47,5 +47,33 @@ public static class Factory
     {
         string[] splitted = row.Split(";");
         return new Bet(splitted[0], splitted[1], splitted[2], splitted[3], splitted[4], int.Parse(splitted[5]));
+    }
+
+    public static int StrengthCheck(string password)
+    {
+        int security = 0;
+
+        if (Regex.IsMatch(password, "(?=.*[a-z])"))
+        {
+            security += 1;
+        }
+        if (Regex.IsMatch(password, "(?=.*[A-Z])"))
+        {
+            security += 2;
+        }
+        if (Regex.IsMatch(password, "(?=.*[0-9])"))
+        {
+            security += 4;
+        }
+        if (Regex.IsMatch(password, "(?=.*[!,@,#,$,%,^,&,*,?,_,~,-,(,)])"))
+        {
+            security += 8;
+        }
+        if (password.Length>=8)
+        {
+            security += 16;
+        }
+
+        return security;
     }
 }

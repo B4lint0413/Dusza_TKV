@@ -12,7 +12,14 @@
             <Label FontSize="20" Target="{Binding ElementName=username}">Username:</Label>
             <TextBox Height="20" Width="200" Name="username"></TextBox>
             <Label FontSize="20" Target="{Binding ElementName=passwd}">Password:</Label>
-            <PasswordBox Height="20" Width="200" Name="passwd"></PasswordBox>
+            <PasswordBox Height="20" Width="200" Name="passwd" PasswordChanged="CheckStrength"></PasswordBox>
+            <StackPanel HorizontalAlignment="Center">
+                <TextBlock FontSize="10" x:Name="Long" Foreground="Red">At least 8 characters long</TextBlock>
+                <TextBlock FontSize="10" x:Name="Lower" Foreground="Red">Contains lowercase letter</TextBlock>
+                <TextBlock FontSize="10" x:Name="Upper" Foreground="Red">Contains uppercase letter</TextBlock>
+                <TextBlock FontSize="10" x:Name="Digit" Foreground="Red">Contains digit</TextBlock>
+                <TextBlock FontSize="10" x:Name="Special" Foreground="Red">Contains special character</TextBlock>
+            </StackPanel>
             <Label FontSize="20" Target="{Binding ElementName=passwdAgain}">Confirm password:</Label>
             <PasswordBox Height="20" Width="200" Name="passwdAgain"></PasswordBox>
             <Button Margin="20" Height="25" Click="SignUpNewUser" Content="Sign up"/>
