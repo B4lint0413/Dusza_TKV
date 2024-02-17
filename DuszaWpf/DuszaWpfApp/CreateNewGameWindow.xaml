@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:DuszaWpfApp"
         mc:Ignorable="d"
-        Title="AddNewGameWindow" Height="450" Width="800" MinWidth="360">
+        Title="Create New Game" Height="450" Width="800" MinWidth="360">
     <ScrollViewer>
         <StackPanel 
             Margin="20"

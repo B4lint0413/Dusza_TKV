@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DuszaWpfApp"
         mc:Ignorable="d"
-        Title="MakeBetWindow" Height="450" Width="800" MinWidth="360">
+        Title="Make Bet" Height="450" Width="800" MinWidth="360">
     <Grid x:Name="MainContainer">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>

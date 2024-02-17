@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:DuszaWpfApp"
         mc:Ignorable="d"
-        Title="EndGameWindow" Height="450" Width="800" MinWidth="360">
+        Title="End Game" Height="450" Width="800" MinWidth="360">
     <ScrollViewer>
         <StackPanel Width="320" Margin="10">
             <TextBlock HorizontalAlignment="Center" Name="Title" FontSize="30" FontWeight="Bold" Margin="10">End </TextBlock>

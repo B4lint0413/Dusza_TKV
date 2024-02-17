@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DuszaWpfApp"
         mc:Ignorable="d"
-        Title="LogInWindow" Height="500" Width="400" MinWidth="360">
+        Title="Log In" Height="500" Width="400" MinWidth="360">
     <ScrollViewer>
         <StackPanel Margin="20" Width="250">
             <TextBlock HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10">Log in page</TextBlock>
