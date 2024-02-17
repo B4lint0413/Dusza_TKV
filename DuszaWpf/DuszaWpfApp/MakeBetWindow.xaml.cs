@@ -62,7 +62,7 @@ namespace DuszaWpfApp
                 int a;
                 Bet bet = player.MakeBet(currentGame.Name, Result.Text, Subject.SelectedItem.ToString()??"",
                     Event.SelectedItem.ToString()??"", int.TryParse(Stake.Text, out a) ? int.Parse(Stake.Text) : 0);
-                App.Bets.AllBets.Add(bet);
+                App.Users.BetsOfApp.AllBets.Add(bet);
                 App.Users[player.Name] = player;
                 Cancel(sender, e);
             }

@@ -9,7 +9,7 @@ namespace DuszaTKVGameLib
 {
     public class User
     {
-        private readonly List<Bet> _placedBets;
+        private readonly Bets _placedBets;
         public User(string name, string password) // New user
         {
             if (password == "" || name == "")
@@ -20,7 +20,7 @@ namespace DuszaTKVGameLib
             Name = name;
             Password = Factory.PasswdFactory(password);
             Points = 100;
-            _placedBets = new List<Bet>();
+            _placedBets = new Bets();
         }
 
         public User(string name, string password, int points) // Existing user
@@ -28,7 +28,7 @@ namespace DuszaTKVGameLib
             Name = name;
             Password = password;
             Points = points;
-            _placedBets = new List<Bet>();
+            _placedBets = new Bets();
         }
         public string Name {get; init; }
         public string Password { get; init; }
@@ -51,7 +51,7 @@ namespace DuszaTKVGameLib
 
         private bool _isOrganiser = false;
 
-        public User(List<Bet> placedBets)
+        public User(Bets placedBets)
         {
             _placedBets = placedBets;
         }
@@ -69,16 +69,16 @@ namespace DuszaTKVGameLib
         }
 
         public override string ToString() => $"{Name};{Password};{Points}";
-        public IEnumerable<Bet> PlacedBets => _placedBets.Select(x => x); 
+        public Bets PlacedBets => _placedBets; 
         public void AddBet(Bet bet)
         {
-            _placedBets.Add(bet);
+            _placedBets.AllBets.Add(bet);
         }
         public Bet MakeBet(string gameToBet, string result, string subject, string @event, int stake)
         {
             Points -= stake;
             var bet = new Bet(Name, gameToBet, result, subject, @event, stake);
-            _placedBets.Add(bet);
+            _placedBets.AllBets.Add(bet);
             return bet;
         }
     }

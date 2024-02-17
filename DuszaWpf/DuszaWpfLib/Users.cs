@@ -19,8 +19,6 @@ public class Users
         AllUsers = users.ToList();
     }
     public List<string> Names => AllUsers.Select(x=>x.Name).ToList();
-
-    private List<string> Passwords => AllUsers.Select(x => x.Password).ToList();
     
     public List<string> ToFile => AllUsers.Select(x=>x.ToString()).ToList();
 
@@ -50,9 +48,24 @@ public class Users
     {
         foreach (var user in AllUsers)
         {
-            var bet = user.PlacedBets.ToList().Find(x => x.GameToBet == game.Name);
+            var bet = user.PlacedBets.AllBets.Find(x => x.GameToBet == game.Name);
             if (bet is not null)
                 user.Points += bet.Stake * 2;
+        }
+    }
+
+    public Bets BetsOfApp {
+        get
+        {
+            var bets = new Bets();
+            foreach (var user in AllUsers)
+            {
+                foreach (var bet in user.PlacedBets.AllBets)
+                {
+                    bets.AllBets.Add(bet);
+                }
+            }
+            return bets;
         }
     }
 }

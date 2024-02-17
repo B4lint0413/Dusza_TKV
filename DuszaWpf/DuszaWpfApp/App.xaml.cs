@@ -16,7 +16,6 @@ namespace DuszaWpfApp
     public partial class App : Application
     {
         public static Users Users = new();
-        public static Bets Bets = new();
         public static Events Events = new(GenerateEvents("Files/eredmenyek.txt"));
         public static Games Games = new(GenerateGames("Files/jatekok.txt", Events));
         private static string _currentGameName;
@@ -30,7 +29,7 @@ namespace DuszaWpfApp
 
             foreach (string row in File.ReadAllLines("Files/fogadasok.txt"))
             {
-                Bets.AllBets.Add(Factory.CreateBet(Users, row));
+                Users.BetsOfApp.AllBets.Add(Factory.CreateBet(Users, row));
             }
         }
 
@@ -54,7 +53,7 @@ namespace DuszaWpfApp
         public void AppExit(object sender, ExitEventArgs e)
         {
             File.WriteAllText("Files/users.txt", string.Join("\n", Users.ToFile));
-            File.WriteAllText("Files/fogadasok.txt", string.Join("\n", Bets.ToFile));
+            File.WriteAllText("Files/fogadasok.txt", string.Join("\n", Users.BetsOfApp.ToFile));
         }
     }
 }
