@@ -21,7 +21,7 @@ public partial class NavigationWindow : Window
 
     private void SwitchAccount(object sender, RoutedEventArgs e)
     {
-        new SignUpWindow().Show();
+        new LogInWindow().Show();
         Close();
     }
 

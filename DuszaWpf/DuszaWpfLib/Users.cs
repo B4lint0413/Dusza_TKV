@@ -1,5 +1,6 @@
 using DuszaTKVGameLib;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 
 namespace DuszaTKVGameLib;
@@ -17,7 +18,6 @@ public class Users
     {
         AllUsers = users.ToList();
     }
-
     public List<string> Names => AllUsers.Select(x=>x.Name).ToList();
 
     private List<string> Passwords => AllUsers.Select(x => x.Password).ToList();
@@ -33,7 +33,7 @@ public class Users
 		return AllUsers.Find(x => x.Name == username && x.Password == passwd)!;
     }
 
-    public User this[string index]
+    public User? this[string index]
     {
         get
         {
@@ -43,6 +43,16 @@ public class Users
         set
         {
             AllUsers[AllUsers.FindIndex(x => x.Name == index)] = value;
+        }
+    }
+
+    public void DistributePoints(Game game)
+    {
+        foreach (var user in AllUsers)
+        {
+            var bet = user.PlacedBets.ToList().Find(x => x.GameToBet == game.Name);
+            if (bet is not null)
+                user.Points += bet.Stake * 2;
         }
     }
 }

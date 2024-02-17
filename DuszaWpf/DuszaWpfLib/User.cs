@@ -9,6 +9,7 @@ namespace DuszaTKVGameLib
 {
     public class User
     {
+        private readonly List<Bet> _placedBets;
         public User(string name, string password) // New user
         {
             if (password == "" || name == "")
@@ -19,6 +20,7 @@ namespace DuszaTKVGameLib
             Name = name;
             Password = Factory.PasswdFactory(password);
             Points = 100;
+            _placedBets = new List<Bet>();
         }
 
         public User(string name, string password, int points) // Existing user
@@ -26,15 +28,16 @@ namespace DuszaTKVGameLib
             Name = name;
             Password = password;
             Points = points;
+            _placedBets = new List<Bet>();
         }
         public string Name {get; init; }
         public string Password { get; init; }
-        private int points;
+        private int _points;
         public int Points
         {
             get
             {
-                return points;
+                return _points;
             }
             set
             {
@@ -42,11 +45,17 @@ namespace DuszaTKVGameLib
                 {
                     throw new NotEnoughPointsException();
                 }
-                points = value;
+                _points = value;
             }
         }
 
         private bool _isOrganiser = false;
+
+        public User(List<Bet> placedBets)
+        {
+            _placedBets = placedBets;
+        }
+
         public bool IsOrganiser
         {
             get
@@ -60,11 +69,17 @@ namespace DuszaTKVGameLib
         }
 
         public override string ToString() => $"{Name};{Password};{Points}";
-
-        public Bet MakeBet(string gameToBet, string result, string subject, string _event, int stake)
+        public IEnumerable<Bet> PlacedBets => _placedBets.Select(x => x); 
+        public void AddBet(Bet bet)
+        {
+            _placedBets.Add(bet);
+        }
+        public Bet MakeBet(string gameToBet, string result, string subject, string @event, int stake)
         {
             Points -= stake;
-            return new Bet(Name, gameToBet, result, subject, _event, stake);
+            var bet = new Bet(Name, gameToBet, result, subject, @event, stake);
+            _placedBets.Add(bet);
+            return bet;
         }
     }
 }

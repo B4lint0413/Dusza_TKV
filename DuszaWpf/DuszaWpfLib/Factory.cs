@@ -43,10 +43,12 @@ public static class Factory
 		}
 	}
 
-    public static Bet CreateBet(string row)
+    public static Bet CreateBet(Users users, string row)
     {
-        string[] splitted = row.Split(";");
-        return new Bet(splitted[0], splitted[1], splitted[2], splitted[3], splitted[4], int.Parse(splitted[5]));
+        var data = row.Split(";");
+        var bet = new Bet(data[0], data[1], data[2], data[3], data[4], int.Parse(data[5]));
+        users[bet.Player]!.AddBet(bet);
+        return bet;
     }
 
     public static int StrengthCheck(string password)

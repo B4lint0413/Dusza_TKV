@@ -30,7 +30,7 @@ namespace DuszaWpfApp
 
             foreach (string row in File.ReadAllLines("Files/fogadasok.txt"))
             {
-                Bets.AllBets.Add(Factory.CreateBet(row));
+                Bets.AllBets.Add(Factory.CreateBet(Users, row));
             }
         }
 

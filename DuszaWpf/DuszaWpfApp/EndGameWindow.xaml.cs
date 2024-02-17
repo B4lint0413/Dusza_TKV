@@ -38,6 +38,7 @@ public partial class EndGameWindow : Window
                 results.Add(result.Result.Text);
             }
             _game.EndGame(results);
+            App.Users.DistributePoints(_game);
             File.WriteAllText("Files/jatekok.txt", App.Games.ToString());
             File.WriteAllText("Files/eredmenyek.txt", App.Games.ResultsToString());
             new AdminGameWindow(_organizer).Show();
