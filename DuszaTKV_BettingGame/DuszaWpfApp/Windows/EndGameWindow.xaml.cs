@@ -30,10 +30,6 @@ public partial class EndGameWindow : Window
             foreach(var item in Container.Children)
             {
                 var result = (EventResultField)item;
-                if (result.Result.Text == "")
-                    throw new EmptyFieldException();
-                if (result.Result.Text.Length > LengthLimitExceededException.LENGTH_LIMIT)
-                    throw new LengthLimitExceededException();
                 results.Add(result.Result.Text);
             }
             _game.EndGame(results);

@@ -15,7 +15,7 @@ namespace DuszaWpfApp.Windows
         {
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-            UserHeader header = new UserHeader(user);
+            var header = new UserHeader(user);
             MainContainer.Children.Add(header);
             Grid.SetRow(header, 0);
 
@@ -24,14 +24,10 @@ namespace DuszaWpfApp.Windows
 
             Header.Text = game.Name;
             foreach (var subject in game.Subjects)
-            {
                 Subject.Items.Add(subject);
-            }
 
             foreach (var _event in game.Events.Select(x=>x.Name).Distinct())
-            {
                 Event.Items.Add(_event);
-            }
 
             Subject.SelectedIndex = 0;
             Event.SelectedIndex = 0;

@@ -22,10 +22,6 @@ namespace DuszaWpfApp.Windows
 			{
 				var userName = username.Text;
 				var password = passwd.Password;
-				if (password == "" || userName == "")
-					throw new EmptyFieldException();
-				if (userName.Length > LengthLimitExceededException.LENGTH_LIMIT)
-					throw new LengthLimitExceededException();
 				var user = App.Users.UserLogIn(userName, new Password(password).HashedPassword);
 				new NavigationWindow(user).Show();
 				Close();

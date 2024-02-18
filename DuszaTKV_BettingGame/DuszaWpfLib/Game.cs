@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using DuszaTKVGameLib.Exceptions;
 
 namespace DuszaTKVGameLib
 {
@@ -7,9 +8,18 @@ namespace DuszaTKVGameLib
     {
         public Game(string name, string organizer, IEnumerable<Event> events)
         {
+            var eventList = events.ToList();
+            if (name == "" || 
+                string.Join("", eventList.Select(x => x.Name)) == "" || 
+                string.Join("", eventList.Select(x => x.Subject)) == "")
+                throw new EmptyFieldException();
+            if (name.Length > LengthLimitExceededException.LENGTH_LIMIT ||
+                eventList.Any(x => x.Name.Length > LengthLimitExceededException.LENGTH_LIMIT || 
+                eventList.Any(y => y.Subject.Length > LengthLimitExceededException.LENGTH_LIMIT)))
+                throw new LengthLimitExceededException();
             Name = name;
             Organizer = organizer;
-            _events = events.ToList();
+            _events = eventList.ToList();
         }
         public string Name { get; init; }
         public string Organizer { get; init; }
@@ -21,7 +31,13 @@ namespace DuszaTKVGameLib
         {
             var resultsList = results.ToList();
             for (var i = 0; i < resultsList.Count; i++)
+            {
+                if (resultsList[i] == "")
+                    throw new EmptyFieldException();
+                if (resultsList[i].Length > LengthLimitExceededException.LENGTH_LIMIT)
+                    throw new LengthLimitExceededException();
                 _events[i].Result = resultsList[i];
+            }
         }
         public IEnumerable<string> Subjects => _events.Select(x => x.Subject).Distinct();
         public IEnumerable<Event> Events => _events;

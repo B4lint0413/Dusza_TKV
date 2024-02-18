@@ -23,6 +23,10 @@ public class Users
 
     public User UserLogIn(string username, string passwd)
     {
+        if (passwd == "" || username == "")
+            throw new EmptyFieldException();
+        if (username.Length > LengthLimitExceededException.LENGTH_LIMIT)
+            throw new LengthLimitExceededException();
         var user = _allUsers.Find(x => x.Name == username && x.Password.HashedPassword == passwd);
         if (user == null)
             throw new InvalidUserNameOrPasswdException();

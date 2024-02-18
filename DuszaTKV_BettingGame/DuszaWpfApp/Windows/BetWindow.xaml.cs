@@ -15,7 +15,7 @@ namespace DuszaWpfApp.Windows
         {
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-            UserHeader header = new UserHeader(user);
+            var header = new UserHeader(user);
             MainContainer.Children.Add(header);
             Grid.SetRow(header, 0);
 
