@@ -5,19 +5,22 @@ using System.Windows;
 
 namespace DuszaWpfApp
 {
-    public partial class App
+    public partial class App : Application
     {
         public static Users Users = new(GenerateUsers("Files/users.txt"));
         public static Events Events = new(GenerateEvents("Files/eredmenyek.txt"));
         public static Games Games = new(GenerateGames("Files/jatekok.txt", Events));
         public static Bets Bets = new(GenerateBets(Users, "Files/fogadasok.txt"));
         private static string _currentGameName;
+        public App()
+        {
+            
+        }
         private static IEnumerable<User> GenerateUsers(string filename)
         {
             foreach (var line in File.ReadAllLines(filename))
                 yield return Factory.CreateUser(line);
         }
-
         private static IEnumerable<Bet> GenerateBets(Users users, string filename)
         {
             foreach (var row in File.ReadAllLines(filename))
@@ -40,11 +43,14 @@ namespace DuszaWpfApp
                     yield return Factory.CreateGame(line, events);
             }
         }
-        public void AppExit(object sender, ExitEventArgs e)
+
+        private void AppExit(object sender, ExitEventArgs e)
         {
-            File.WriteAllText("Files/users.txt", string.Join("\n", Users.ToFile));
-            File.WriteAllText("Files/fogadasok.txt", string.Join("\n", Bets.ToFile));
+            File.WriteAllText("Files/users.txt", Users.ToString());
+            File.WriteAllText("Files/fogadasok.txt", Bets.ToString());
             File.WriteAllText("Files/jatekok.txt", App.Games.ToString());
-            File.WriteAllText("Files/eredmenyek.txt", App.Games.ResultsToString());}
+            File.WriteAllText("Files/eredmenyek.txt", App.Games.ResultsToString());
+            
+        }
     }
 }

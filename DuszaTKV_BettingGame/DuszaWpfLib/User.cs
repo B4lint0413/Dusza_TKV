@@ -13,7 +13,8 @@ namespace DuszaTKVGameLib
                 name.Length > LengthLimitExceededException.LENGTH_LIMIT)
                 throw new LengthLimitExceededException();
             Name = name;
-            Password = Factory.PasswdFactory(password);
+            Password = new Password(password);
+            Password.CheckSecurity();
             Points = 100;
             _placedBets = new Bets();
         }
@@ -21,49 +22,24 @@ namespace DuszaTKVGameLib
         public User(string name, string password, int points) // Existing user
         {
             Name = name;
-            Password = password;
+            Password = new Password(password, true);
             Points = points;
             _placedBets = new Bets();
         }
         public string Name {get; init; }
-        public string Password { get; init; }
+        public Password Password { get; init; }
         private int _points;
         public int Points
         {
-            get
-            {
-                return _points;
-            }
+            get => _points;
             set
             {
                 if (value<0)
-                {
                     throw new NotEnoughPointsException();
-                }
                 _points = value;
             }
         }
-
-        private bool _isOrganiser = false;
-
-        public User(Bets placedBets)
-        {
-            _placedBets = placedBets;
-        }
-
-        public bool IsOrganiser
-        {
-            get
-            {
-                return _isOrganiser;
-            }
-            set 
-            {
-                _isOrganiser = value;
-            }
-        }
-
-        public override string ToString() => $"{Name};{Password};{Points}";
+        public override string ToString() => $"{Name};{Password.HashedPassword};{Points}";
         public Bets PlacedBets => _placedBets; 
         public void AddBet(Bet bet)
         {

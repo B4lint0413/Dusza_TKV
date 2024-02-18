@@ -28,23 +28,23 @@ namespace DuszaWpfApp.Windows
 
         }
 
-        public void NavigateToLogIn(object sender, EventArgs e)
+        private void NavigateToLogIn(object sender, EventArgs e)
         {
             new LogInWindow().Show();
             Close();
         }
 
-        public void SignUpNewUser(object sender, RoutedEventArgs e)
+        private void SignUpNewUser(object sender, RoutedEventArgs e)
         {
-            string name = username.Text;
-            string password = passwd.Password;
-            string passwordAgain = passwdAgain.Password;
+            var name = username.Text;
+            var password = passwd.Password;
+            var passwordAgain = passwdAgain.Password;
            
-            if (password==passwordAgain)
+            if (password == passwordAgain)
             {
                 try
                 {
-                    App.Users += new User(name,password);
+                    App.Users += new User(name, password);
                     username.Text = "";
                     passwd.Password = "";
                     passwdAgain.Password = "";
@@ -61,18 +61,18 @@ namespace DuszaWpfApp.Windows
             }
         }
 
-        public void StrengthLevel(object sender, RoutedEventArgs e)
+        private void StrengthLevel(object sender, RoutedEventArgs e)
         {
             Lower.Foreground = red;
             Upper.Foreground = red;
             Digit.Foreground = red;
             Special.Foreground = red;
             Long.Foreground = red;
-            int strengthLevel = Factory.StrengthCheck(passwd.Password);
+            var strengthLevel = Password.GetSecurityLevel(passwd.Password);
 
             foreach (var level in levels)
             {
-                if (strengthLevel>=level.Key)
+                if (strengthLevel >= level.Key)
                 {
                     ((TextBlock)level.Value).Foreground = green;
                     strengthLevel -= level.Key;

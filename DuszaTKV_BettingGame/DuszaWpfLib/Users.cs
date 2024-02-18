@@ -20,16 +20,15 @@ public class Users
     }
 
     private List<string> Names => _allUsers.Select(x=>x.Name).ToList();
-    
-    public IEnumerable<string> ToFile => _allUsers.Select(x=>x.ToString());
+
+    public override string ToString() => string.Join("\n", _allUsers);
 
     public User UserLogIn(string username, string passwd)
     {
-        if (_allUsers.Find(x => x.Name == username && x.Password == passwd) == null)
-        {
+        var user = _allUsers.Find(x => x.Name == username && x.Password.HashedPassword == passwd);
+        if (user == null)
             throw new InvalidUserNameOrPasswdException();
-        }
-		return _allUsers.Find(x => x.Name == username && x.Password == passwd)!;
+		return user;
     }
 
     public static Users operator +(Users users, User user)

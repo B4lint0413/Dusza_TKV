@@ -15,17 +15,18 @@ namespace DuszaWpfApp.Windows
 			WindowStartupLocation = WindowStartupLocation.CenterScreen;
 			InitializeComponent();
 		}
-		public void LogIn(object sender, EventArgs e)
+
+		private void LogIn(object sender, EventArgs e)
 		{
 			try
 			{
-				string userName = username.Text;
-				string password = Factory.PasswdFactory(passwd.Password, false);
+				var userName = username.Text;
+				var password = passwd.Password;
 				if (password == "" || userName == "")
 					throw new EmptyFieldException();
 				if (userName.Length > LengthLimitExceededException.LENGTH_LIMIT)
 					throw new LengthLimitExceededException();
-				var user = App.Users.UserLogIn(userName, password);
+				var user = App.Users.UserLogIn(userName, new Password(password).HashedPassword);
 				new NavigationWindow(user).Show();
 				Close();
 			}

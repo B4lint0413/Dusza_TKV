@@ -37,6 +37,6 @@ namespace DuszaTKVGameLib
             return temp;
         }
         public Dictionary<string, List<Bet>> BetsByGames => _allBets.GroupBy(x => x.GameToBet).ToDictionary(x=>x.Key, x=>x.ToList());
-        public IEnumerable<string> ToFile => _allBets.Select(x => x.ToString()).ToList();
+        public override string ToString() => string.Join("\n", _allBets);
     }
 }
