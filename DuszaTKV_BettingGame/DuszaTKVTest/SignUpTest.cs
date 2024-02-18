@@ -21,4 +21,11 @@ public class SignUpTest
         users += new User("Gipsz Jakab", "Delulu!0");
         Assert.ThrowsException<DuplicateUsersException>(() => users += new User("Gipsz Jakab", "Delulu!0"));
     }
+
+    [TestMethod]
+    public void TryingToLoginToANonExistentUserThrowsException()
+    {
+        var users = new Users();
+        Assert.ThrowsException<InvalidUserNameOrPasswdException>(() => users.UserLogIn("hululu", "delulu"));
+    }
 }
