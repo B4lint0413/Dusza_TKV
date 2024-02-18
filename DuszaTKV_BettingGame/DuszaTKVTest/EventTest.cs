@@ -29,4 +29,9 @@ public class EventTest
         Assert.AreEqual("game\nhululu;asdasd;;0", game.ResultsToString());
     }
 
+    [TestMethod]
+    public void EventsToString()
+    {
+        Assert.AreEqual("asd;hululu;;0", new Event("hululu", "asd", "asd").ToString());
+    }
 }

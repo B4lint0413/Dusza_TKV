@@ -4,7 +4,7 @@ using DuszaTKVGameLib.Exceptions;
 namespace DuszaTKVTest
 {
 	[TestClass]
-	public class HashedPasswdFactoryTests
+	public class PasswordTest
 	{
 		[TestMethod]
 		public void EmptyPasswordThrowsException()
