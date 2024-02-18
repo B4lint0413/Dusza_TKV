@@ -10,7 +10,7 @@ namespace DuszaTKVGameLib
                 throw new EmptyFieldException();
             if (result.Length > LengthLimitExceededException.LENGTH_LIMIT)
                 throw new LengthLimitExceededException();
-            if (stake<=0)
+            if (stake <= 0)
                 throw new NonPositiveStakeException();
 
             Player = player;

@@ -15,6 +15,18 @@ namespace DuszaTKVTest
         }
 
         [TestMethod]
+        public void EmptyResultStringThrowsException()
+        {
+            Assert.ThrowsException<EmptyFieldException>(() => new Bet("asd", "asd", "", "asd", "asd", 5));
+        }
+
+        [TestMethod]
+        public void TooLongResultStringThrowsException()
+        {
+            Assert.ThrowsException<LengthLimitExceededException>(() => new Bet("asd", "asd", "asdfasdfasdfdsafdsafdsafdsadsafds", "asd", "asd", 5));
+        }
+        
+        [TestMethod]
         public void ConstructorSubtractStakeFromPlayersPoints()
         {
             User player = new User("Gipsz Jakab", "Delulu!0");

@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography;
-using DuszaTKVGameLib;
+﻿using DuszaTKVGameLib;
 using DuszaTKVGameLib.Exceptions;
 
 namespace DuszaTKVTest
@@ -10,14 +9,14 @@ namespace DuszaTKVTest
 		[TestMethod]
 		public void EmptyPasswordThrowsException()
 		{
-			Assert.ThrowsException<EmptyFieldException>(() => new User("hululu", ""));
+			Assert.ThrowsException<EmptyFieldException>(() => new Password(""));
 		}
 
 		[TestMethod]
 		public void TooLongPasswordThrowsException()
 		{
 			Assert.ThrowsException<LengthLimitExceededException>(() =>
-				new User("hululu", "asdfasdfasdfdsafdsafdsafdsafdsafdsa"));
+				new Password("asdfasdfasdfdsafdsafdsafdsafdsafdsa"));
 		}
 		
 		[TestMethod]

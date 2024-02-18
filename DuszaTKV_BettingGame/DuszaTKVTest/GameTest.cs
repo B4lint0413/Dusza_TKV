@@ -1,4 +1,3 @@
-using System.Windows.Documents;
 using DuszaTKVGameLib;
 using DuszaTKVGameLib.Exceptions;
 
@@ -16,6 +15,32 @@ public class GameTest
         Assert.AreEqual("organizer;game;1;1\nhululu\nasdasd", game.ToString());
     }
 
+    [TestMethod]
+    public void EmptyGameNameThrowsException()
+    {
+        Assert.ThrowsException<EmptyFieldException>(() => new Game("", "asd", new List<Event>()));
+    }
+
+    [TestMethod]
+    public void TooLongGameNameThrowsException()
+    {
+        Assert.ThrowsException<LengthLimitExceededException>(() => new Game("afdsasfdafsdafsdasdfasdfdsa", "asd", new List<Event>()));
+    }
+
+    [TestMethod]
+    public void TooLongEventNameOrSubjectNameThrowsException()
+    {
+        Assert.ThrowsException<LengthLimitExceededException>(() => new Event("asdfasdfasfdsafdsafasddfasddsf", "asd", "asd"));
+        Assert.ThrowsException<LengthLimitExceededException>(() => new Event("asd", "asdasdfasdfasdfsadfdsafdsafasd", "asd"));
+    }
+    
+    [TestMethod]
+    public void EmptyEventNameOrSubjectNameThrowsException()
+    {
+        Assert.ThrowsException<EmptyFieldException>(() => new Event("", "asd", ""));
+        Assert.ThrowsException<EmptyFieldException>(() => new Event("asd", "", ""));
+    }
+    
     [TestMethod]
     public void ResultsToStringTest()
     {

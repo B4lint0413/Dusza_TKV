@@ -9,13 +9,9 @@ namespace DuszaTKVGameLib
         public Game(string name, string organizer, IEnumerable<Event> events)
         {
             var eventList = events.ToList();
-            if (name == "" || 
-                string.Join("", eventList.Select(x => x.Name)) == "" || 
-                string.Join("", eventList.Select(x => x.Subject)) == "")
+            if (name == "")
                 throw new EmptyFieldException();
-            if (name.Length > LengthLimitExceededException.LENGTH_LIMIT ||
-                eventList.Any(x => x.Name.Length > LengthLimitExceededException.LENGTH_LIMIT || 
-                eventList.Any(y => y.Subject.Length > LengthLimitExceededException.LENGTH_LIMIT)))
+            if (name.Length > LengthLimitExceededException.LENGTH_LIMIT)
                 throw new LengthLimitExceededException();
             Name = name;
             Organizer = organizer;
