@@ -18,7 +18,7 @@ namespace DuszaWpfApp.Windows
 
             this.player = player;
 
-            foreach (var bet in App.Users[player.Name].PlacedBets.AllBets)
+            foreach (var bet in App.Users[player.Name].PlacedBets.Items)
                 Scroller.Children.Add(new PlacedBet(bet));
 
             UserHeader header = new UserHeader(player);

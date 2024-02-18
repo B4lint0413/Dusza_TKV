@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,34 +10,36 @@ using DuszaTKVGameLib.Exceptions;
 
 namespace DuszaTKVGameLib
 {
-    public class Bets
+    public sealed class Bets : ClassList<Bet>
     {
-        private readonly List<Bet> _allBets;
+        public Bets(IEnumerable<Bet> items) : base(items) { }
+        public Bets() : base() { }
 
-        public Bets()
+        public Dictionary<string, List<Bet>> BetsByGames => items.GroupBy(x => x.GameToBet).ToDictionary(x=>x.Key, x=>x.ToList());
+
+        public override Bet this[string index]
         {
-            _allBets = new List<Bet>();
+            get
+            {
+               throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
-        public Bets(IEnumerable<Bet> bets)
-        {
-            _allBets = bets.ToList();
-        }
 
-        public IEnumerable<Bet> AllBets => _allBets.Select(x => x);
-
-        public static Bets operator +(Bets bets, Bet bet)
+        protected override ClassList<Bet> AddItem(Bet item)
         {
-            if (bets._allBets.Exists(x =>
-                    x.GameToBet == bet.GameToBet
-                    && x.Player == bet.Player
-                    && x.Event == bet.Event
-                    && x.Subject == bet.Subject))
+            if (items.Exists(x =>
+                    x.GameToBet == item.GameToBet
+                    && x.Player == item.Player
+                    && x.Event == item.Event
+                    && x.Subject == item.Subject))
                 throw new DuplicateBetException();
-            var temp = new Bets(bets._allBets);
-            temp._allBets.Add(bet);
-            return temp;
+            items.Add(item);
+            return this;
         }
-        public Dictionary<string, List<Bet>> BetsByGames => _allBets.GroupBy(x => x.GameToBet).ToDictionary(x=>x.Key, x=>x.ToList());
-        public override string ToString() => string.Join("\n", _allBets);
     }
 }

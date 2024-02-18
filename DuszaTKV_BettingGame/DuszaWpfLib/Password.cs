@@ -20,8 +20,6 @@ public class Password
         this.password = password;
         if (this.password == "")
             throw new EmptyFieldException();
-        if (this.password.Length > LengthLimitExceededException.LENGTH_LIMIT)
-            throw new LengthLimitExceededException();
         this.isHashed = isHashed;
     }
     public static int GetSecurityLevel(string password)

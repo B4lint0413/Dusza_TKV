@@ -1,37 +1,42 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DuszaTKVGameLib.Exceptions;
 
 namespace DuszaTKVGameLib
 {
-    public class Games
+    public sealed class Games : ClassList<Game>
     {
-        private readonly List<Game> _gameList;
-
-        public Games(IEnumerable<Game> games)
-        {
-            _gameList = games.ToList();
-        }
         public string ResultsToString()
         {
-            return string.Join("\n", _gameList.Select(x => x.ResultsToString()));
-        }
-        public override string ToString()
-        {
-            return string.Join("\n", _gameList);
+            return string.Join("\n", items.Select(x => x.ResultsToString()));
         }
 
-        public static Games operator +(Games games, Game game)
+        public Games(IEnumerable<Game> items) : base(items) { }
+        public Games() : base() { }
+
+        public IEnumerable<Game> GetOwnGames(string name) => items.Where(x => x.Organizer == name && x.IsInProgress);
+        public IEnumerable<Game> GetBettableGames(string name) => items.Where(x => x.Organizer != name && x.IsInProgress);
+
+        protected override ClassList<Game> AddItem(Game item)
         {
-            if (games[game.Name] != null)
+            if (this[item.Name] != null)
                 throw new NonUniqueGameNameException();
-            var gameList = games._gameList.Select(x => x).ToList();
-            gameList.Add(game);
-            return new Games(gameList);
+            items.Add(item);
+            return this;
         }
 
-        public IEnumerable<Game> GetOwnGames(string name) => _gameList.Where(x => x.Organizer == name && x.IsInProgress);
-        public IEnumerable<Game> GetBettableGames(string name) => _gameList.Where(x => x.Organizer != name && x.IsInProgress);
-        private Game? this[string name] => _gameList.Find(x => x.Name == name);
+        public override Game? this[string name]
+        {
+            get
+            {
+                return items.Find(x => x.Name == name);
+            }
+
+            set
+            {
+                items[items.FindIndex(x => x.Name == name)] = value;
+            }
+        }
     }
 }

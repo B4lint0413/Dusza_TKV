@@ -29,7 +29,7 @@ public partial class CreateNewGameWindow : Window
                 select new Event(ev, subject, gameName))
                 .ToList();
             var game = new Game(gameName, _organizer.Name, eventList);
-            App.Games += game;
+            App.Games = (Games)(App.Games + game);
             App.Events += eventList;
             new AdminGameWindow(_organizer).Show();
             Close();

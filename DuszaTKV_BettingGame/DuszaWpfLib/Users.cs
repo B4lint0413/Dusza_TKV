@@ -4,22 +4,12 @@ using DuszaTKVGameLib.Exceptions;
 
 namespace DuszaTKVGameLib;
 
-public class Users
+public sealed class Users : ClassList<User>
 {
-    private readonly List<User> _allUsers;
+    public Users(IEnumerable<User> items) : base(items) { }
+    public Users() : base() { }
 
-    public Users()
-    {
-        _allUsers = new List<User>();
-    }
-    public Users(IEnumerable<User> users)
-    {
-        _allUsers = users.ToList();
-    }
-
-    private List<string> Names => _allUsers.Select(x=>x.Name).ToList();
-
-    public override string ToString() => string.Join("\n", _allUsers);
+    private List<string> Names => items.Select(x=>x.Name).ToList();
 
     public User UserLogIn(string username, string passwd)
     {
@@ -27,47 +17,51 @@ public class Users
             throw new EmptyFieldException();
         if (username.Length > LengthLimitExceededException.LENGTH_LIMIT)
             throw new LengthLimitExceededException();
-        var user = _allUsers.Find(x => x.Name == username && x.Password.HashedPassword == passwd);
+        var user = items.Find(x => x.Name == username && x.Password.HashedPassword == passwd);
         if (user == null)
             throw new InvalidUserNameOrPasswdException();
 		return user;
     }
 
-    public static Users operator +(Users users, User user)
-    {
-        if (users.Names.Contains(user.Name))
-            throw new DuplicateUsersException();
-        var temp = new Users();
-        foreach (var u in users._allUsers)
-            temp._allUsers.Add(u);
-        temp._allUsers.Add(user);
-        return temp;
-    }
-    public User? this[string index]
+    
+    public override User? this[string index]
     {
         get
         {
-            return _allUsers.Find(x => x.Name == index);
+            return items.Find(x => x.Name == index);
         }
 
         set
         {
-            _allUsers[_allUsers.FindIndex(x => x.Name == index)] = value;
+            items[items.FindIndex(x => x.Name == index)] = value;
         }
     }
 
     public void DistributePoints(Game game)
     {
-        foreach (var user in _allUsers)
+        foreach (var user in items)
         {
-            foreach (var bet in user.PlacedBets.AllBets.Where(x => x.GameToBet == game.Name))
+            List<Bet> bets = new List<Bet>();
+            if(user.PlacedBets.BetsByGames.TryGetValue(game.Name, out bets))
             {
-                foreach (var result in game.Events)
+                foreach (var bet in bets)
                 {
-                    if (bet.Event == result.Name && bet.Subject == result.Subject && bet.Result == result.Result)
-                        user.Points += bet.Stake * 2;
+                    foreach (var result in game.Events)
+                    {
+                        if (bet.Event == result.Name && bet.Subject == result.Subject && bet.Result == result.Result)
+                            user.Points += bet.Stake * 2;
+                    }
                 }
             }
         }
+    }
+
+    protected override ClassList<User> AddItem(User item)
+    {
+        if (Names.Contains(item.Name))
+            throw new DuplicateUsersException();
+        items.Add(item);
+        return this;
+        
     }
 }
