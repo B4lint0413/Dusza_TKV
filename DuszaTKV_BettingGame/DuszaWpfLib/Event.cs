@@ -2,7 +2,6 @@ namespace DuszaTKVGameLib;
 
 public class Event
 {
-    private static int _id;
     public Event(string name, string subject, string gameName, string result = "", double odds = 0)
     {
         Name = name;
@@ -10,9 +9,7 @@ public class Event
         Subject = subject;
         Odds = odds;
         GameName = gameName;
-        Id = _id++;
     }
-    public int Id { get; init; }
     public string GameName { get; init; }
     public string Name { get; init; }
     public string Subject { get; init; }

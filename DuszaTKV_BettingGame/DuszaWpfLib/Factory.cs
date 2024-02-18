@@ -1,21 +1,11 @@
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
+using DuszaTKVGameLib.Exceptions;
 
 namespace DuszaTKVGameLib;
 
 public static class Factory
 {
-    public static void NewUserToUsers(User user, Users users)
-    {
-        if (users.Names.Contains(user.Name))
-        {
-            throw new DuplicateUsersException();
-        }
-        users.AllUsers.Add(user);
-    }
-    
     public static Game CreateGame(string line, Events events)
     {
         var header = line.Split(';');
@@ -53,7 +43,7 @@ public static class Factory
 
     public static int StrengthCheck(string password)
     {
-        int security = 0;
+        var security = 0;
 
         if (Regex.IsMatch(password, "(?=.*[a-z])"))
         {
@@ -77,5 +67,10 @@ public static class Factory
         }
 
         return security;
+    }
+    public static User CreateUser(string line)
+    {
+        var data = line.Split(';');
+        return new User(data[0], data[1], int.Parse(data[2]));
     }
 }

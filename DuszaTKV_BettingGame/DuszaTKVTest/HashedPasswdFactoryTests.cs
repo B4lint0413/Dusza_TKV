@@ -1,14 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Security.Cryptography;
 using DuszaTKVGameLib;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Security.Cryptography;
-using System.Runtime.Intrinsics.Arm;
+using DuszaTKVGameLib.Exceptions;
 
-namespace DuszaTKVGameLib.Tests
+namespace DuszaTKVTest
 {
 	[TestClass]
 	public class HashedPasswdFactoryTests
@@ -19,13 +13,26 @@ namespace DuszaTKVGameLib.Tests
 			string hash;
 			using (SHA256 sHA256 = SHA256.Create())
 			{
-				byte[] hashedBytes = sHA256.ComputeHash(System.Text.Encoding.UTF8.GetBytes("asd123"));
-				hash = hashedBytes.ToString()!;
+				byte[] hashedBytes = sHA256.ComputeHash(System.Text.Encoding.UTF8.GetBytes("Delulu!0"));
+				hash = System.Text.Encoding.UTF8.GetString(hashedBytes);
 			}
-			Assert.AreEqual(hash, Factory.PasswdFactory("asd123"));
-			Assert.AreEqual(Factory.PasswdFactory("password"), Factory.PasswdFactory("password"));
+			Assert.AreEqual(hash, Factory.PasswdFactory("Delulu!0"));
+			Assert.AreEqual(Factory.PasswdFactory("Delulu!0"), Factory.PasswdFactory("Delulu!0"));
 		}
 
+		[TestMethod]
+		public void EmptyPasswordThrowsException()
+		{
+			Assert.ThrowsException<EmptyFieldException>(() => new User("hululu", ""));
+		}
+
+		[TestMethod]
+		public void TooLongPasswordThrowsException()
+		{
+			Assert.ThrowsException<LengthLimitExceededException>(() =>
+				new User("hululu", "asdfasdfasdfdsafdsafdsafdsafdsafdsa"));
+		}
+		
 		[TestMethod]
 		public void IfPasswordIsEmptyStrengthCheckReturns0()
 		{

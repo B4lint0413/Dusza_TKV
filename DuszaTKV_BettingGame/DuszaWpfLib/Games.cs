@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using DuszaTKVGameLib.Exceptions;
 
 namespace DuszaTKVGameLib
 {
@@ -22,6 +23,8 @@ namespace DuszaTKVGameLib
 
         public static Games operator +(Games games, Game game)
         {
+            if (games[game.Name] != null)
+                throw new NonUniqueGameNameException();
             var gameList = games._gameList.Select(x => x).ToList();
             gameList.Add(game);
             return new Games(gameList);

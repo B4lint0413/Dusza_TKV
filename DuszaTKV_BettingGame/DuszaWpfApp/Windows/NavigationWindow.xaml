@@ -1,0 +1,26 @@
+<Window x:Class="DuszaWpfApp.Windows.NavigationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:DuszaWpfApp"
+        mc:Ignorable="d"
+        Title="Navigation" Height="450" Width="800" MinWidth="360">
+    <Grid x:Name="Container">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="10" Width="360">
+                <TextBlock HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10">Navigation</TextBlock>
+                <Button Margin="20" Height="25" Click="SwitchAccount" Content="Switch Accounts"/>
+                <Button Margin="20" Height="25" Click="CreateGame" Content="Create New Game"/>
+                <Button Margin="20" Height="25" Click="CheckOrganizedGames" Content="Check Organized Games"/>
+                <Button Margin="20" Height="25" Click="OpenBetWindow" Content="Bet On Game"/>
+                <Button Margin="20" Height="25" Click="OpenPlacedBetWindow" Content="See your placed bets"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

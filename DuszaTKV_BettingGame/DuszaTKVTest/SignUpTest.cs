@@ -1,4 +1,5 @@
 using DuszaTKVGameLib;
+using DuszaTKVGameLib.Exceptions;
 
 namespace DuszaTKVTest;
 
@@ -8,23 +9,16 @@ public class SignUpTest
     [TestMethod]
     public void NewUsersNameIsAccessibleAndPointsByDefaultIs100()
     {
-        User usr = new("Gipsz Jakab", "jelszó"); 
+        User usr = new("Gipsz Jakab", "Delulu!0"); 
         Assert.AreEqual("Gipsz Jakab", usr.Name);
         Assert.AreEqual(100, usr.Points);
-    }
-
-    [TestMethod]
-    public void ForExistingUser50PointsCanBeDefinedInConstructor()
-    {
-        User usr = new("Gipsz Jakab", "jelszó", 50);
-        Assert.AreEqual(50, usr.Points);
     }
 
     [TestMethod]
     public void TryingToCreateAnExistingUserThrowsError()
     {
         Users users = new();
-        Factory.NewUserToUsers(new User("Gipsz Jakab", "jelszó"),users);
-        Assert.ThrowsException<DuplicateUsersException>(() => Factory.NewUserToUsers(new User("Gipsz Jakab", "jelszó"),users));
+        users += new User("Gipsz Jakab", "Delulu!0");
+        Assert.ThrowsException<DuplicateUsersException>(() => users += new User("Gipsz Jakab", "Delulu!0"));
     }
 }

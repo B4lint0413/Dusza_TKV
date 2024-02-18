@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Navigation;
+﻿using DuszaTKVGameLib.Exceptions;
 
 namespace DuszaTKVGameLib
 {
     public class User
     {
-        private readonly Bets _placedBets;
+        private Bets _placedBets;
         public User(string name, string password) // New user
         {
             if (password == "" || name == "")
@@ -72,13 +67,13 @@ namespace DuszaTKVGameLib
         public Bets PlacedBets => _placedBets; 
         public void AddBet(Bet bet)
         {
-            _placedBets.AllBets.Add(bet);
+            _placedBets += bet;
         }
         public Bet MakeBet(string gameToBet, string result, string subject, string @event, int stake)
         {
             Points -= stake;
             var bet = new Bet(Name, gameToBet, result, subject, @event, stake);
-            _placedBets.AllBets.Add(bet);
+            _placedBets += bet;
             return bet;
         }
     }

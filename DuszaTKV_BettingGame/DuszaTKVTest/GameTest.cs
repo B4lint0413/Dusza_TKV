@@ -1,4 +1,6 @@
+using System.Windows.Documents;
 using DuszaTKVGameLib;
+using DuszaTKVGameLib.Exceptions;
 
 namespace DuszaTKVTest;
 
@@ -52,5 +54,22 @@ public class GameTest
         Assert.AreEqual("result", game.Events.ElementAt(0).Result);
         Assert.IsFalse(game.IsInProgress);
         Assert.AreEqual("game\nhululu;asdasd;result;0", game.ResultsToString());
+    }
+
+    [TestMethod]
+    public void CreatingGameWithNonUniqueNameThrowsException()
+    {
+        var events = new List<Event>
+        {
+            new Event("asdasd", "hululu", "game")
+        };
+        var gameList = new List<Game>
+        {
+            new Game("game", "organizer", events),
+            new Game("game2", "organizer", events)
+        };
+        var games = new Games(gameList);
+        var game = new Game("game", "organizer", events);
+        Assert.ThrowsException<NonUniqueGameNameException>(() => games += game);
     }
 }

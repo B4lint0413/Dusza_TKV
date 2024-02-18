@@ -1,0 +1,21 @@
+﻿<Window x:Class="DuszaWpfApp.Windows.PlacedBets"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DuszaWpfApp"
+        mc:Ignorable="d"
+        Title="Placed Bets" Height="450" Width="800">
+    <Grid x:Name="MainContainer">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="1">
+            <StackPanel x:Name="Scroller">
+                <TextBlock HorizontalAlignment="Center" FontSize="30" FontWeight="Bold">Bets You Have Placed</TextBlock>
+                <Button MaxWidth="160" Margin="10" Height="25" Click="ToNavigationWindow" Content="Back to Navigation"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

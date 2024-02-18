@@ -2,70 +2,71 @@ using DuszaTKVGameLib;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using DuszaTKVGameLib.Exceptions;
 
 namespace DuszaTKVGameLib;
 
 public class Users
 {
-    public List<User> AllUsers;
+    private readonly List<User> _allUsers;
 
     public Users()
     {
-        AllUsers = new List<User>();
+        _allUsers = new List<User>();
     }
-
     public Users(IEnumerable<User> users)
     {
-        AllUsers = users.ToList();
+        _allUsers = users.ToList();
     }
-    public List<string> Names => AllUsers.Select(x=>x.Name).ToList();
+
+    private List<string> Names => _allUsers.Select(x=>x.Name).ToList();
     
-    public List<string> ToFile => AllUsers.Select(x=>x.ToString()).ToList();
+    public IEnumerable<string> ToFile => _allUsers.Select(x=>x.ToString());
 
     public User UserLogIn(string username, string passwd)
     {
-        if (AllUsers.Find(x => x.Name == username && x.Password == passwd) == null)
+        if (_allUsers.Find(x => x.Name == username && x.Password == passwd) == null)
         {
             throw new InvalidUserNameOrPasswdException();
         }
-		return AllUsers.Find(x => x.Name == username && x.Password == passwd)!;
+		return _allUsers.Find(x => x.Name == username && x.Password == passwd)!;
     }
 
+    public static Users operator +(Users users, User user)
+    {
+        if (users.Names.Contains(user.Name))
+            throw new DuplicateUsersException();
+        var temp = new Users();
+        foreach (var u in users._allUsers)
+            temp._allUsers.Add(u);
+        temp._allUsers.Add(user);
+        return temp;
+    }
     public User? this[string index]
     {
         get
         {
-            return AllUsers.Find(x => x.Name == index);
+            return _allUsers.Find(x => x.Name == index);
         }
 
         set
         {
-            AllUsers[AllUsers.FindIndex(x => x.Name == index)] = value;
+            _allUsers[_allUsers.FindIndex(x => x.Name == index)] = value;
         }
     }
 
     public void DistributePoints(Game game)
     {
-        foreach (var user in AllUsers)
+        foreach (var user in _allUsers)
         {
-            var bet = user.PlacedBets.AllBets.Find(x => x.GameToBet == game.Name);
-            if (bet is not null)
-                user.Points += bet.Stake * 2;
-        }
-    }
-
-    public Bets BetsOfApp {
-        get
-        {
-            var bets = new Bets();
-            foreach (var user in AllUsers)
+            foreach (var bet in user.PlacedBets.AllBets.Where(x => x.GameToBet == game.Name))
             {
-                foreach (var bet in user.PlacedBets.AllBets)
+                foreach (var result in game.Events)
                 {
-                    bets.AllBets.Add(bet);
+                    if (bet.Event == result.Name && bet.Subject == result.Subject && bet.Result == result.Result)
+                        user.Points += bet.Stake * 2;
                 }
             }
-            return bets;
         }
     }
 }
