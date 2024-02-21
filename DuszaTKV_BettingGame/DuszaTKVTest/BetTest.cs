@@ -95,6 +95,15 @@ namespace DuszaTKVTest
         }
 
         [TestMethod]
+        public void BetsCanBeAddedWithoutPointsBeingDeducted()
+        {
+            var user = new User("jack", "Delulu!0");
+            user.AddBet(new Bet("jack", "hululu", "bamm", "john", "delulu", 20));
+            Assert.AreEqual(100, user.Points);
+            Assert.AreEqual(1, user.PlacedBets.Items.Count());
+        }
+
+        [TestMethod]
         public void MultipleBetsOnTheSameSubjectAndEventThrowException()
         {
             User player = new User("hululu", "Delulu!0");

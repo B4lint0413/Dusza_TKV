@@ -40,7 +40,7 @@ namespace DuszaTKVGameLib
             }
         }
         public override string ToString() => $"{Name};{Password.HashedPassword};{Points}";
-        public Bets PlacedBets => _placedBets; 
+        public Bets PlacedBets => new Bets(_placedBets.Items);
         public void AddBet(Bet bet)
         {
             _placedBets = (Bets)_placedBets.AddItem(bet);
