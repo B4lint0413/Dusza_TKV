@@ -16,4 +16,4 @@ Téma:
 Felkészítő tanár:
     Répásné Babucs Hajnalka
 
-[Trello]([https://trello.com/b/d8Znf94p/duszatkv])
+[Trello](https://trello.com/b/d8Znf94p/duszatkv)
