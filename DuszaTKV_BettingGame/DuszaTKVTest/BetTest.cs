@@ -57,12 +57,12 @@ namespace DuszaTKVTest
             User player2 = new User("Gipsz Jakab2", "Delulu!0");
 
             Bets bets = new();
-            bets += new Bet(player.Name, "Játék", "10", "Béla", "Pontjainak száma", 5);
-            bets += new Bet(player.Name, "Iskola", "4", "Béla", "Matek átlaga", 5);
-            bets += new Bet(player.Name, "Foci", "2", "Béla", "Lőtt gólok", 5);
-            bets += new Bet(player2.Name, "Iskola", "5", "Béla", "Matek átlaga", 5);
-            bets += new Bet(player2.Name, "Foci", "4", "Béla", "Lőtt gólok", 5);
-            bets += new Bet(player2.Name, "Foci", "5", "Joci", "Lőtt gólok", 5);
+            bets = (Bets)bets.AddItem(new Bet(player.Name, "Játék", "10", "Béla", "Pontjainak száma", 5));
+            bets = (Bets)bets.AddItem(new Bet(player.Name, "Iskola", "4", "Béla", "Matek átlaga", 5));
+            bets = (Bets)bets.AddItem(new Bet(player.Name, "Foci", "2", "Béla", "Lőtt gólok", 5));
+            bets = (Bets)bets.AddItem(new Bet(player2.Name, "Iskola", "5", "Béla", "Matek átlaga", 5));
+            bets = (Bets)bets.AddItem(new Bet(player2.Name, "Foci", "4", "Béla", "Lőtt gólok", 5));
+            bets = (Bets)bets.AddItem(new Bet(player2.Name, "Foci", "5", "Joci", "Lőtt gólok", 5));
 
             Dictionary<string, List<Bet>> betsByGames = bets.BetsByGames;
             Assert.AreEqual(1, betsByGames["Játék"].Count);
@@ -76,8 +76,8 @@ namespace DuszaTKVTest
             var users = new Users();
             var player1 = new User("hululu", "Delulu!0");
             var player2 = new User("delulu", "Delulu!0");
-            users += player1;
-            users += player2;
+            users = (Users)users.AddItem(player1);
+            users = (Users)users.AddItem(player2);
 
             Assert.AreEqual(100, player1.Points);
             Assert.AreEqual(100, player2.Points);
@@ -100,9 +100,9 @@ namespace DuszaTKVTest
             User player = new User("hululu", "Delulu!0");
 
             Bets bets = new();
-            bets += new Bet(player.Name, "Game", "10", "Jack", "Number of points", 5);
+            bets = (Bets)bets.AddItem(new Bet(player.Name, "Game", "10", "Jack", "Number of points", 5));
             Assert.ThrowsException<DuplicateBetException>(() =>
-                bets += new Bet(player.Name, "Game", "4", "Jack", "Number of points", 5));
+                bets = (Bets)bets.AddItem(new Bet(player.Name, "Game", "4", "Jack", "Number of points", 5)));
         }
-}
+    }
 }

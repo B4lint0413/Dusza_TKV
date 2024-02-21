@@ -19,18 +19,11 @@ namespace DuszaTKVGameLib
 
         public override Bet this[string index]
         {
-            get
-            {
-               throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get => throw new NotImplementedException();
+            set => throw new NotImplementedException();
         }
 
-        protected override ClassList<Bet> AddItem(Bet item)
+        public override ClassList<Bet> AddItem(Bet item)
         {
             if (items.Exists(x =>
                     x.GameToBet == item.GameToBet
@@ -38,8 +31,9 @@ namespace DuszaTKVGameLib
                     && x.Event == item.Event
                     && x.Subject == item.Subject))
                 throw new DuplicateBetException();
-            items.Add(item);
-            return this;
+            var temp = new Bets(items);
+            temp.items.Add(item);
+            return temp;
         }
     }
 }

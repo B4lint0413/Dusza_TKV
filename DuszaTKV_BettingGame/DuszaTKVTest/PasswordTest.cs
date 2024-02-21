@@ -16,7 +16,7 @@ namespace DuszaTKVTest
 		public void TooLongPasswordThrowsException()
 		{
 			Assert.ThrowsException<LengthLimitExceededException>(() =>
-				new Password("asdfasdfasdfdsafdsafdsafdsafdsafdsa"));
+				new Password("asdfasdfasdfdsafdsafdsafdsafdfrrredsafdsasafdsa"));
 		}
 		
 		[TestMethod]

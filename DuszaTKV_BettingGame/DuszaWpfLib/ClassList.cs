@@ -9,7 +9,6 @@ namespace DuszaTKVGameLib
     public abstract class ClassList<T>
     {
         protected readonly List<T> items;
-
         protected ClassList(IEnumerable<T> items)
         {
             this.items = items.ToList();
@@ -18,16 +17,9 @@ namespace DuszaTKVGameLib
         {
             this.items = new List<T>();
         }
-
         public override string ToString() => string.Join("\n", items);
-
-        protected abstract ClassList<T> AddItem(T item);
-        public static ClassList<T> operator +(ClassList<T> classList, T item)
-        {
-            return classList.AddItem(item);
-        }
-
-        public IEnumerable<T> Items => items;
+        public abstract ClassList<T> AddItem(T item);
+        public IEnumerable<T> Items => items.Select(x => x);
         public abstract T this[string index]
         {
             get;

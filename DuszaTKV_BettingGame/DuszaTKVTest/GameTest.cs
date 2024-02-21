@@ -38,7 +38,7 @@ public class GameTest
         var games = new Games(gameList);
         Assert.AreEqual("organizer;game;1;1\nhululu\nasdasd\norganizer;game2;1;1\nhululu\nasdasd", games.ToString());
         var game = new Game("game3", "organizer", events);
-        var temp = games + game;
+        var temp = games.AddItem(game);
         Assert.AreEqual("organizer;game;1;1\nhululu\nasdasd\norganizer;game2;1;1\nhululu\nasdasd", games.ToString());
         Assert.AreEqual("organizer;game;1;1\nhululu\nasdasd\norganizer;game2;1;1\nhululu\nasdasd\norganizer;game3;1;1\nhululu\nasdasd", temp.ToString());
     }
@@ -72,6 +72,6 @@ public class GameTest
         };
         var games = new Games(gameList);
         var game = new Game("game", "organizer", events);
-        Assert.ThrowsException<NonUniqueGameNameException>(() => games += game);
+        Assert.ThrowsException<NonUniqueGameNameException>(() => games.AddItem(game));
     }
 }

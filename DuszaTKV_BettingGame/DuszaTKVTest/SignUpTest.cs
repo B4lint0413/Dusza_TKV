@@ -18,8 +18,8 @@ public class SignUpTest
     public void TryingToCreateAnExistingUserThrowsError()
     {
         Users users = new();
-        users += new User("Gipsz Jakab", "Delulu!0");
-        Assert.ThrowsException<DuplicateUsersException>(() => users += new User("Gipsz Jakab", "Delulu!0"));
+        users = (Users)users.AddItem(new User("Gipsz Jakab", "Delulu!0"));
+        Assert.ThrowsException<DuplicateUsersException>(() => users.AddItem(new User("Gipsz Jakab", "Delulu!0")));
     }
 
     [TestMethod]

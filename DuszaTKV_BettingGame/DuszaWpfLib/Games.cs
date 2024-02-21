@@ -13,30 +13,22 @@ namespace DuszaTKVGameLib
         }
 
         public Games(IEnumerable<Game> items) : base(items) { }
-        public Games() : base() { }
-
         public IEnumerable<Game> GetOwnGames(string name) => items.Where(x => x.Organizer == name && x.IsInProgress);
         public IEnumerable<Game> GetBettableGames(string name) => items.Where(x => x.Organizer != name && x.IsInProgress);
 
-        protected override ClassList<Game> AddItem(Game item)
+        public override ClassList<Game> AddItem(Game item)
         {
             if (this[item.Name] != null)
                 throw new NonUniqueGameNameException();
-            items.Add(item);
-            return this;
+            var temp = new Games(items);
+            temp.items.Add(item);
+            return temp;
         }
 
         public override Game? this[string name]
         {
-            get
-            {
-                return items.Find(x => x.Name == name);
-            }
-
-            set
-            {
-                items[items.FindIndex(x => x.Name == name)] = value;
-            }
+            get => items.Find(x => x.Name == name);
+            set => throw new NotImplementedException();
         }
     }
 }

@@ -44,7 +44,7 @@ namespace DuszaWpfApp.Windows
             {
                 try
                 {
-                    App.Users = (Users)(App.Users + new User(name, password));
+                    App.Users = (Users)App.Users.AddItem(new User(name, password));
                     username.Text = "";
                     passwd.Password = "";
                     passwdAgain.Password = "";

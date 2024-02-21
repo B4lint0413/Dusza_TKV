@@ -43,12 +43,12 @@ namespace DuszaTKVGameLib
         public Bets PlacedBets => _placedBets; 
         public void AddBet(Bet bet)
         {
-            _placedBets = (Bets)(_placedBets + bet);
+            _placedBets = (Bets)_placedBets.AddItem(bet);
         }
         public Bet MakeBet(string gameToBet, string result, string subject, string @event, int stake)
         {
             var bet = new Bet(Name, gameToBet, result, subject, @event, stake);
-            _placedBets = (Bets)(_placedBets + bet);
+            _placedBets = (Bets)_placedBets.AddItem(bet);
             Points -= stake;
             return bet;
         }

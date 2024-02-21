@@ -26,15 +26,8 @@ public sealed class Users : ClassList<User>
     
     public override User? this[string index]
     {
-        get
-        {
-            return items.Find(x => x.Name == index);
-        }
-
-        set
-        {
-            items[items.FindIndex(x => x.Name == index)] = value;
-        }
+        get => items.Find(x => x.Name == index);
+        set => items[items.FindIndex(x => x.Name == index)] = value;
     }
 
     public void DistributePoints(Game game)
@@ -55,8 +48,7 @@ public sealed class Users : ClassList<User>
             }
         }
     }
-
-    protected override ClassList<User> AddItem(User item)
+    public override ClassList<User> AddItem(User item)
     {
         if (Names.Contains(item.Name))
             throw new DuplicateUsersException();
