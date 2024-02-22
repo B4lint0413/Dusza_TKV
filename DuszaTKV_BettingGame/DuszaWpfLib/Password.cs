@@ -18,6 +18,8 @@ public class Password
     public Password(string password, bool isHashed = false)
     {
         this.password = password;
+        if (this.password == "")
+            throw new EmptyFieldException();
         this.isHashed = isHashed;
     }
     public static int GetSecurityLevel(string password)

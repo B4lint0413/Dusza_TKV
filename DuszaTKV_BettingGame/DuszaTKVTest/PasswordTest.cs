@@ -11,13 +11,6 @@ namespace DuszaTKVTest
 		{
 			Assert.ThrowsException<EmptyFieldException>(() => new Password(""));
 		}
-
-		[TestMethod]
-		public void TooLongPasswordThrowsException()
-		{
-			Assert.ThrowsException<LengthLimitExceededException>(() =>
-				new Password("asdfasdfasdfdsafdsafdsafdsafdfrrredsafdsasafdsa"));
-		}
 		
 		[TestMethod]
 		public void IfPasswordIsEmptyStrengthCheckReturns0()

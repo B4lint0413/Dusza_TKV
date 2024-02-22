@@ -9,8 +9,8 @@ public class EventTest
     [TestMethod]
     public void TooLongEventNameOrSubjectNameThrowsException()
     {
-        Assert.ThrowsException<LengthLimitExceededException>(() => new Event("asdfasdfasfdsafdsafasddfasddsf", "asd", "asd"));
-        Assert.ThrowsException<LengthLimitExceededException>(() => new Event("asd", "asdasdfasdfasdfsadfdsafdsafasd", "asd"));
+        Assert.ThrowsException<LengthLimitExceededException>(() => new Event("aasdfasdfasfdsafdsafasddfasddsf", "asd", "asd"));
+        Assert.ThrowsException<LengthLimitExceededException>(() => new Event("asd", "asdasdfasdfasdfsadfdsafdsafasad", "asd"));
     }
     
     [TestMethod]

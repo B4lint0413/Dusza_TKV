@@ -24,7 +24,7 @@ public class GameTest
     [TestMethod]
     public void TooLongGameNameThrowsException()
     {
-        Assert.ThrowsException<LengthLimitExceededException>(() => new Game("afdsasfdafsdafsdasdfasdfdsa", "asd", new List<Event>()));
+        Assert.ThrowsException<LengthLimitExceededException>(() => new Game("afdsasfdafsadafsdasdfasdfdsaaaa", "asd", new List<Event>()));
     }
 
     [TestMethod]

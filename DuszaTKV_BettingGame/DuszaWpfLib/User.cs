@@ -7,7 +7,7 @@ namespace DuszaTKVGameLib
         private Bets _placedBets;
         public User(string name, string password) // New user
         {
-            if (password == "" || name == "")
+            if (name == "")
                 throw new EmptyFieldException();
             if (name.Length > LengthLimitExceededException.LENGTH_LIMIT)
                 throw new LengthLimitExceededException();
