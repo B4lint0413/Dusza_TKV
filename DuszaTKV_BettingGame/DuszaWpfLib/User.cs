@@ -9,8 +9,7 @@ namespace DuszaTKVGameLib
         {
             if (password == "" || name == "")
                 throw new EmptyFieldException();
-            if (password.Length > LengthLimitExceededException.LENGTH_LIMIT ||
-                name.Length > LengthLimitExceededException.LENGTH_LIMIT)
+            if (name.Length > LengthLimitExceededException.LENGTH_LIMIT)
                 throw new LengthLimitExceededException();
             Name = name;
             Password = new Password(password);
@@ -48,8 +47,8 @@ namespace DuszaTKVGameLib
         public Bet MakeBet(string gameToBet, string result, string subject, string @event, int stake)
         {
             var bet = new Bet(Name, gameToBet, result, subject, @event, stake);
-            _placedBets = (Bets)_placedBets.AddItem(bet);
             Points -= stake;
+            _placedBets = (Bets)_placedBets.AddItem(bet);
             return bet;
         }
     }
