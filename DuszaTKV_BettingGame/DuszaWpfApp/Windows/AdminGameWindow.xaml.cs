@@ -1,0 +1,31 @@
+﻿using System.Windows;
+using DuszaTKVGameLib;
+using DuszaWpfApp.UserControls;
+
+namespace DuszaWpfApp.Windows
+{
+    public partial class AdminGameWindow
+    {
+        private readonly User _organizer;
+        public AdminGameWindow(User organizer)
+        {
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            InitializeComponent();
+            _organizer = organizer;
+            foreach (var game in App.Games.GetOwnGames(organizer.Name))
+                GameCardContainer.Children.Add(new EndGameCard(game, organizer, this));
+        }
+        
+        private void CreateNewGame(object sender, RoutedEventArgs e)
+        {
+            new CreateNewGameWindow(_organizer).Show();
+            Close();
+        }
+
+        private void ToNavigationWindow(object sender, RoutedEventArgs e)
+        {
+            new NavigationWindow(_organizer).Show();
+            Close();
+        }
+    }
+}
