@@ -1,6 +1,7 @@
 ﻿using DuszaTKVGameLib;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows;
 
 namespace DuszaWpfApp
@@ -43,8 +44,26 @@ namespace DuszaWpfApp
                     yield return Factory.CreateGame(line, events);
             }
         }
+		public static void UpdateOdds()
+		{
+			foreach (var item in Bets.Items.OrderBy(x => x.Stake))
+			{
+				if (item.Stake > 900)
+				{
+					Event _event = Events.GetEvents.First(x => x.Name == item.Event);
+					_event.Odds = _event.Odds * 0.95;
+					Events = Events + _event;
+				}
+				else
+				{
+					Event _event = Events.GetEvents.First(x => x.Name == item.Event);
+					_event.Odds = _event.Odds * 1.5;
+					Events = Events + _event;
+				}
+			}
+		}
 
-        private void AppExit(object sender, ExitEventArgs e)
+		private void AppExit(object sender, ExitEventArgs e)
         {
             File.WriteAllText("Files/users.txt", Users.ToString());
             File.WriteAllText("Files/fogadasok.txt", Bets.ToString());

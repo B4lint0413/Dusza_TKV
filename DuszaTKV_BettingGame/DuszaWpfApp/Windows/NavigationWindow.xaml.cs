@@ -48,4 +48,10 @@ public partial class NavigationWindow : Window
         new PlacedBets(_user).Show();
         Close();
     }
+
+    private void OpenLeaderboard(object sender, RoutedEventArgs e)
+    {
+        new LeaderboardWindow(_user).Show();
+        Close();
+    }
 }
