@@ -13,6 +13,9 @@
     <Compile Update="BetWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="LeaderboardWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="LogInWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -31,6 +34,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="BetWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="LeaderboardWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="LogInWindow.xaml">

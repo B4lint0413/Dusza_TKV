@@ -13,6 +13,7 @@
            <Button Margin="20" Height="25" Click="CreateGame" Content="Create New Game"/>
            <Button Margin="20" Height="25" Click="CheckOrganizedGames" Content="Check Organized Games"/>
            <Button Margin="20" Height="25" Click="OpenBetWindow" Content="Bet On Game"/>
-       </StackPanel>
+           <Button Margin="20" Height="25" Click="OpenLeaderboardWindow" Content="View Leaderboard"/>
+        </StackPanel>
    </ScrollViewer>
 </Window>

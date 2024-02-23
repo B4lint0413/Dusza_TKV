@@ -35,4 +35,10 @@ public partial class NavigationWindow : Window
         new BetWindow(_user).Show();
         Close();
     }
+
+    private void OpenLeaderboardWindow(object sender, RoutedEventArgs e)
+    {
+        new LeaderboardWindow(_user).Show();
+        Close();
+    }
 }

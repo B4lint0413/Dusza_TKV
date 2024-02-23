@@ -15,7 +15,20 @@ public class Events
         eventList.AddRange(e);
         return new Events(eventList);
     }
-    private readonly List<Event> _eventList;
+
+	public static Events operator +(Events events, Event e)
+	{
+		var eventList = events._eventList.Select(x => x).ToList();
+        if (eventList.Contains(e))
+        {
+			eventList.Remove(e);
+		}
+		eventList.Add(e);
+		return new Events(eventList);
+	}
+	private readonly List<Event> _eventList;
     public Event? this[int id] => _eventList.Find(x => x.Id == id); 
+
+    public IEnumerable<Event> GetEvents => _eventList;
     public IEnumerable<Event> this[string gameName] => _eventList.Where(x => x.GameName == gameName);
 }

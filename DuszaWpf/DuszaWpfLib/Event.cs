@@ -17,7 +17,7 @@ public class Event
     public string Name { get; init; }
     public string Subject { get; init; }
     public string Result { get; set; }
-    public double Odds { get; }
+    public double Odds { get; set; }
     public override string ToString()
     {
         return $"{Subject};{Name};{Result};{Odds}";
