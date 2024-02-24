@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DuszaWpfApp"
         mc:Ignorable="d"
-        Title="LeaderboardWindow" Height="450" Width="800">
-    <Grid>
+        Title="LeaderboardWindow" Height="450" Width="800" MinWidth="360">
+    <ScrollViewer>
         <StackPanel>
             <TextBlock HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10">Leaderboard</TextBlock>
-            <ListBox HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10" Name="leaderboard">
+            <StackPanel HorizontalAlignment="Center" Margin="10" Name="Container">
 
-            </ListBox>
+            </StackPanel>
             <Button MaxWidth="160" Margin="10" Height="25" Click="ToNavigationWindow" Content="Back to Navigation"/>
         </StackPanel>
-    </Grid>
+    </ScrollViewer>
 </Window>

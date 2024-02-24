@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DuszaTKVGameLib;
+using DuszaWpfApp.UserControls;
 using DuszaWpfApp.Windows;
 
 namespace DuszaWpfApp
@@ -26,10 +27,14 @@ namespace DuszaWpfApp
 		{
 			InitializeComponent();
 			_user = user;
-			foreach (var item in App.Users.Items.OrderBy(x => x.Points))
+			var placement = 0;
+			var points = -1;
+			foreach (var item in App.Users.Items.OrderByDescending(x => x.Points))
 			{
-				string outString = $"{item.Name} : {item.Points}";
-				leaderboard.Items.Add(outString);
+				if (points != item.Points)
+					placement++;
+				Container.Children.Add(new LeaderBoardCard(item, placement));
+				points = item.Points;
 			}
 		}
 		private void ToNavigationWindow(object sender, RoutedEventArgs e)
