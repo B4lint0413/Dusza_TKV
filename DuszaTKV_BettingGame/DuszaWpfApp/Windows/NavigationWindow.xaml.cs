@@ -54,4 +54,10 @@ public partial class NavigationWindow : Window
         new LeaderboardWindow(_user).Show();
         Close();
     }
+
+    private void OpenGameStatistics(object sender, RoutedEventArgs e)
+    {
+        new GameStatisticsWindow(_user).Show();
+        Close();
+    }
 }

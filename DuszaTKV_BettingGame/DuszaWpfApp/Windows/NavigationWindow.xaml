@@ -21,6 +21,7 @@
                 <Button Margin="20" Height="25" Click="OpenBetWindow" Content="Bet On Game"/>
                 <Button Margin="20" Height="25" Click="OpenPlacedBetWindow" Content="See your placed bets"/>
                 <Button Margin="20" Height="25" Click="OpenLeaderboard" Content="Leaderboard"/>
+                <Button Margin="20" Height="25" Click="OpenGameStatistics" Content="Game Statistics"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>
