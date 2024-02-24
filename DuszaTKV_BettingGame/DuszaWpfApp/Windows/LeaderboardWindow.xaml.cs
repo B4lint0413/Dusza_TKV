@@ -28,11 +28,13 @@ namespace DuszaWpfApp
 			InitializeComponent();
 			_user = user;
 			var placement = 0;
+			var counter = 0;
 			var points = -1;
 			foreach (var item in App.Users.Items.OrderByDescending(x => x.Points))
 			{
+				counter++;
 				if (points != item.Points)
-					placement++;
+					placement = counter;
 				Container.Children.Add(new LeaderBoardCard(item, placement));
 				points = item.Points;
 			}
