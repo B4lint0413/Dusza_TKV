@@ -16,7 +16,7 @@ public static class Factory
     public static Event CreateEvent(string line, string gameName)
     {
         var data = line.Split(";");
-        return new Event(data[1], data[0], gameName, data[2], double.Parse(data[3]));
+        return new Event(data[1], data[0], gameName, data[2]);
     }
     public static Bet CreateBet(Users users, string row)
     {

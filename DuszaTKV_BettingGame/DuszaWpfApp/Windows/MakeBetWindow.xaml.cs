@@ -54,7 +54,6 @@ namespace DuszaWpfApp.Windows
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            App.UpdateOdds();
         }
     }
 }

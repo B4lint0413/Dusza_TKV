@@ -30,11 +30,11 @@ public sealed class Users : ClassList<User>
         set => items[items.FindIndex(x => x.Name == index)] = value;
     }
 
-    public void DistributePoints(Game game)
+    public void DistributePoints(Game game, Bets allBets)
     {
         foreach (var user in items)
         {
-            List<Bet> bets = new List<Bet>();
+            List<Bet> bets;
             if(user.PlacedBets.BetsByGames.TryGetValue(game.Name, out bets))
             {
                 foreach (var bet in bets)
@@ -42,7 +42,7 @@ public sealed class Users : ClassList<User>
                     foreach (var result in game.Events)
                     {
                         if (bet.Event == result.Name && bet.Subject == result.Subject && bet.Result == result.Result)
-                            user.Points += bet.Stake * 2;
+                            user.Points += (int)(result.Odds(allBets) * bet.Stake);
                     }
                 }
             }

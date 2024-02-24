@@ -78,6 +78,7 @@ namespace DuszaTKVTest
             var player2 = new User("delulu", "Delulu!0");
             users = (Users)users.AddItem(player1);
             users = (Users)users.AddItem(player2);
+            var bets = new Bets();
 
             Assert.AreEqual(100, player1.Points);
             Assert.AreEqual(100, player2.Points);
@@ -86,12 +87,12 @@ namespace DuszaTKVTest
             Assert.AreEqual("", game.Events.ElementAt(0).Result);
             var result = new List<string>() { "result" };
             Assert.IsTrue(game.IsInProgress);
-            player1.MakeBet("game", "result", "hululu", "asdasd", 5);
-            player2.MakeBet("game", "asd", "hululu", "asdasd", 5);
+            bets = (Bets)bets.AddItem(player1.MakeBet("game", "result", "hululu", "asdasd", 5));
+            bets = (Bets)bets.AddItem(player2.MakeBet("game", "asd", "hululu", "asdasd", 5));
             game.EndGame(result);
-            users.DistributePoints(game);
-            Assert.AreEqual(105, player1.Points);
+            users.DistributePoints(game, bets);
             Assert.AreEqual(95, player2.Points);
+            Assert.AreEqual(112, player1.Points);
         }
 
         [TestMethod]

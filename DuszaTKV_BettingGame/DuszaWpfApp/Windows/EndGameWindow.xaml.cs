@@ -33,7 +33,7 @@ public partial class EndGameWindow : Window
                 results.Add(result.Result.Text);
             }
             _game.EndGame(results);
-            App.Users.DistributePoints(_game);
+            App.Users.DistributePoints(_game, App.Bets);
             new AdminGameWindow(_organizer).Show();
             Close();
         }
