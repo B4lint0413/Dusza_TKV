@@ -6,15 +6,15 @@ using DuszaWpfApp.Windows;
 
 namespace DuszaWpfApp.UserControls;
 
-public partial class EndGameCard : UserControl
+public partial class BetStatisticsGameCard : UserControl
 {
     private readonly Game _game;
-    private readonly User _organizer;
-    public EndGameCard(Game game, User organizer)
+    private readonly User _user;
+    public BetStatisticsGameCard(Game game, User user)
     {
         InitializeComponent();
         _game = game;
-        _organizer = organizer;
+        _user = user;
         Header.Text = game.Name;
         var extraHeight = (game.Subjects.Count() + game.Events.DistinctBy(x => x.Name).Count()) * 15;
         Card.Height += extraHeight;
@@ -31,9 +31,9 @@ public partial class EndGameCard : UserControl
             Body.Text += $"\n\t{eventName}";
     }
 
-    private void EndGame(object sender, RoutedEventArgs e)
+    private void CheckBetStatistics(object sender, RoutedEventArgs e)
     {
-        new EndGameWindow(_game, _organizer).Show();
+        new BetStatisticsWindow(_user, _game).Show();
         Window.GetWindow(Parent)!.Close();
     }
 }

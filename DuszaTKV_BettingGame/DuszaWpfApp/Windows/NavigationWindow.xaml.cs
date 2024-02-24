@@ -60,4 +60,10 @@ public partial class NavigationWindow : Window
         new GameStatisticsWindow(_user).Show();
         Close();
     }
+
+    private void ShowGames(object sender, RoutedEventArgs e)
+    {
+        new BetStatisticsGameWindow(_user).Show();
+        Close();
+    }
 }
