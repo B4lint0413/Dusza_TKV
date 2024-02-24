@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using DuszaTKVGameLib;
 using DuszaWpfApp.UserControls;
 
@@ -11,7 +12,9 @@ namespace DuszaWpfApp.Windows
         {
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-            _organizer = organizer;
+            var header = new UserHeader(organizer);
+            MainContainer.Children.Add(header);
+            Grid.SetRow(header, 0);_organizer = organizer;
             foreach (var game in App.Games.GetOwnGames(organizer.Name))
                 GameCardContainer.Children.Add(new EndGameCard(game, organizer, this));
         }

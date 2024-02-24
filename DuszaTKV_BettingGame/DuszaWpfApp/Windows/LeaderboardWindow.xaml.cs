@@ -26,6 +26,10 @@ namespace DuszaWpfApp
 		public LeaderboardWindow(User user)
 		{
 			InitializeComponent();
+			WindowStartupLocation = WindowStartupLocation.CenterScreen;
+			var header = new UserHeader(user);
+			MainContainer.Children.Add(header);
+			Grid.SetRow(header, 0);
 			_user = user;
 			var placement = 0;
 			var counter = 0;

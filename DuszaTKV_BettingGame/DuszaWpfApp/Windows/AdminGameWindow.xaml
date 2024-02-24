@@ -6,14 +6,20 @@
         xmlns:local="clr-namespace:DuszaWpfApp"
         mc:Ignorable="d"
         Title="Check Created Games" Height="450" Width="800" MinWidth="360" MinHeight="200">
-    <ScrollViewer>
-        <StackPanel>
-            <TextBlock HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10">Games</TextBlock>
-            <StackPanel  Name="GameCardContainer"> 
-                
+    <Grid x:Name="MainContainer">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10">Games</TextBlock>
+                <Button MaxWidth="160" Margin="10" Height="25" Click="CreateNewGame" Content="Create new game"/>
+                <Button MaxWidth="160" Margin="10" Height="25" Click="ToNavigationWindow" Content="Back to Navigation"/><StackPanel  Name="GameCardContainer"> 
+                    
+                </StackPanel>
             </StackPanel>
-            <Button MaxWidth="160" Margin="10" Height="25" Click="CreateNewGame" Content="Create new game"/>
-            <Button MaxWidth="160" Margin="10" Height="25" Click="ToNavigationWindow" Content="Back to Navigation"/>
-        </StackPanel>
-    </ScrollViewer>
+        </ScrollViewer>
+    </Grid>
 </Window>

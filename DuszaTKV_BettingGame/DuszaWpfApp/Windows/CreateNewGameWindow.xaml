@@ -6,19 +6,26 @@
         xmlns:local="clr-namespace:DuszaWpfApp"
         mc:Ignorable="d"
         Title="Create New Game" Height="450" Width="800" MinWidth="360">
-    <ScrollViewer>
-        <StackPanel 
-            Margin="20"
-            Width="320">
-            <TextBlock HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10">Create New Game</TextBlock>
-            <Label FontSize="20" Target="{Binding ElementName=GameName}">Name:</Label>
-            <TextBox Height="20" Width="200" Name="GameName"></TextBox>
-            <Label FontSize="20" Target="{Binding ElementName=Events}">Events (semicolon separated):</Label>
-            <TextBox Height="20" Width="200" Name="Events"></TextBox>
-            <Label FontSize="20" Target="{Binding ElementName=Subjects}">Subjects (semicolon separated):</Label>
-            <TextBox Height="20" Width="200" Name="Subjects"></TextBox>
-            <Button Margin="20" Height="25" Click="CreateNewGame" Content="Create"/>
-            <Button Margin="20" Height="25" Click="ToNavigationWindow" Content="Back to Navigation"/>
-        </StackPanel>
-    </ScrollViewer>
+    <Grid x:Name="MainContainer">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel
+                Margin="20"
+                Width="320">
+                <TextBlock HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10">Create New Game</TextBlock>
+                <Label FontSize="20" Target="{Binding ElementName=GameName}">Name:</Label>
+                <TextBox Height="20" Width="200" Name="GameName"></TextBox>
+                <Label FontSize="20" Target="{Binding ElementName=Events}">Events (semicolon separated):</Label>
+                <TextBox Height="20" Width="200" Name="Events"></TextBox>
+                <Label FontSize="20" Target="{Binding ElementName=Subjects}">Subjects (semicolon separated):</Label>
+                <TextBox Height="20" Width="200" Name="Subjects"></TextBox>
+                <Button Margin="20" Height="25" Click="CreateNewGame" Content="Create"/>
+                <Button Margin="20" Height="25" Click="ToNavigationWindow" Content="Back to Navigation"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
 </Window>

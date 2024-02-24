@@ -14,7 +14,7 @@ public partial class NavigationWindow : Window
         InitializeComponent();
         _user = user;
 
-        UserHeader header = new UserHeader(user);
+        var header = new UserHeader(user);
         Container.Children.Add(header);
         Grid.SetRow(header, 0);
     }

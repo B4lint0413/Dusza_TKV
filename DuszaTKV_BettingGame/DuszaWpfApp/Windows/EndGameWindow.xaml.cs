@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
 using DuszaTKVGameLib;
 using DuszaTKVGameLib.Exceptions;
 using DuszaWpfApp.UserControls;
@@ -15,6 +16,11 @@ public partial class EndGameWindow : Window
     {
         WindowStartupLocation = WindowStartupLocation.CenterScreen;
         InitializeComponent();
+        
+        var header = new UserHeader(organizer);
+        MainContainer.Children.Add(header);
+        Grid.SetRow(header, 0);
+
         _organizer = organizer;
         _game = game;
         Title.Text += $" {game.Name}";

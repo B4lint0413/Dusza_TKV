@@ -1,4 +1,5 @@
 using System.Windows;
+using System.Windows.Controls;
 using DuszaTKVGameLib;
 using DuszaWpfApp.UserControls;
 
@@ -10,6 +11,10 @@ public partial class GameStatisticsWindow : Window
     public GameStatisticsWindow(User user)
     {
         InitializeComponent();
+        var header = new UserHeader(user);
+        MainContainer.Children.Add(header);
+        Grid.SetRow(header, 0);
+        WindowStartupLocation = WindowStartupLocation.CenterScreen;
         _user = user;
         foreach (var game in App.Games.Items)
             Container.Children.Add(new GameStatisticsCard(game));

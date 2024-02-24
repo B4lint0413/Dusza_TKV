@@ -2,8 +2,10 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using DuszaTKVGameLib;
 using DuszaTKVGameLib.Exceptions;
+using DuszaWpfApp.UserControls;
 
 namespace DuszaWpfApp.Windows;
 
@@ -14,6 +16,9 @@ public partial class CreateNewGameWindow : Window
     {
         WindowStartupLocation = WindowStartupLocation.CenterScreen;
         InitializeComponent();
+        var header = new UserHeader(organizer);
+        MainContainer.Children.Add(header);
+        Grid.SetRow(header, 0);
         _organizer = organizer;
     }
 

@@ -6,14 +6,21 @@
         xmlns:local="clr-namespace:DuszaWpfApp"
         mc:Ignorable="d"
         Title="End Game" Height="450" Width="800" MinWidth="360">
-    <ScrollViewer>
-        <StackPanel Width="320" Margin="10">
-            <TextBlock HorizontalAlignment="Center" Name="Title" FontSize="30" FontWeight="Bold" Margin="10">End </TextBlock>
-            <StackPanel Name="Container" Margin="10">
-            
+    <Grid x:Name="MainContainer">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Width="320" Margin="10">
+                <TextBlock HorizontalAlignment="Center" Name="Title" FontSize="30" FontWeight="Bold" Margin="10">End </TextBlock>
+                <StackPanel Name="Container" Margin="10">
+                
+                </StackPanel>
+                <Button Margin="20" Height="25" Click="CommitResults" Content="Commit Results"/>
+                <Button Margin="20" Height="25" Click="ToNavigationWindow" Content="Back to Navigation"/>
             </StackPanel>
-            <Button Margin="20" Height="25" Click="CommitResults" Content="Commit Results"/>
-            <Button Margin="20" Height="25" Click="ToNavigationWindow" Content="Back to Navigation"/>
-        </StackPanel>
-    </ScrollViewer>
+        </ScrollViewer>
+    </Grid>
 </Window>
