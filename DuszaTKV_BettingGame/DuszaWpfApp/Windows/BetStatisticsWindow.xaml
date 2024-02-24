@@ -14,8 +14,8 @@
 
         <ScrollViewer Grid.Row="1">
             <StackPanel Width="320" Margin="10">
-                <Button Margin="20" Height="25" Click="ToNavigationWindow" Content="Back to Navigation"/>
                 <TextBlock HorizontalAlignment="Center" Name="Title" FontSize="30" FontWeight="Bold" Margin="10">Bet Statistics </TextBlock>
+                <Button Margin="20" Height="25" Click="ToNavigationWindow" Content="Back to Navigation"/>
                 <StackPanel Name="Container" Margin="10">
                 
                 </StackPanel>
