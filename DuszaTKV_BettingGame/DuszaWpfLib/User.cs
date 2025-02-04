@@ -1,8 +1,9 @@
 ﻿using DuszaTKVGameLib.Exceptions;
+using DuszaTKVGameLib.Interfaces;
 
 namespace DuszaTKVGameLib
 {
-    public class User
+    public class User : IIdentified
     {
         private Bets _placedBets;
         public User(string name, string password) // New user
@@ -40,6 +41,9 @@ namespace DuszaTKVGameLib
         }
         public override string ToString() => $"{Name};{Password.HashedPassword};{Points}";
         public Bets PlacedBets => new Bets(_placedBets.Items);
+
+        public int Id { get; set; }
+
         public void AddBet(Bet bet)
         {
             _placedBets = (Bets)_placedBets.AddItem(bet);

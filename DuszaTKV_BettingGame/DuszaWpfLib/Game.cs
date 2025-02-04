@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using DuszaTKVGameLib.Exceptions;
+using DuszaTKVGameLib.Interfaces;
 
 namespace DuszaTKVGameLib
 {
-    public class Game
+    public class Game : IIdentified
     {
         public Game(string name, string organizer, IEnumerable<Event> events)
         {
@@ -37,5 +38,7 @@ namespace DuszaTKVGameLib
         }
         public IEnumerable<string> Subjects => _events.Select(x => x.Subject).Distinct();
         public IEnumerable<Event> Events => _events;
+
+        public int Id {get; set;}
     }
 }

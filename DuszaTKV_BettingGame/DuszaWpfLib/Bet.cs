@@ -1,8 +1,9 @@
 ﻿using DuszaTKVGameLib.Exceptions;
+using DuszaTKVGameLib.Interfaces;
 
 namespace DuszaTKVGameLib
 {
-    public class Bet
+    public class Bet : IIdentified
     {
         public Bet(string player, string gameToBet, string result, string subject, string @event, int stake)
         {
@@ -27,6 +28,8 @@ namespace DuszaTKVGameLib
         public string Event { get; init; }
         public string Result { get; init; }
         public int Stake { get; init; }
+
+        public int Id { get; set; }
 
         public override string ToString()
         {

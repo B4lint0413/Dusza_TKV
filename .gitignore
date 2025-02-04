@@ -396,3 +396,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/DuszaWpf/.idea/.idea.DuszaWpf/.idea

@@ -1,10 +1,11 @@
 using System;
 using System.Linq;
 using DuszaTKVGameLib.Exceptions;
+using DuszaTKVGameLib.Interfaces;
 
 namespace DuszaTKVGameLib;
 
-public class Event
+public class Event : IIdentified
 {
     public Event(string name, string subject, string gameName, string result = "")
     {
@@ -22,6 +23,9 @@ public class Event
     public string Name { get; init; }
     public string Subject { get; init; }
     public string Result { get; set; }
+
+    public int Id { get; set; }
+
     public double Odds(Bets bets)
     {
         var numberOfBets = bets.Items
