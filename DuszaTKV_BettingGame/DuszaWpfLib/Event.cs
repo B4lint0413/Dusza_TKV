@@ -7,7 +7,7 @@ namespace DuszaTKVGameLib;
 
 public class Event : IIdentified
 {
-    public Event(string name, string subject, string gameName, string result = "")
+    public Event(string name, string subject, int gameId, string result = "")
     {
         if (name == "" || subject == "")
             throw new EmptyFieldException();
@@ -17,9 +17,10 @@ public class Event : IIdentified
         Name = name;
         Result = result;
         Subject = subject;
-        GameName = gameName;
+        GameId = gameId;
     }
-    public string GameName { get; init; }
+    public int GameId { get; init; }
+    public Game Game { get; set; }
     public string Name { get; init; }
     public string Subject { get; init; }
     public string Result { get; set; }
@@ -29,7 +30,7 @@ public class Event : IIdentified
     public double Odds(Bets bets)
     {
         var numberOfBets = bets.Items
-            .Count(x => x.Event == Name && x.GameToBet == GameName && x.Subject == Subject);
+            .Count(x => x.Event == Name && x.GameToBet == GameId && x.Subject == Subject);
         return numberOfBets == 0 ? 0 : Math.Round(1 + 5.0 / Math.Pow(2, numberOfBets - 1), 2);
     }
     public override string ToString()

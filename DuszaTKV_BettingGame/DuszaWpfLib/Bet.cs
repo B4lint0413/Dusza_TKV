@@ -5,7 +5,7 @@ namespace DuszaTKVGameLib
 {
     public class Bet : IIdentified
     {
-        public Bet(string player, string gameToBet, string result, string subject, string @event, int stake)
+        public Bet(string player, int gameToBet, string result, string subject, string @event, int stake)
         {
             if (result == "")
                 throw new EmptyFieldException();
@@ -23,7 +23,7 @@ namespace DuszaTKVGameLib
         }
 
         public string Player { get; init; }
-        public string GameToBet { get; init; }
+        public int GameToBet { get; init; }
         public string Subject { get; init; }
         public string Event { get; init; }
         public string Result { get; init; }

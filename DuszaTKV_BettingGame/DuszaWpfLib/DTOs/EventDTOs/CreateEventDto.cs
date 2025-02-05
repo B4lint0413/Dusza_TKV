@@ -8,7 +8,7 @@ namespace DuszaTKVGameLib.DTOs.EventDTOs
 {
     public class CreateEventDto
     {
-        public string GameName { get; set; } = "";
+        public int GameId { get; set; }
         public string Name { get; set; } = "";
         public string Subject { get; set; } = "";
 
