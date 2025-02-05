@@ -1,6 +1,7 @@
 ﻿using BettingGameAPI.Models;
 using DuszaTKVGameLib;
 using DuszaTKVGameLib.DTOs.UserDTOs;
+using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -12,10 +13,11 @@ namespace BettingGameAPI.Controllers
     public class UserController : ControllerBase
     {
         private readonly Repository<User> _userRepository;
-
-        public UserController(IDataStore dataStore)
+        private readonly IValidator<CreateUserDto> _validator;
+        public UserController(IDataStore dataStore, IValidator<CreateUserDto> validator)
         {
             _userRepository = dataStore.Users;
+            _validator = validator;
         }
 
         [Authorize]
@@ -39,10 +41,25 @@ namespace BettingGameAPI.Controllers
         {
             try
             {
+                var result = _validator.Validate(dto);
+                if (!result.IsValid) return BadRequest(result);
+
                 User user = new User(dto.Name, dto.Password);
                 _userRepository.Add(user);
                 return Ok(user);
             }catch(Exception ex) { return BadRequest(ex.Message); }
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] UpdateUserDto dto)
+        {
+            User? byId = _userRepository[id];
+            if (byId == null)
+                return NotFound();
+            byId.Points = dto.Points;
+            _userRepository.Update(byId);
+            return NoContent();
         }
 
         [Authorize]

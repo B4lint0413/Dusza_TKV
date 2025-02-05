@@ -39,12 +39,14 @@ namespace BettingGameAPI.Controllers
                     return BadRequest("Invalid username or password");
             }catch { return BadRequest("Invalid username or password"); }
 
+            string role = byName.Name == "administrator" ? "Admin" : "User";
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.Key));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var claims = new[]
             {
                 new Claim(ClaimTypes.Sid, byName.Id.ToString()),
-                new Claim(ClaimTypes.NameIdentifier, byName.Name)
+                new Claim(ClaimTypes.NameIdentifier, byName.Name),
+                new Claim(ClaimTypes.Role, role)
             };
 
             var token = new JwtSecurityToken(
