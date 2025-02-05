@@ -32,10 +32,12 @@ namespace BettingGameAPI.Controllers
             User? byName = _userRepository.Values.FirstOrDefault(u => u.Name == user.Name);
             if (byName == null)
                 return BadRequest("Invalid username or password");
-            
-            User login = new User(user.Name, user.Password);
-            if (byName.Password.HashedPassword != login.Password.HashedPassword)
-                return BadRequest("Invalid username or password");
+            try
+            {
+                User login = new User(user.Name, user.Password);
+                if (byName.Password.HashedPassword != login.Password.HashedPassword)
+                    return BadRequest("Invalid username or password");
+            }catch { return BadRequest("Invalid username or password"); }
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.Key));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
