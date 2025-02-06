@@ -31,9 +31,9 @@ namespace BettingGameAPI.Controllers
             var bet = _betRepository[id];
             if (bet == null)
                 return NotFound();
-            if (HttpContext.User.Identity is not ClaimsIdentity identity)
+            if (HttpContext.User.Identity is not ClaimsIdentity identity || !int.TryParse(identity.FindFirst(ClaimTypes.Sid)?.Value, out int userId))
                 return BadRequest("Something went wrong.");
-            if (!int.TryParse(identity.FindFirst(ClaimTypes.Sid)?.Value, out int userId) || userId != bet.UserId)
+            if (userId != bet.UserId)
                 return Forbid();
             return Ok(bet);
         }
@@ -43,7 +43,7 @@ namespace BettingGameAPI.Controllers
         [Authorize]
         public IActionResult Post([FromBody] CreateBetDto createDto)
         {
-            if (HttpContext.User.Identity is not ClaimsIdentity identity)
+            if (HttpContext.User.Identity is not ClaimsIdentity identity || !int.TryParse(identity.FindFirst(ClaimTypes.Sid)?.Value, out int userId))
                 return BadRequest("Something went wrong.");
             var game = _gameRepository[createDto.GameId];
             if (game == null)
@@ -52,8 +52,7 @@ namespace BettingGameAPI.Controllers
                 return BadRequest("User with the given ID doesn't exist.");
             if (_userRepository[createDto.SubjectId] == null)
                 return BadRequest("Subject with the given ID doesn't exist.");
-            if (!int.TryParse(identity.FindFirst(ClaimTypes.Sid)?.Value, out int userId)
-                || userId == game.OrganiserId || userId != createDto.UserId)
+            if (userId == game.OrganiserId || userId != createDto.UserId)
                 return Forbid();
             try
             {
@@ -76,10 +75,9 @@ namespace BettingGameAPI.Controllers
             if (bet == null)
                 return NotFound();
 
-            if (HttpContext.User.Identity is not ClaimsIdentity identity)
+            if (HttpContext.User.Identity is not ClaimsIdentity identity || !int.TryParse(identity.FindFirst(ClaimTypes.Sid)?.Value, out int userId))
                 return BadRequest("Something went wrong.");
-            if (!int.TryParse(identity.FindFirst(ClaimTypes.Sid)?.Value, out int userId)
-                || userId != bet.UserId)
+            if (userId != bet.UserId)
                 return Forbid();
 
             bet.Stake = updateDto.Stake;
@@ -97,10 +95,9 @@ namespace BettingGameAPI.Controllers
             var bet = _betRepository[id];
             if (bet == null)
                 return NotFound();
-            if (HttpContext.User.Identity is not ClaimsIdentity identity)
+            if (HttpContext.User.Identity is not ClaimsIdentity identity || !int.TryParse(identity.FindFirst(ClaimTypes.Sid)?.Value, out int userId))
                 return BadRequest("Something went wrong.");
-            if (!int.TryParse(identity.FindFirst(ClaimTypes.Sid)?.Value, out int userId)
-               || userId != bet.UserId)
+            if (userId != bet.UserId)
                 return Forbid();
 
             _betRepository.Remove(bet);

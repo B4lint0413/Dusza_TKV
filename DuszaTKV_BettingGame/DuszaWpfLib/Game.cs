@@ -18,7 +18,13 @@ namespace DuszaTKVGameLib
             OrganiserId = organiserId;
             _events = eventList.ToList();
         }
-        public string Name { get; init; }
+        public Game(string name, int organiserId)
+        {
+            _events = [];
+            Name = name;
+            OrganiserId = organiserId;  
+        }
+        public string Name { get; set; }
         public int OrganiserId { get; init; }
         private readonly List<Event> _events;
         public bool IsInProgress => string.Join("", _events.Select(x => x.Result)) == "";
