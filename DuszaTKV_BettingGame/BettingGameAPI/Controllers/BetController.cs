@@ -50,13 +50,11 @@ namespace BettingGameAPI.Controllers
                 return BadRequest("Game with the given ID doesn't exist.");
             if (_userRepository[createDto.UserId] == null)
                 return BadRequest("User with the given ID doesn't exist.");
-            if (_userRepository[createDto.SubjectId] == null)
-                return BadRequest("Subject with the given ID doesn't exist.");
             if (userId == game.OrganiserId || userId != createDto.UserId)
                 return Forbid();
             try
             {
-                var bet = new Bet(createDto.UserId, createDto.GameId, createDto.Result, createDto.SubjectId, createDto.EventId, createDto.Stake);
+                var bet = new Bet(createDto.UserId, createDto.GameId, createDto.Result, createDto.Subject, createDto.EventId, createDto.Stake);
                 _betRepository.Add(bet);
                 return Ok(bet);
             }
@@ -82,7 +80,7 @@ namespace BettingGameAPI.Controllers
 
             bet.Stake = updateDto.Stake;
             bet.Result = updateDto.Result;
-            bet.SubjectId = updateDto.SubjectId;
+            bet.Subject = updateDto.Subject;
             _betRepository.Update(bet);
             return Ok(bet);
         }

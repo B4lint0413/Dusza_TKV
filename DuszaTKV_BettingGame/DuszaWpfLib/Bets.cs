@@ -14,7 +14,7 @@ namespace DuszaTKVGameLib
         public Bets(IEnumerable<Bet> items) : base(items) { }
         public Bets() : base() { }
 
-        public Dictionary<string, List<Bet>> BetsByGames => items.GroupBy(x => x.GameToBet).ToDictionary(x=>x.Key, x=>x.ToList());
+        public Dictionary<int, List<Bet>> BetsByGames => items.GroupBy(x => x.GameId).ToDictionary(x=>x.Key, x=>x.ToList());
 
         public override Bet this[string index]
         {
@@ -25,8 +25,8 @@ namespace DuszaTKVGameLib
         public override ClassList<Bet> AddItem(Bet item)
         {
             if (items.Exists(x =>
-                    x.GameToBet == item.GameToBet
-                    && x.Player == item.Player
+                    x.GameId == item.GameId
+                    && x.User.Name == item.User.Name
                     && x.Event == item.Event
                     && x.Subject == item.Subject))
                 throw new DuplicateBetException();

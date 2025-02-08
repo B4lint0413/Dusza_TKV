@@ -5,7 +5,7 @@ namespace DuszaTKVGameLib
 {
     public class Bet : IIdentified
     {
-        public Bet(int userId, int gameId, string result, int subjectId, int eventId, int stake)
+        public Bet(int userId, int gameId, string result, string subject, int eventId, int stake)
         {
             if (result == "")
                 throw new EmptyFieldException();
@@ -16,16 +16,19 @@ namespace DuszaTKVGameLib
 
             UserId = userId;
             GameId = gameId;
-            SubjectId = subjectId;
+            Subject = subject;
             EventId = eventId;
             Result = result;
             Stake = stake;
         }
 
         public int UserId { get; init; }
+        public User? User { get; set; }
         public int GameId { get; init; }
-        public int SubjectId { get; set; }
+        public Game? Game { get; set; }
+        public string Subject { get; set; }
         public int EventId { get; init; }
+        public Event? Event { get; set; }
         public string Result { get; set; }
         public int Stake { get; set; }
 
@@ -33,7 +36,7 @@ namespace DuszaTKVGameLib
 
         public override string ToString()
         {
-            return $"{UserId};{GameId};{Result};{SubjectId};{EventId};{Stake}";
+            return $"{UserId};{GameId};{Result};{Subject};{EventId};{Stake}";
         }
     }
 }

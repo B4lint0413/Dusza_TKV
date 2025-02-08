@@ -35,13 +35,13 @@ public sealed class Users : ClassList<User>
         foreach (var user in items)
         {
             List<Bet> bets;
-            if(user.PlacedBets.BetsByGames.TryGetValue(game.Name, out bets))
+            if(user.PlacedBets.BetsByGames.TryGetValue(game.Id, out bets))
             {
                 foreach (var bet in bets)
                 {
                     foreach (var result in game.Events)
                     {
-                        if (bet.Event == result.Name && bet.Subject == result.Subject && bet.Result == result.Result)
+                        if (bet.Event.Name == result.Name && bet.Subject == result.Subject && bet.Result == result.Result)
                             user.Points += (int)(result.Odds(allBets) * bet.Stake);
                     }
                 }

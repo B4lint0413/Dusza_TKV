@@ -13,8 +13,8 @@ namespace DuszaTKVGameLib
         }
 
         public Games(IEnumerable<Game> items) : base(items) { }
-        public IEnumerable<Game> GetOwnGames(string name) => items.Where(x => x.Organizer == name && x.IsInProgress);
-        public IEnumerable<Game> GetBettableGames(string name) => items.Where(x => x.Organizer != name && x.IsInProgress);
+        public IEnumerable<Game> GetOwnGames(string name) => items.Where(x => x.Organiser.Name == name && x.IsInProgress);
+        public IEnumerable<Game> GetBettableGames(string name) => items.Where(x => x.Organiser.Name != name && x.IsInProgress);
 
         public override ClassList<Game> AddItem(Game item)
         {

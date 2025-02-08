@@ -10,7 +10,7 @@ namespace DuszaTKVGameLib.DTOs.BetDTOs
     {
         public int UserId { get; set; }
         public int GameId { get; set; }
-        public int SubjectId { get; set; }
+        public string Subject { get; set; } = string.Empty;
         public int EventId { get; set; }
         public string Result { get; set; } = string.Empty;
         public int Stake { get; set; }

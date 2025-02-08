@@ -8,7 +8,7 @@ namespace DuszaTKVGameLib.DTOs.BetDTOs
 {
     public class UpdateBetDto
     {
-        public int SubjectId { get; set; }
+        public string Subject { get; set; } = string.Empty;
         public string Result { get; set; } = string.Empty;
         public int Stake { get; set; }
     }

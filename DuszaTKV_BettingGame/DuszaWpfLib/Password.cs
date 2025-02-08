@@ -6,8 +6,8 @@ namespace DuszaTKVGameLib;
 
 public class Password
 {
-    private readonly string password;
-    private readonly bool isHashed;
+    public string password { get; set; }
+    public bool isHashed { get; set; }
     public string HashedPassword => isHashed ? password : System.Text.Encoding.UTF8.GetString(SHA256.HashData(System.Text.Encoding.UTF8.GetBytes(password)));
 
     public void CheckSecurity()

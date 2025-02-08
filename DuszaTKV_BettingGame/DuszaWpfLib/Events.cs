@@ -29,5 +29,5 @@ public class Events
 	}
 
 	public IEnumerable<Event> GetEvents => _eventList;
-	public IEnumerable<Event> this[string gameName] => _eventList.Where(x => x.GameName == gameName);
+	public IEnumerable<Event> this[string gameName] => _eventList.Where(x => x.Game.Name == gameName);
 }

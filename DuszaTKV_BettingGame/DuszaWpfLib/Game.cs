@@ -47,5 +47,7 @@ namespace DuszaTKVGameLib
 
         public int Id {get; set;}
         public User? Organiser { get; set; }
+        public List<Bet> Bets { get; set; }
+
     }
 }

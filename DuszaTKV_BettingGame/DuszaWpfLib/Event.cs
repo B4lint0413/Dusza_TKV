@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Documents;
 using DuszaTKVGameLib.Exceptions;
 using DuszaTKVGameLib.Interfaces;
 
@@ -20,17 +22,19 @@ public class Event : IIdentified
         GameId = gameId;
     }
     public int GameId { get; init; }
-    public Game Game { get; set; }
+    public Game? Game { get; set; }
     public string Name { get; init; }
     public string Subject { get; init; }
     public string Result { get; set; }
 
     public int Id { get; set; }
 
+    public List<Bet> Bets { get; set; } 
+
     public double Odds(Bets bets)
     {
         var numberOfBets = bets.Items
-            .Count(x => x.Event == Name && x.GameToBet == GameId && x.Subject == Subject);
+            .Count(x => x.Event.Name == Name && x.GameId == GameId && x.Subject == Subject);
         return numberOfBets == 0 ? 0 : Math.Round(1 + 5.0 / Math.Pow(2, numberOfBets - 1), 2);
     }
     public override string ToString()
