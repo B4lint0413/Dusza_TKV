@@ -22,6 +22,7 @@ public class Password
             throw new EmptyFieldException();
         this.isHashed = isHashed;
     }
+
     public static int GetSecurityLevel(string password)
     {
         var securityLevel = 0;

@@ -1,5 +1,7 @@
 using BettingGameAPI.Models;
 using BettingGameAPI.Options;
+using BettingGameAPI.Validators;
+using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -33,8 +35,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<IDataStore>(new DataStore());
-
+builder.Services.AddScoped<IDataStore, DataStore>();
+builder.Services.AddValidatorsFromAssemblyContaining<UserValidator>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
