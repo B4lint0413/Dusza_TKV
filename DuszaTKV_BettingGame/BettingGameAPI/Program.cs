@@ -1,6 +1,7 @@
 using BettingGameAPI.Models;
 using BettingGameAPI.Options;
 using BettingGameAPI.Validators;
+using DuszaTKVGameLib.DTOs.BetDTOs;
 using DuszaTKVGameLib.DTOs.GameDTOs;
 using DuszaTKVGameLib.DTOs.UserDTOs;
 using FluentValidation;
@@ -13,7 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("Jwt"));
-var jwt = builder.Configuration.GetSection("Jwt").Get<JwtOptions>();
+var jwt = builder.Configuration.GetSection("Jwt").Get<JwtOptions>()!;
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -41,9 +42,14 @@ builder.Services.AddScoped<IDataStore, DataStore>();
 builder.Services.AddScoped<IValidator<UpdateGameDto>, UpdateGameValidator>();
 builder.Services.AddScoped<IValidator<CreateGameDto>, CreateGameValidator>();
 builder.Services.AddScoped<IValidator<CreateUserDto>, UserValidator>();
+builder.Services.AddScoped<IValidator<CreateBetDto>, CreateBetValidator>();
+builder.Services.AddScoped<IValidator<UpdateBetDto>, UpdateBetValidator>();
+
 builder.Services.AddValidatorsFromAssemblyContaining<UserValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<CreateGameValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<UpdateGameValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateBetValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<UpdateBetValidator>();
 
 var app = builder.Build();
 

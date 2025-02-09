@@ -7,13 +7,6 @@ namespace DuszaTKVGameLib
     {
         public Bet(int userId, int gameId, string result, string subject, int eventId, int stake)
         {
-            if (result == "")
-                throw new EmptyFieldException();
-            if (result.Length > LengthLimitExceededException.LENGTH_LIMIT)
-                throw new LengthLimitExceededException();
-            if (stake <= 0)
-                throw new NonPositiveStakeException();
-
             UserId = userId;
             GameId = gameId;
             Subject = subject;
