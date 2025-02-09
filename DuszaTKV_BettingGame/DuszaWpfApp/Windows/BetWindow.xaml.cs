@@ -20,10 +20,6 @@ namespace DuszaWpfApp.Windows
             Grid.SetRow(header, 0);
 
             _user = user;
-            foreach (Game game in App.Games.GetBettableGames(user.Name))
-            {
-                BetCardContainer.Children.Add(new BetCard(user, game));
-            }
         }
 
         private void ToNavigationWindow(object sender, RoutedEventArgs e)
