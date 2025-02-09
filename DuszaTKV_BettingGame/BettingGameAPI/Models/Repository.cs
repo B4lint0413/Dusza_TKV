@@ -1,37 +1,41 @@
 ﻿using DuszaTKVGameLib.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace BettingGameAPI.Models
 {
-    public class Repository<T> where T : IIdentified
+    public class Repository<T> where T : class, IIdentified
     {
-        private List<T> values { get; set; }
-        public IEnumerable<T> Values => values;
+        private DbSet<T> values;
+        public IEnumerable<T> Values => values.AsNoTracking().ToList();
 
-        public Repository()
+        public Repository(DbSet<T> set)
         {
-            values = new List<T>();
+            values = set;
         }
 
         public void Add(T value)
         {
-            values.Add(value);
+            var context = values.Add(value);
+            context.Context.SaveChanges();
         }
 
         public void Update(T value)
         {
-            values[values.IndexOf(value)] = value;
+            var context = values.Update(value);
+            context.Context.SaveChanges();
         }
 
         public void Remove(T value)
         {
-            values.Remove(value);
+            var context = values.Remove(value);
+            context.Context.SaveChanges();
         }
 
         public T? this[int id]
         {
             get
             {
-                return values.FirstOrDefault(x => x.Id == id);
+                return Values.FirstOrDefault(x => x.Id == id);
             }
         }
     }
