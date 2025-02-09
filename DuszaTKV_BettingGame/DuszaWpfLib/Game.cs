@@ -8,17 +8,6 @@ namespace DuszaTKVGameLib
 {
     public class Game : IIdentified
     {
-        public Game(string name, int organiserId, IEnumerable<Event> events)
-        {
-            var eventList = events.ToList();
-            if (name == "")
-                throw new EmptyFieldException();
-            if (name.Length > LengthLimitExceededException.LENGTH_LIMIT)
-                throw new LengthLimitExceededException();
-            Name = name;
-            OrganiserId = organiserId;
-            _events = eventList.ToList();
-        }
         public Game(string name, int organiserId)
         {
             _events = [];

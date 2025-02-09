@@ -1,6 +1,8 @@
 using BettingGameAPI.Models;
 using BettingGameAPI.Options;
 using BettingGameAPI.Validators;
+using DuszaTKVGameLib.DTOs.GameDTOs;
+using DuszaTKVGameLib.DTOs.UserDTOs;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -36,7 +38,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IDataStore, DataStore>();
+builder.Services.AddScoped<IValidator<UpdateGameDto>, UpdateGameValidator>();
+builder.Services.AddScoped<IValidator<CreateGameDto>, CreateGameValidator>();
+builder.Services.AddScoped<IValidator<CreateUserDto>, UserValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<UserValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateGameValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<UpdateGameValidator>();
 
 var app = builder.Build();
 
