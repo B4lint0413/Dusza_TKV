@@ -37,6 +37,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IDataStore, DataStore>();
 builder.Services.AddValidatorsFromAssemblyContaining<UserValidator>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
