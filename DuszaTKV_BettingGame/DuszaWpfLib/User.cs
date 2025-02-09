@@ -18,19 +18,22 @@ namespace DuszaTKVGameLib
                 throw new LengthLimitExceededException();
             Name = name;
             Password = new Password(passwordString);
+            PasswordString = passwordString;
             Password.CheckSecurity();
             Points = 100;
             _placedBets = new Bets();
         }
 
+        [JsonConstructor]
         public User(string name, string passwordString, int points) // Existing user
         {
             Name = name;
             Password = new Password(passwordString, true);
+            PasswordString = passwordString;
             Points = points;
             _placedBets = new Bets();
         }
-        public string Name {get; init; }
+        public string Name {get; set; }
         [JsonIgnore]
         public string PasswordString { get; set; }
         [NotMapped]

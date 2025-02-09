@@ -15,8 +15,8 @@ namespace DuszaTKVGameLib.APIHandlers
         public User GetUser(int id, string token)
         {
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var message = _httpClient.GetAsync($"BettingGame/User/${id}").Result;
-            message.EnsureSuccessStatusCode();
+            var message = _httpClient.GetAsync($"User/{id}").Result;
+            ExceptionHandler.CheckHttpResponse(message);
             string json = message.Content.ReadAsStringAsync().Result;
             return JsonSerializer.Deserialize<User>(json, _options)!;
         }
@@ -24,29 +24,29 @@ namespace DuszaTKVGameLib.APIHandlers
         {
             string json = JsonSerializer.Serialize(createDto, _options);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var message = _httpClient.PostAsync("BettingGame/User", content).Result;
-            message.EnsureSuccessStatusCode();
+            var message = _httpClient.PostAsync("User", content).Result;
+            ExceptionHandler.CheckHttpResponse(message);
         }
         public void UpdateEvent(int id, UpdateUserDto updateDto, string token)
         {
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             string json = JsonSerializer.Serialize(updateDto, _options);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var message = _httpClient.PutAsync($"BettingGame/User/{id}", content).Result;
-            message.EnsureSuccessStatusCode();
+            var message = _httpClient.PutAsync($"User/{id}", content).Result;
+            ExceptionHandler.CheckHttpResponse(message);
         }
         public void DeleteBet(int id, string token)
         {
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var message = _httpClient.DeleteAsync($"BettingGame/User/{id}").Result;
-            message.EnsureSuccessStatusCode();
+            var message = _httpClient.DeleteAsync($"User/{id}").Result;
+            ExceptionHandler.CheckHttpResponse(message);
         }
         public LoginUserDto Login(CreateUserDto login)
         {
             string json = JsonSerializer.Serialize(login, _options);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var message = _httpClient.PostAsync("BettingGame/Login", content).Result;
-            message.EnsureSuccessStatusCode();
+            var message = _httpClient.PostAsync("Login", content).Result;
+            ExceptionHandler.CheckHttpResponse(message);
             string response = message.Content.ReadAsStringAsync().Result;
             return JsonSerializer.Deserialize<LoginUserDto>(response, _options)!;
         }

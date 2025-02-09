@@ -17,6 +17,7 @@ namespace DuszaWpfApp
         {
             
         }
+<<<<<<< HEAD
   //      private static IEnumerable<User> GenerateUsers(string filename)
   //      {
   //          foreach (var line in File.ReadAllLines(filename))
@@ -50,6 +51,41 @@ namespace DuszaWpfApp
   //          File.WriteAllText("Files/fogadasok.txt", Bets.ToString());
   //          File.WriteAllText("Files/jatekok.txt", App.Games.ToString());
   //          File.WriteAllText("Files/eredmenyek.txt", App.Games.ResultsToString());
+=======
+        private static IEnumerable<User> GenerateUsers(string filename)
+        {
+            foreach (var line in File.ReadAllLines(filename))
+                yield return new User("user", "aA1?aA1?");//Factory.CreateUser(line);
+        }
+        private static IEnumerable<Bet> GenerateBets(Users users, string filename)
+        {
+            foreach (var row in File.ReadAllLines(filename))
+                yield return new Bet(1, 1, "", "", 1, 1);//Factory.CreateBet(users, row);
+        }
+        private static IEnumerable<Event> GenerateEvents(string filename)
+        {
+            foreach (var line in File.ReadAllLines(filename))
+            {
+                if (line.Contains(';'))
+                    yield return new Event("", "", 1);//Factory.CreateEvent(line, _currentGameName);
+                else _currentGameName = line;
+            }
+        }
+        private static IEnumerable<Game> GenerateGames(string filename, Events events)
+        {
+            foreach (var line in File.ReadAllLines(filename))
+            {
+                if (line.Contains(';'))
+                    yield return new Game("", 1);//Factory.CreateGame(line, events);
+            }
+        }
+        private void AppExit(object sender, ExitEventArgs e)
+        {
+            //File.WriteAllText("Files/users.txt", Users.ToString());
+            //File.WriteAllText("Files/fogadasok.txt", Bets.ToString());
+            //File.WriteAllText("Files/jatekok.txt", App.Games.ToString());
+            //File.WriteAllText("Files/eredmenyek.txt", App.Games.ResultsToString());
+>>>>>>> 427110a11e1f7f8d1fb420d4d8ca43f06bf4a90e
             
   //      }
     }

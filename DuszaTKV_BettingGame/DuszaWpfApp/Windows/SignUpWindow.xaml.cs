@@ -4,6 +4,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using DuszaTKVGameLib;
+using DuszaTKVGameLib.APIHandlers;
+using DuszaTKVGameLib.DTOs.UserDTOs;
 
 namespace DuszaWpfApp.Windows
 {
@@ -15,6 +17,7 @@ namespace DuszaWpfApp.Windows
         private Dictionary<int, UIElement> levels = new Dictionary<int, UIElement>();
         private Brush red = new SolidColorBrush(Colors.Red);
         private Brush green = new SolidColorBrush(Colors.Green);
+        private readonly UserAPIHandler handler = new UserAPIHandler();
 
         public SignUpWindow()
         {
@@ -44,7 +47,7 @@ namespace DuszaWpfApp.Windows
             {
                 try
                 {
-                    App.Users = (Users)App.Users.AddItem(new User(name, password));
+                    handler.CreateUser(new CreateUserDto() { Name = name, Password = password });
                     username.Text = "";
                     passwd.Password = "";
                     passwdAgain.Password = "";

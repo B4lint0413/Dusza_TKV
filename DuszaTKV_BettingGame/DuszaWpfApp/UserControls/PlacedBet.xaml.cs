@@ -12,7 +12,7 @@ namespace DuszaWpfApp.UserControls
         {
             InitializeComponent();
 
-            Header.Text = bet.GameToBet;
+            Header.Text = bet.Game.Name;
             Body.Text += $"Subject: {bet.Subject}";
             Body.Text += $"\nEvent: {bet.Event}";
             Body.Text += $"\nResult: {bet.Result}";

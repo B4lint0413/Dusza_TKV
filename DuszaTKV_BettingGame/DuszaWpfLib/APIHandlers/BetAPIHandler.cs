@@ -15,8 +15,8 @@ namespace DuszaTKVGameLib.APIHandlers
         public Bet GetBet(int id, string token)
         {
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var message = _httpClient.GetAsync($"BettingGame/Bet/${id}").Result;
-            message.EnsureSuccessStatusCode();
+            var message = _httpClient.GetAsync($"Bet/${id}").Result;
+            ExceptionHandler.CheckHttpResponse(message);
             string json = message.Content.ReadAsStringAsync().Result;
             return JsonSerializer.Deserialize<Bet>(json, _options)!;
         }
@@ -25,22 +25,22 @@ namespace DuszaTKVGameLib.APIHandlers
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             string json = JsonSerializer.Serialize(createDto, _options);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var message = _httpClient.PostAsync("BettingGame/Bet", content).Result;
-            message.EnsureSuccessStatusCode();
+            var message = _httpClient.PostAsync("Bet", content).Result;
+            ExceptionHandler.CheckHttpResponse(message);
         }
         public void UpdateBet(int id, UpdateBetDto updateDto, string token)
         {
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             string json = JsonSerializer.Serialize(updateDto, _options);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var message = _httpClient.PutAsync($"BettingGame/Bet/{id}", content).Result;
-            message.EnsureSuccessStatusCode();
+            var message = _httpClient.PutAsync($"Bet/{id}", content).Result;
+            ExceptionHandler.CheckHttpResponse(message);
         }
         public void DeleteBet(int id, string token)
         {
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var message = _httpClient.DeleteAsync($"BettingGame/Bet/{id}").Result;
-            message.EnsureSuccessStatusCode();
+            var message = _httpClient.DeleteAsync($"Bet/{id}").Result;
+            ExceptionHandler.CheckHttpResponse(message);
         }
     }
 }

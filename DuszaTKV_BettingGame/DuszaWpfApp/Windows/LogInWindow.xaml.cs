@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
 using DuszaTKVGameLib;
+using DuszaTKVGameLib.APIHandlers;
+using DuszaTKVGameLib.DTOs.UserDTOs;
 using DuszaTKVGameLib.Exceptions;
 
 namespace DuszaWpfApp.Windows
@@ -10,7 +12,8 @@ namespace DuszaWpfApp.Windows
 	/// </summary>
 	public partial class LogInWindow : Window
 	{
-		public LogInWindow()
+		private readonly UserAPIHandler handler = new UserAPIHandler();
+        public LogInWindow()
 		{
 			WindowStartupLocation = WindowStartupLocation.CenterScreen;
 			InitializeComponent();
@@ -22,7 +25,8 @@ namespace DuszaWpfApp.Windows
 			{
 				var userName = username.Text;
 				var password = passwd.Password;
-				var user = App.Users.UserLogIn(userName, new Password(password).HashedPassword);
+				LoginUserDto login = handler.Login(new CreateUserDto() { Name = userName, Password = password});
+				var user = handler.GetUser(login.Id, login.Token);
 				new NavigationWindow(user).Show();
 				Close();
 			}
