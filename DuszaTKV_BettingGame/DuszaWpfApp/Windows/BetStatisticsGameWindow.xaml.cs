@@ -16,8 +16,8 @@ public partial class BetStatisticsGameWindow : Window
         MainContainer.Children.Add(header);
         Grid.SetRow(header, 0);
 
-        foreach (var game in App.Games.Items)
-            Container.Children.Add(new BetStatisticsGameCard(game, user));
+        //foreach (var game in App.Games.Items)
+        //    Container.Children.Add(new BetStatisticsGameCard(game, user));
     }
 
     private void ToNavigationWindow(object sender, RoutedEventArgs e)

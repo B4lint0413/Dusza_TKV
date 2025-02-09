@@ -24,25 +24,25 @@ public partial class CreateNewGameWindow : Window
 
     private void CreateNewGame(object sender, RoutedEventArgs e)
     {
-        try
-        {
-            var gameName = GameName.Text;
-            var events = Events.Text;
-            var subjects = Subjects.Text;
-            var eventList = (from ev in events.Split(';') 
-                from subject in subjects.Split(';') 
-                select new Event(ev, subject, 1))//gameName
-                .ToList();
-            var game = new Game(gameName, _organizer.Id, eventList);
-            App.Games = (Games)App.Games.AddItem(game);
-            App.Events += eventList;
-            new AdminGameWindow(_organizer).Show();
-            Close();
-        }   
-        catch (Exception exception)
-        {
-            MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-        }
+        //try
+        //{
+        //    var gameName = GameName.Text;
+        //    var events = Events.Text;
+        //    var subjects = Subjects.Text;
+        //    var eventList = (from ev in events.Split(';') 
+        //        from subject in subjects.Split(';') 
+        //        select new Event(ev, subject, 1))//gameName
+        //        .ToList();
+        //    var game = new Game(gameName, _organizer.Id, eventList);
+        //    App.Games = (Games)App.Games.AddItem(game);
+        //    App.Events += eventList;
+        //    new AdminGameWindow(_organizer).Show();
+        //    Close();
+        //}   
+        //catch (Exception exception)
+        //{
+        //    MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        //}
     }
 
     private void ToNavigationWindow(object sender, RoutedEventArgs e)

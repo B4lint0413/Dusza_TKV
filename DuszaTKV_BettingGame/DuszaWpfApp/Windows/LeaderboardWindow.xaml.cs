@@ -26,22 +26,22 @@ namespace DuszaWpfApp
 		public LeaderboardWindow(User user)
 		{
 			InitializeComponent();
-			WindowStartupLocation = WindowStartupLocation.CenterScreen;
-			var header = new UserHeader(user);
-			MainContainer.Children.Add(header);
-			Grid.SetRow(header, 0);
-			_user = user;
-			var placement = 0;
-			var counter = 0;
-			var points = -1;
-			foreach (var item in App.Users.Items.OrderByDescending(x => x.Points))
-			{
-				counter++;
-				if (points != item.Points)
-					placement = counter;
-				Container.Children.Add(new LeaderBoardCard(item, placement));
-				points = item.Points;
-			}
+			//WindowStartupLocation = WindowStartupLocation.CenterScreen;
+			//var header = new UserHeader(user);
+			//MainContainer.Children.Add(header);
+			//Grid.SetRow(header, 0);
+			//_user = user;
+			//var placement = 0;
+			//var counter = 0;
+			//var points = -1;
+			//foreach (var item in App.Users.Items.OrderByDescending(x => x.Points))
+			//{
+			//	counter++;
+			//	if (points != item.Points)
+			//		placement = counter;
+			//	Container.Children.Add(new LeaderBoardCard(item, placement));
+			//	points = item.Points;
+			//}
 		}
 		private void ToNavigationWindow(object sender, RoutedEventArgs e)
 		{

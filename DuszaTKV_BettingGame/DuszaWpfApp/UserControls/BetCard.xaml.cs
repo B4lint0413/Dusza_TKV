@@ -11,18 +11,14 @@ namespace DuszaWpfApp.UserControls
     /// </summary>
     public partial class BetCard : UserControl
     {
-        private Game currentGame;
-        private User player;
-        public BetCard(User user, Game game)
+        public BetCard()
         {
             InitializeComponent();
-            currentGame = game;
-            player = user;
         }
 
         private void MakeBetWindow(object sender, RoutedEventArgs e)
         {
-            new MakeBetWindow(player, currentGame).Show();
+            //new MakeBetWindow(player, currentGame).Show();
             Window.GetWindow(Parent)!.Close();
         }
     }

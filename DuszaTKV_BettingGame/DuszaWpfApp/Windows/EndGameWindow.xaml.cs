@@ -30,23 +30,23 @@ public partial class EndGameWindow : Window
 
     private void CommitResults(object sender, RoutedEventArgs e)
     {
-        try
-        {
-            var results = new List<string>();
-            foreach(var item in Container.Children)
-            {
-                var result = (EventResultField)item;
-                results.Add(result.Result.Text);
-            }
-            _game.EndGame(results);
-            App.Users.DistributePoints(_game, App.Bets);
-            new AdminGameWindow(_organizer).Show();
-            Close();
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-        }
+        //try
+        //{
+        //    var results = new List<string>();
+        //    foreach(var item in Container.Children)
+        //    {
+        //        var result = (EventResultField)item;
+        //        results.Add(result.Result.Text);
+        //    }
+        //    _game.EndGame(results);
+        //    App.Users.DistributePoints(_game, App.Bets);
+        //    new AdminGameWindow(_organizer).Show();
+        //    Close();
+        //}
+        //catch (Exception ex)
+        //{
+        //    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        //}
     }
 
     private void ToNavigationWindow(object sender, RoutedEventArgs e)

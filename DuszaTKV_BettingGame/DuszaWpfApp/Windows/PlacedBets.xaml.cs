@@ -14,16 +14,16 @@ namespace DuszaWpfApp.Windows
         public PlacedBets(User player)
         {
             InitializeComponent();
-            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            //WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
-            this.player = player;
+            //this.player = player;
 
-            foreach (var bet in App.Users[player.Name].PlacedBets.Items)
-                Scroller.Children.Add(new PlacedBet(bet));
+            //foreach (var bet in App.Users[player.Name].PlacedBets.Items)
+            //    Scroller.Children.Add(new PlacedBet(bet));
 
-            UserHeader header = new UserHeader(player);
-            MainContainer.Children.Add(header);
-            Grid.SetRow(header, 0);
+            //UserHeader header = new UserHeader(player);
+            //MainContainer.Children.Add(header);
+            //Grid.SetRow(header, 0);
         }
 
         private void ToNavigationWindow(object sender, RoutedEventArgs e)

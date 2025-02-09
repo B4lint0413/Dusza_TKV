@@ -5,7 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DuszaWpfApp"
         mc:Ignorable="d"
+        xmlns:usercontrols="clr-namespace:DuszaWpfApp.UserControls"
+        xmlns:viewmodels="clr-namespace:DuszaWpfApp.ViewModels"
         Title="Check Created Games" Height="450" Width="800" MinWidth="360" MinHeight="200">
+    <Window.DataContext>
+        <viewmodels:AdminGameWindowViewModel/>
+    </Window.DataContext>
     <Grid x:Name="MainContainer">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -16,8 +21,15 @@
             <StackPanel>
                 <TextBlock HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10">Games</TextBlock>
                 <Button MaxWidth="160" Margin="10" Height="25" Click="CreateNewGame" Content="Create new game"/>
-                <Button MaxWidth="160" Margin="10" Height="25" Click="ToNavigationWindow" Content="Back to Navigation"/><StackPanel  Name="GameCardContainer"> 
-                    
+                <Button MaxWidth="160" Margin="10" Height="25" Click="ToNavigationWindow" Content="Back to Navigation"/>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="10">
+                    <ItemsControl ItemsSource="{Binding Games}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <usercontrols:EndGameCard/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

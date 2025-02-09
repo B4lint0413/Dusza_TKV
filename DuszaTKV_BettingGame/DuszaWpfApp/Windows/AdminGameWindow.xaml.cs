@@ -15,8 +15,6 @@ namespace DuszaWpfApp.Windows
             var header = new UserHeader(organizer);
             MainContainer.Children.Add(header);
             Grid.SetRow(header, 0);_organizer = organizer;
-            foreach (var game in App.Games.GetOwnGames(organizer.Name))
-                GameCardContainer.Children.Add(new EndGameCard(game, organizer));
         }
         
         private void CreateNewGame(object sender, RoutedEventArgs e)

@@ -41,19 +41,19 @@ namespace DuszaWpfApp.Windows
 
         private void MakeNewBet(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                int a;
-                var bet = player.MakeBet(currentGame.Id, Result.Text, Subject.SelectedItem.ToString()??"",
-                    1, int.TryParse(Stake.Text, out a) ? int.Parse(Stake.Text) : 0); //Event.SelectedItem
-                App.Bets = (Bets)App.Bets.AddItem(bet);
-                App.Users[player.Name] = player;
-                Cancel(sender, e);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            //try
+            //{
+            //    int a;
+            //    var bet = player.MakeBet(currentGame.Id, Result.Text, Subject.SelectedItem.ToString()??"",
+            //        1, int.TryParse(Stake.Text, out a) ? int.Parse(Stake.Text) : 0); //Event.SelectedItem
+            //    App.Bets = (Bets)App.Bets.AddItem(bet);
+            //    App.Users[player.Name] = player;
+            //    Cancel(sender, e);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            //}
         }
     }
 }
