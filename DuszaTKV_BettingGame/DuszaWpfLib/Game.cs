@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using DuszaTKVGameLib.Exceptions;
 using DuszaTKVGameLib.Interfaces;
 
@@ -27,6 +28,10 @@ namespace DuszaTKVGameLib
         public string Name { get; set; }
         public int OrganiserId { get; init; }
         private readonly List<Event> _events;
+        [JsonIgnore]
+        public string EventNames => string.Join("\n", _events.Select(x => x.Name).Distinct());
+        [JsonIgnore]
+        public string SubjectNames => string.Join("\n", _events.Select(x => x.Subject).Distinct());
         public bool IsInProgress => string.Join("", _events.Select(x => x.Result)) == "";
         public string ResultsToString() => $"{Name}\n{string.Join("\n", _events)}";
         public override string ToString() => $"{Organiser.Name};{Name};{_events.DistinctBy(x => x.Subject).Count()};{_events.DistinctBy(x => x.Name).Count()}\n{string.Join("\n", _events.Select(x => x.Subject).Distinct())}\n{string.Join("\n", _events.Select(x => x.Name).Distinct())}";

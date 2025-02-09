@@ -6,13 +6,16 @@
              xmlns:local="clr-namespace:DuszaWpfApp"
              mc:Ignorable="d" 
              d:DesignHeight="125" d:DesignWidth="320">
-    <Canvas x:Name="Card" HorizontalAlignment="Center" Margin="10" Height="150" Width="320">
-        <Border x:Name="Border" BorderBrush="Blue" BorderThickness="2" CornerRadius="15 15 15 20"
+    <Canvas HorizontalAlignment="Center" Margin="10" Height="150" Width="320">
+        <Border BorderBrush="Blue" BorderThickness="2" CornerRadius="15 15 15 20"
                 Width="320" Height="150" Margin="5">
-            <Grid x:Name="Grid" HorizontalAlignment="Center" Width="320" Height="150">
-                <TextBlock x:Name="Header" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="5" FontSize="25" FontWeight="Bold"/>
-                <Viewbox x:Name="Content" HorizontalAlignment="Center" Height="80" Width="200" VerticalAlignment="Center">
-                    <TextBlock x:Name="Body" HorizontalAlignment="Center" Margin="10" Padding="5" VerticalAlignment="Center"/>
+            <Grid HorizontalAlignment="Center" Width="320" Height="150">
+                <TextBlock VerticalAlignment="Top" Text="{Binding Name}" HorizontalAlignment="Center" Margin="5" FontSize="25" FontWeight="Bold"/>
+                <Viewbox HorizontalAlignment="Center" Height="80" Width="200" VerticalAlignment="Center">
+                    <Label Content="Subjects:" HorizontalAlignment="Left"/>
+                    <TextBlock Text="{Binding SubjectNames}" HorizontalAlignment="Center" Margin="10" Padding="5" VerticalAlignment="Center"/>
+                    <Label Content="Events:" HorizontalAlignment="Left"/>
+                    <TextBlock Text="{Binding EventNames}" HorizontalAlignment="Center" Margin="10" Padding="5" VerticalAlignment="Center"/>
                 </Viewbox>
                 <Button Height="25" Margin="20 10" VerticalAlignment="Bottom" Click="MakeBetWindow">Bet</Button>
             </Grid>

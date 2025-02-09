@@ -5,7 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DuszaWpfApp"
         mc:Ignorable="d"
+        xmlns:viewmodels="clr-namespace:DuszaWpfApp.ViewModels"
+        xmlns:usercontrols="clr-namespace:DuszaWpfApp.UserControls"
         Title="View Games" Height="450" Width="800" MinWidth="360">
+    <Window.DataContext>
+        <viewmodels:BetWindowViewModel/>
+    </Window.DataContext>
     <Grid x:Name="MainContainer">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -13,9 +18,16 @@
         </Grid.RowDefinitions>
         
         <ScrollViewer Grid.Row="1">
-            <StackPanel Name="BetCardContainer" HorizontalAlignment="Center">
-                <TextBlock HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10">Games to bet on</TextBlock>
-                <Button MaxWidth="160" Margin="10" Height="25" Click="ToNavigationWindow" Content="Back to Navigation"/>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                <ItemsControl ItemsSource="{Binding Games}" HorizontalAlignment="Center">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <usercontrols:BetCard/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                    <TextBlock HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10">Games to bet on</TextBlock>
+                    <Button MaxWidth="160" Margin="10" Height="25" Click="ToNavigationWindow" Content="Back to Navigation"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>
